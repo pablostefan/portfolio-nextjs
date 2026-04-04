@@ -1,4 +1,5 @@
 import { Code2, Globe, Mail, BookMarked } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 import { GradientText } from '@/components/ui/GradientText';
 import { AnimatedDivider } from '@/components/ui/AnimatedDivider';
 
@@ -9,7 +10,9 @@ const socials = [
   { icon: BookMarked, label: 'Medium',   href: 'https://medium.com/@pablo.stefan' },
 ] as const;
 
-export function Footer() {
+export async function Footer() {
+  const t = await getTranslations('footer');
+
   return (
     <>
       <AnimatedDivider />
@@ -39,9 +42,9 @@ export function Footer() {
           <p className="text-center font-mono text-xs text-content-muted">
             © {new Date().getFullYear()} Pablo Stefan
             <span aria-hidden="true" className="mx-2 text-white/20">·</span>
-            Feito com{' '}
+            {t('made_with')}{' '}
             <span aria-hidden="true" className="text-pink-400">♥</span>{' '}
-            usando{' '}
+            {t('using')}{' '}
             <span className="text-content-secondary">Next.js</span>
             {' & '}
             <span className="text-content-secondary">Framer Motion</span>

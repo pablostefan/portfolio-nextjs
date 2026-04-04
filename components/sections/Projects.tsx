@@ -169,7 +169,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <SectionWrapper id="projects" className="relative overflow-hidden">
+    <SectionWrapper id="projects" direction="right" className="relative overflow-hidden">
       {/* Background blobs */}
       <AnimatedBlob variant="violet" size={480}
         className="left-1/4 -top-24 opacity-22" />

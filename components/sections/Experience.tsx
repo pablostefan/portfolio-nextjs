@@ -154,7 +154,7 @@ export function Experience() {
   const locale = useLocale() as Locale;
 
   return (
-    <SectionWrapper id="experience" className="relative overflow-hidden overflow-x-clip">
+    <SectionWrapper id="experience" direction="left" className="relative overflow-hidden overflow-x-clip">
       {/* Background blobs */}
       <AnimatedBlob variant="indigo" size={480}
         className="-left-40 top-1/4 opacity-25" />

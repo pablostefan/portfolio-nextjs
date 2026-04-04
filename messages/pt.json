@@ -59,5 +59,9 @@
     "github_label": "GitHub",
     "linkedin_label": "LinkedIn",
     "medium_label": "Medium"
+  },
+  "footer": {
+    "made_with": "Feito com",
+    "using": "usando"
   }
 }

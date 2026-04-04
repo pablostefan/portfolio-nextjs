@@ -206,7 +206,7 @@ export function CertificationsClient({ certs }: CertificationsClientProps) {
   if (certs.length === 0) return null;
 
   return (
-    <SectionWrapper id="certifications" className="relative overflow-hidden">
+    <SectionWrapper id="certifications" direction="scale" className="relative overflow-hidden">
       {/* Background blobs */}
       <AnimatedBlob variant="cyan" size={460}
         className="-right-24 -top-20 opacity-22" />

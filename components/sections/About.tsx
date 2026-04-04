@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { MapPin, Briefcase } from 'lucide-react';
 import { fetchLinkedInProfile } from '@/lib/linkedin';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
+import { CountUp } from '@/components/ui/CountUp';
 import { AnimatedBlob } from '@/components/ui/AnimatedBlob';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { GlassCard } from '@/components/ui/GlassCard';
@@ -158,11 +159,13 @@ export async function About({ locale }: AboutProps) {
                 ))}
               </div>
 
-              <ExpandableText
-                text={aboutText}
-                expandLabel={t('expand_text')}
-                collapseLabel={t('collapse_text')}
-              />
+              <div className="pb-6">
+                <ExpandableText
+                  text={aboutText}
+                  expandLabel={t('expand_text')}
+                  collapseLabel={t('collapse_text')}
+                />
+              </div>
             </div>
           </GlassCard>
 
@@ -175,7 +178,7 @@ export async function About({ locale }: AboutProps) {
                 className="flex flex-col items-center justify-center p-5 text-center"
               >
                 <p className="font-display text-3xl font-bold leading-none text-accent-light">
-                  {stat.value}
+                  <CountUp value={stat.value} />
                 </p>
                 <p className="mt-2 text-xs leading-tight text-content-muted">{stat.label}</p>
               </GlassCard>

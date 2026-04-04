@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 
 interface ExpandableTextProps {
   text: string;
@@ -10,20 +11,34 @@ interface ExpandableTextProps {
 
 export function ExpandableText({ text, expandLabel, collapseLabel }: ExpandableTextProps) {
   const [expanded, setExpanded] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+  const contentRef = useRef<HTMLParagraphElement>(null);
 
   return (
     <div>
       <div className="relative md:overflow-visible">
-        <p
-          className={[
-            'leading-relaxed text-content-secondary',
-            expanded
-              ? 'max-h-none'
-              : 'overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:9] md:block md:overflow-visible',
-          ].join(' ')}
+        <motion.div
+          initial={false}
+          animate={
+            shouldReduceMotion
+              ? undefined
+              : { height: expanded ? 'auto' : contentRef.current ? Math.min(contentRef.current.scrollHeight, 216) : 216 }
+          }
+          transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+          className={expanded ? '' : 'overflow-hidden md:!h-auto md:overflow-visible'}
         >
-          {text}
-        </p>
+          <p
+            ref={contentRef}
+            className={[
+              'leading-relaxed text-content-secondary',
+              !expanded
+                ? '[display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:9] md:block'
+                : '',
+            ].join(' ')}
+          >
+            {text}
+          </p>
+        </motion.div>
       </div>
 
       <button

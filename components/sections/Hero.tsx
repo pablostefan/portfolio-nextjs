@@ -92,14 +92,14 @@ export function Hero() {
         >
           <TypewriterText
             texts={typewriterTexts}
-            className="font-display text-2xl font-semibold text-content-secondary sm:text-3xl"
+            className="font-display text-2xl font-semibold text-content sm:text-3xl"
           />
         </motion.div>
 
         {/* Subtitle */}
         <motion.p
           variants={shouldReduceMotion ? undefined : item}
-          className="mx-auto mb-10 max-w-xl text-lg leading-relaxed text-content-muted"
+          className="mx-auto mb-10 max-w-xl text-lg leading-relaxed text-content-secondary"
         >
           {t('subtitle')}
         </motion.p>
