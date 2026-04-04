@@ -502,10 +502,13 @@ jobs:
 - [x] `.github/workflows/update-profile.yml`
 
 ### Fase 7 — Deploy
-- [ ] Conectar repo ao Vercel
-- [ ] Configurar domínio `pablostefan.com.br`
-- [ ] Adicionar env vars no painel Vercel
-- [ ] Configurar CNAME no DNS
+- [x] Conectar repo ao Vercel (`vercel --prod`)
+- [x] Domínio `pablostefan.com.br` adicionado ao projeto Vercel
+- [x] Env var `NEXT_PUBLIC_APP_URL` configurada na Vercel
+- [ ] Adicionar `GITHUB_TOKEN` nas env vars do painel Vercel
+- [ ] Adicionar `LINKEDIN_ACCESS_TOKEN` nas env vars do painel Vercel
+- [ ] Configurar DNS no HostGator: registro `A` apontando `pablostefan.com.br → 76.76.21.21`
+- [ ] Conectar repositório GitHub ao projeto Vercel (painel: pablo-stefan/portfolio-nextjs → Settings → Git)
 
 ---
 
