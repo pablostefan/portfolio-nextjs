@@ -2,11 +2,11 @@
 
 import Image from 'next/image';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ExternalLink, Copy, Check } from 'lucide-react';
+import { ExternalLink, Copy, Check, ShieldCheck, Calendar } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
-import { GradientText } from '@/components/ui/GradientText';
+import { SectionHeading } from '@/components/ui/SectionHeading';
 import { GlassCard } from '@/components/ui/GlassCard';
 import type { Certification } from '@/types';
 
@@ -16,11 +16,6 @@ function formatCertDate(isoOrPartial: string): string {
   const d = new Date(isoOrPartial);
   if (Number.isNaN(d.getTime())) return isoOrPartial;
   return d.toLocaleDateString('pt-BR', { month: 'short', year: 'numeric' });
-}
-
-function isExpired(expiryDate?: string): boolean {
-  if (!expiryDate) return false;
-  return new Date(expiryDate) < new Date();
 }
 
 const GRADIENT_PAIRS: [string, string][] = [
@@ -43,13 +38,13 @@ function IssuerAvatar({ cert }: { cert: Certification }) {
 
   if (cert.badgeImageUrl) {
     return (
-      <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-2xl border border-white/[0.12] bg-white/[0.04] shadow-lg">
+      <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-xl border border-glass-border bg-glass-bg shadow-lg">
         <Image
           src={cert.badgeImageUrl}
           alt={`${cert.issuer} badge`}
           fill
           className="object-contain p-1"
-          sizes="56px"
+          sizes="44px"
         />
       </div>
     );
@@ -60,11 +55,11 @@ function IssuerAvatar({ cert }: { cert: Certification }) {
   return (
     <div
       aria-label={cert.issuer}
-      className="relative h-14 w-14 shrink-0 overflow-hidden rounded-2xl shadow-[0_4px_16px_rgba(0,0,0,0.4)]"
+      className="relative h-11 w-11 shrink-0 overflow-hidden rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.4)]"
       style={{ background: `linear-gradient(145deg, ${from}, ${to})` }}
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-black/20" />
-      <span className="absolute inset-0 flex items-center justify-center font-display text-base font-bold leading-none tracking-wide text-white">
+      <span className="absolute inset-0 flex items-center justify-center font-display text-xs font-bold leading-none tracking-wide text-white">
         {initials}
       </span>
     </div>
@@ -87,11 +82,11 @@ function CopyButton({ value }: { value: string }) {
       type="button"
       onClick={handleCopy}
       aria-label="Copiar ID"
-      className="rounded p-0.5 text-content-muted transition-colors hover:text-accent-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
+      className="rounded-md p-1 text-content-muted transition-colors hover:bg-glass-bg-hover hover:text-accent-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
     >
       {copied
-        ? <Check size={11} className="text-emerald-400" aria-hidden="true" />
-        : <Copy size={11} aria-hidden="true" />}
+        ? <Check size={12} className="text-emerald-400" aria-hidden="true" />
+        : <Copy size={12} aria-hidden="true" />}
     </button>
   );
 }
@@ -102,11 +97,7 @@ interface CertCardProps {
   cert: Certification;
   index: number;
   tIssued: string;
-  tExpires: string;
-  tNoExpiry: string;
   tVerify: string;
-  tValid: string;
-  tExpired: string;
   tViewCredy: string;
   tCredentialId: string;
 }
@@ -115,18 +106,12 @@ function CertCard({
   cert,
   index,
   tIssued,
-  tExpires,
-  tNoExpiry,
   tVerify,
-  tValid,
-  tExpired,
   tViewCredy,
   tCredentialId,
 }: CertCardProps) {
   const shouldReduceMotion = useReducedMotion();
-  const expired   = isExpired(cert.expiryDate);
   const isCredly  = cert.credentialUrl?.includes('credly.com') ?? false;
-  const [from]    = hashGradient(cert.issuer);
 
   return (
     <motion.div
@@ -138,59 +123,43 @@ function CertCard({
     >
       <GlassCard
         hover
-        glow={expired ? 'none' : 'violet'}
-        className="relative flex h-full flex-col overflow-hidden p-6"
+        glow="violet"
+        className="group/cert relative flex h-full flex-col overflow-hidden p-0"
       >
-        {/* Top accent line with issuer colour */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-[2px]"
-          style={{ background: `linear-gradient(90deg, ${from}cc, transparent)` }}
-        />
+        {/* Header */}
+        <div className="px-5 pt-5 pb-4">
+          {/* Avatar + title */}
+          <div className="flex items-start gap-3.5">
+            <IssuerAvatar cert={cert} />
 
-        {/* Avatar + title */}
-        <div className="mb-4 flex items-center gap-3">
-          <IssuerAvatar cert={cert} />
-
-          <div className="min-w-0 flex-1">
-            <h3 className="font-display text-sm font-bold leading-snug text-content">
-              {cert.name}
-            </h3>
-            <p className="mt-0.5 font-mono text-xs text-accent-light">
-              {cert.issuer}
-            </p>
+            <div className="min-w-0 flex-1">
+              <h3 className="font-display text-sm font-bold leading-snug text-content">
+                {cert.name}
+              </h3>
+              <p className="mt-1 font-mono text-xs text-accent-light">
+                {cert.issuer}
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Divider */}
-        <div aria-hidden="true" className="mb-4 h-px bg-white/[0.06]" />
+        <div aria-hidden="true" className="mx-5 h-px bg-glass-divider" />
 
-        {/* Dates */}
-        <dl className="mb-4 space-y-2 text-xs">
-          <div className="flex items-center justify-between gap-4">
-            <dt className="shrink-0 text-content-muted">{tIssued}</dt>
-            <dd className="whitespace-nowrap font-mono text-content-secondary">{formatCertDate(cert.issueDate)}</dd>
-          </div>
-          {cert.expiryDate ? (
-            <div className="flex items-center justify-between gap-4">
-              <dt className={['shrink-0', expired ? 'text-red-400/70' : 'text-content-muted'].join(' ')}>{tExpires}</dt>
-              <dd className={['whitespace-nowrap font-mono', expired ? 'text-red-400' : 'text-content-secondary'].join(' ')}>
-                {formatCertDate(cert.expiryDate)}
-              </dd>
+        {/* Body */}
+        <div className="flex flex-1 flex-col px-5 pt-4 pb-5">
+          {/* Dates */}
+          <dl className="mb-4 space-y-2 text-xs">
+            <div className="flex items-center gap-2.5">
+              <Calendar size={11} className="shrink-0 text-content-muted" aria-hidden="true" />
+              <dt className="shrink-0 text-content-muted">{tIssued}</dt>
+              <dd className="ml-auto whitespace-nowrap font-mono text-content-secondary">{formatCertDate(cert.issueDate)}</dd>
             </div>
-          ) : (
-            <div className="flex items-center justify-between gap-4">
-              <dt className="shrink-0 text-content-muted">{tNoExpiry}</dt>
-              <dd className="font-mono text-emerald-400/60">∞</dd>
-            </div>
-          )}
-        </dl>
+          </dl>
 
-        {/* Credential ID */}
-        {cert.credentialId && (
-          <>
-            <div aria-hidden="true" className="mb-3 h-px bg-white/[0.06]" />
-            <div className="mb-4 flex items-center justify-between gap-2 rounded-lg border border-white/[0.06] bg-white/[0.03] px-3 py-2">
+          {/* Credential ID */}
+          {cert.credentialId && (
+            <div className="mb-4 flex items-center justify-between gap-2 rounded-lg border border-glass-border bg-glass-bg px-3 py-2">
               <div className="min-w-0">
                 <p className="mb-0.5 font-mono text-[10px] uppercase tracking-widest text-content-muted">
                   {tCredentialId}
@@ -201,24 +170,24 @@ function CertCard({
               </div>
               <CopyButton value={cert.credentialId} />
             </div>
-          </>
-        )}
+          )}
 
-        {/* Verify link */}
-        {cert.credentialUrl && (
-          <div className="mt-auto">
-            <a
-              href={cert.credentialUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${tVerify} — ${cert.name}`}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 font-mono text-xs text-content-secondary transition-all duration-200 hover:border-accent/30 hover:bg-accent/10 hover:text-accent-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
-            >
-              <ExternalLink size={12} aria-hidden="true" />
-              {isCredly ? tViewCredy : tVerify}
-            </a>
-          </div>
-        )}
+          {/* Verify link */}
+          {cert.credentialUrl && (
+            <div className="mt-auto">
+              <a
+                href={cert.credentialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${tVerify} — ${cert.name}`}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-glass-border bg-glass-bg px-4 py-2.5 font-mono text-xs text-content-secondary transition-all duration-200 hover:border-accent/30 hover:bg-accent/10 hover:text-accent-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
+              >
+                <ShieldCheck size={13} aria-hidden="true" />
+                {isCredly ? tViewCredy : tVerify}
+              </a>
+            </div>
+          )}
+        </div>
       </GlassCard>
     </motion.div>
   );
@@ -238,19 +207,7 @@ export function CertificationsClient({ certs }: CertificationsClientProps) {
   return (
     <SectionWrapper id="certifications">
       <div className="mx-auto max-w-6xl">
-        {/* Heading */}
-        <div className="mb-16 text-center">
-          <h2 className="font-display text-3xl font-bold sm:text-4xl">
-            <GradientText>{t('title')}</GradientText>
-          </h2>
-          <p className="mt-3 font-mono text-sm uppercase tracking-widest text-content-muted">
-            {t('subtitle')}
-          </p>
-          <div
-            aria-hidden="true"
-            className="mx-auto mt-4 h-px w-24 bg-gradient-to-r from-transparent via-accent to-transparent"
-          />
-        </div>
+        <SectionHeading title={t('title')} subtitle={t('subtitle')} />
 
         {/* Grid */}
         <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -260,11 +217,7 @@ export function CertificationsClient({ certs }: CertificationsClientProps) {
                 cert={cert}
                 index={i}
                 tIssued={t('issued')}
-                tExpires={t('expires')}
-                tNoExpiry={t('no_expiry')}
                 tVerify={t('verify')}
-                tValid={t('valid')}
-                tExpired={t('expired')}
                 tViewCredy={t('view_credly')}
                 tCredentialId={t('credential_id')}
               />

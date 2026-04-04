@@ -7,7 +7,7 @@ import { useLocale } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { GradientText } from '@/components/ui/GradientText';
+import { Logo } from '@/components/ui/Logo';
 
 const NAV_KEYS = ['about', 'experience', 'projects', 'certifications', 'contact'] as const;
 type NavKey = (typeof NAV_KEYS)[number];
@@ -48,7 +48,7 @@ export function Navbar() {
         className={[
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
           isScrolled || isMenuOpen
-            ? 'bg-bg-base/80 backdrop-blur-[20px] border-b border-white/[0.07] shadow-[0_4px_30px_rgba(0,0,0,0.4)]'
+            ? 'bg-bg-base/80 backdrop-blur-[20px] border-b border-glass-border shadow-[0_4px_30px_rgba(0,0,0,0.4)]'
             : '',
         ].join(' ')}
       >
@@ -60,7 +60,7 @@ export function Navbar() {
               href={`/${locale}#top`}
               className="group flex items-center gap-2.5 rounded-lg px-1 transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
-              <GradientText as="span" animated className="font-display text-xl font-bold">PS</GradientText>
+              <Logo size={28} />
               <span className="hidden font-mono text-xs text-content-muted sm:block">
                 pablostefan.com.br
               </span>
@@ -79,7 +79,7 @@ export function Navbar() {
                   {hovered === key && (
                     <motion.span
                       layoutId="nav-bg"
-                      className="absolute inset-0 rounded-lg bg-white/[0.07]"
+                      className="absolute inset-0 rounded-lg bg-glass-bg-hover"
                       transition={{ type: 'spring', stiffness: 380, damping: 28 }}
                     />
                   )}
@@ -93,7 +93,7 @@ export function Navbar() {
               <Link
                 href={localeSwitchHref}
                 aria-label={`Switch to ${otherLocale === 'pt' ? 'Português' : 'English'}`}
-                className="flex items-center gap-1.5 rounded-lg border border-white/[0.08] bg-white/[0.05] px-3 py-1.5 font-mono text-xs text-content-secondary transition-all duration-200 hover:bg-white/[0.1] hover:text-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                className="flex items-center gap-1.5 rounded-lg border border-glass-border bg-glass-bg px-3 py-1.5 font-mono text-xs text-content-secondary transition-all duration-200 hover:bg-glass-bg-hover hover:text-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
                 <span className={locale === 'pt' ? 'text-accent-light font-semibold' : ''}>PT</span>
                 <span className="text-white/20">╱</span>
@@ -104,7 +104,7 @@ export function Navbar() {
                 onClick={() => setIsMenuOpen((o) => !o)}
                 aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
                 aria-expanded={isMenuOpen}
-                className="relative rounded-lg p-2 text-content-secondary transition-all duration-200 hover:bg-white/[0.07] hover:text-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent md:hidden"
+                className="relative rounded-lg p-2 text-content-secondary transition-all duration-200 hover:bg-glass-bg-hover hover:text-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent md:hidden"
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {isMenuOpen ? (
@@ -135,7 +135,7 @@ export function Navbar() {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.28, ease: 'easeInOut' }}
-              className="overflow-hidden border-t border-white/[0.07] md:hidden"
+              className="overflow-hidden border-t border-glass-border md:hidden"
             >
               <nav aria-label="Mobile navigation" className="flex flex-col gap-1 p-4">
                 {NAV_KEYS.map((key, i) => (
@@ -146,7 +146,7 @@ export function Navbar() {
                     initial={{ opacity: 0, x: -16 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.06, duration: 0.22 }}
-                    className="rounded-lg px-4 py-3 text-sm text-content-secondary transition-all duration-200 hover:bg-white/[0.06] hover:text-content"
+                    className="rounded-lg px-4 py-3 text-sm text-content-secondary transition-all duration-200 hover:bg-glass-divider hover:text-content"
                   >
                     {t(key)}
                   </motion.a>

@@ -33,17 +33,14 @@
     "title": "Projetos",
     "view_github": "Ver no GitHub",
     "view_demo": "Demo",
-    "view_all": "Ver todos no GitHub"
+    "view_all": "Ver todos no GitHub",
+    "updated": "Atualizado"
   },
   "certifications": {
     "title": "Certificações",
     "subtitle": "Aprendizado contínuo",
     "issued": "Emitido em",
-    "expires": "Válido até",
-    "no_expiry": "Sem vencimento",
     "verify": "Verificar",
-    "valid": "Válido",
-    "expired": "Expirado",
     "empty": "Nenhuma certificação adicionada ainda.",
     "view_credly": "Ver no Credly",
     "credential_id": "ID"

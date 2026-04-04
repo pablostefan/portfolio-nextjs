@@ -33,10 +33,18 @@ function buildHeaders(): HeadersInit {
 export async function fetchPortfolioProjects(): Promise<Project[]> {
   const url = `${GITHUB_API}/users/${USERNAME}/repos?per_page=100&sort=updated`;
 
-  const res = await fetch(url, {
+  let res = await fetch(url, {
     headers: buildHeaders(),
     cache: 'no-store',
   });
+
+  // Fallback without token if credentials are invalid
+  if (res.status === 401 && process.env.GITHUB_TOKEN) {
+    res = await fetch(url, {
+      headers: { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' },
+      cache: 'no-store',
+    });
+  }
 
   if (!res.ok) {
     throw new Error(`GitHub API error: ${res.status} ${res.statusText}`);

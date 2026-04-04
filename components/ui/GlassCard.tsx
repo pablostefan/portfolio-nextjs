@@ -8,8 +8,8 @@ interface GlassCardProps extends HTMLMotionProps<'div'> {
 }
 
 const glowMap = {
-  violet: 'hover:border-accent/30 hover:shadow-[0_8px_40px_rgba(124,58,237,0.22)]',
-  cyan:   'hover:border-accent-cyan/30 hover:shadow-[0_8px_40px_rgba(6,182,212,0.22)]',
+  violet: 'hover:border-glass-border-hover hover:shadow-glow-violet',
+  cyan:   'hover:border-accent-cyan/30 hover:shadow-glow-cyan',
   none:   '',
 };
 
@@ -27,8 +27,8 @@ export function GlassCard({
       whileHover={hover && !shouldReduceMotion ? { y: -6, scale: 1.015 } : undefined}
       transition={{ type: 'spring', stiffness: 280, damping: 22 }}
       className={[
-        'relative bg-white/[0.04] backdrop-blur-[16px]',
-        'border border-white/[0.08] rounded-2xl',
+        'relative bg-glass-bg backdrop-blur-[16px]',
+        'border border-glass-border rounded-2xl',
         'transition-all duration-300',
         glowMap[glow],
         className,

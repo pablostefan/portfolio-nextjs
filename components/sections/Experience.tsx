@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
-import { GradientText } from '@/components/ui/GradientText';
+import { SectionHeading } from '@/components/ui/SectionHeading';
 import { GlassCard } from '@/components/ui/GlassCard';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
 import profileData from '@/data/profile.json';
@@ -153,15 +153,9 @@ export function Experience() {
   const locale = useLocale() as Locale;
 
   return (
-    <SectionWrapper id="experience" className="bg-bg-surface/30">
+    <SectionWrapper id="experience">
       <div className="mx-auto max-w-3xl">
-        {/* Heading */}
-        <div className="mb-16 text-center">
-          <h2 className="font-display text-3xl font-bold sm:text-4xl">
-            <GradientText>{t('title')}</GradientText>
-          </h2>
-          <div aria-hidden="true" className="mx-auto mt-4 h-px w-24 bg-gradient-to-r from-transparent via-accent to-transparent" />
-        </div>
+        <SectionHeading title={t('title')} />
 
         {/* Timeline */}
         <div>

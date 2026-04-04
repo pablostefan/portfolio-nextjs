@@ -17,11 +17,11 @@ export function SkillBadge({ skill, className = '' }: SkillBadgeProps) {
       transition={{ type: 'spring', stiffness: 400, damping: 15 }}
       className={[
         'inline-flex cursor-default select-none items-center',
-        'rounded-lg border border-white/[0.1] bg-white/[0.05]',
+        'rounded-lg border border-glass-border bg-glass-bg',
         'px-3 py-1.5 font-mono text-sm text-accent-light',
         'transition-colors duration-200',
         'hover:bg-accent/15 hover:border-accent/35 hover:text-white',
-        'hover:shadow-[0_0_20px_rgba(124,58,237,0.2)]',
+        'hover:shadow-glow-sm-violet',
         className,
       ].join(' ')}
     >

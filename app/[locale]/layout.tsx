@@ -44,6 +44,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Pablo Stefan — Software Architect',
   },
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
 };
 
 interface LocaleLayoutProps {

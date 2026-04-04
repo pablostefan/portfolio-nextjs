@@ -8,6 +8,14 @@ import { fetchEnrichedCertifications } from '@/lib/credly';
 import { fetchPortfolioProjects } from '@/lib/github';
 import type { Locale } from '@/i18n';
 
+function SectionDivider() {
+  return (
+    <div aria-hidden="true" className="relative mx-auto h-[1px] w-full max-w-5xl">
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+    </div>
+  );
+}
+
 interface HomePageProps {
   params: Promise<{ locale: string }>;
 }
@@ -24,10 +32,15 @@ async function HomePage({ params }: HomePageProps) {
   return (
     <>
       <Hero />
+      <SectionDivider />
       <About locale={locale as Locale} />
+      <SectionDivider />
       <Experience />
+      <SectionDivider />
       <ProjectsClient projects={projects} />
+      <SectionDivider />
       <CertificationsClient certs={certs} />
+      <SectionDivider />
       <Contact />
     </>
   );
