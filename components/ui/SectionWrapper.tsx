@@ -19,7 +19,7 @@ export function SectionWrapper({ children, id, className = '' }: SectionWrapperP
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-10% 0px' }}
       transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-      className={['py-24 px-4', className].join(' ')}
+      className={['py-24 px-4 overflow-x-clip', className].join(' ')}
     >
       {children}
     </motion.section>

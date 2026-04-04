@@ -6,7 +6,9 @@ import { SectionWrapper } from '@/components/ui/SectionWrapper';
 import { AnimatedBlob } from '@/components/ui/AnimatedBlob';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { GlassCard } from '@/components/ui/GlassCard';
+import { GradientText } from '@/components/ui/GradientText';
 import { SkillBadgeList } from '@/components/ui/SkillBadgeList';
+import { ExpandableText } from '@/components/ui/ExpandableText';
 import profileData from '@/data/profile.json';
 import type { Locale } from '@/i18n';
 
@@ -29,6 +31,12 @@ export async function About({ locale }: AboutProps) {
   const specialties = locale === 'pt'
     ? ['Flutter', 'Design Systems', 'Arquitetura Mobile']
     : ['Flutter', 'Design Systems', 'Mobile Architecture'];
+
+  const highlights = [
+    t('highlight_1'),
+    t('highlight_2'),
+    t('highlight_3'),
+  ];
 
   return (
     <SectionWrapper id="about" className="relative overflow-hidden">
@@ -54,19 +62,19 @@ export async function About({ locale }: AboutProps) {
             <div className="relative flex h-52 w-52 items-center justify-center">
               <div
                 aria-hidden="true"
-                className="absolute inset-0 rounded-full bg-gradient-to-br from-violet-500/25 to-cyan-500/15 blur-2xl"
+                className="about-avatar-glow absolute inset-0 rounded-full bg-gradient-to-br from-violet-500/25 to-cyan-500/15 blur-2xl"
               />
               <div
                 aria-hidden="true"
-                className="absolute h-40 w-40 rounded-full border border-accent/15"
+                className="about-avatar-ring-violet absolute h-40 w-40 rounded-full border border-accent/15"
               />
               <div
                 aria-hidden="true"
-                className="absolute h-48 w-48 rounded-full border border-cyan-500/10"
+                className="about-avatar-ring-cyan absolute h-48 w-48 rounded-full border border-cyan-500/10"
               />
 
               {profile?.photoUrl ? (
-                <div className="relative z-10 h-32 w-32 overflow-hidden rounded-full border-2 border-accent/40">
+                <div className="about-avatar-core relative z-10 h-32 w-32 overflow-hidden rounded-full border-2 border-accent/40">
                   <Image
                     src={profile.photoUrl}
                     alt={`${profile.firstName} ${profile.lastName}`}
@@ -77,7 +85,7 @@ export async function About({ locale }: AboutProps) {
                   />
                 </div>
               ) : (
-                <div className="relative z-10 flex h-32 w-32 items-center justify-center rounded-full border-2 border-accent/40 bg-gradient-to-br from-violet-700 to-cyan-600">
+                <div className="about-avatar-core relative z-10 flex h-32 w-32 items-center justify-center rounded-full border-2 border-accent/40 bg-gradient-to-br from-violet-700 to-cyan-600">
                   <span className="font-display text-3xl font-bold text-white">PS</span>
                 </div>
               )}
@@ -134,7 +142,27 @@ export async function About({ locale }: AboutProps) {
                 aria-hidden="true"
                 className="absolute left-0 top-0 bottom-0 w-[2px] rounded-full bg-gradient-to-b from-violet-500 via-cyan-500 to-transparent"
               />
-              <p className="leading-relaxed text-content-secondary">{aboutText}</p>
+
+              <div className="mb-5 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                {highlights.map((highlight) => (
+                  <span
+                    key={highlight}
+                    className="inline-flex w-full items-center gap-1.5 rounded-full border border-glass-border bg-white/[0.03] px-3 py-1 text-[11px] font-mono text-content-secondary sm:text-xs lg:min-h-10"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-to-r from-violet-400 to-cyan-400"
+                    />
+                    {highlight}
+                  </span>
+                ))}
+              </div>
+
+              <ExpandableText
+                text={aboutText}
+                expandLabel={t('expand_text')}
+                collapseLabel={t('collapse_text')}
+              />
             </div>
           </GlassCard>
 
@@ -157,9 +185,19 @@ export async function About({ locale }: AboutProps) {
 
         {/* Skills */}
         <div className="mt-8">
-          <h3 className="mb-6 text-center font-display text-xl font-semibold text-content">
-            {t('skills_title')}
-          </h3>
+          <div className="mb-6 flex items-center justify-center gap-3">
+            <span
+              aria-hidden="true"
+              className="h-px w-10 bg-gradient-to-r from-transparent via-violet-500/70 to-cyan-500/70"
+            />
+            <h3 className="text-center font-display text-2xl font-bold tracking-tight">
+              <GradientText animated>{t('skills_title')}</GradientText>
+            </h3>
+            <span
+              aria-hidden="true"
+              className="h-px w-10 bg-gradient-to-l from-transparent via-violet-500/70 to-cyan-500/70"
+            />
+          </div>
           <SkillBadgeList skills={profileData.skills} />
         </div>
       </div>

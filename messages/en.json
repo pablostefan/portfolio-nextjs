@@ -21,7 +21,12 @@
     "companies_label": "companies",
     "apps_label": "apps shipped",
     "location": "Brazil",
-    "availability": "Open to new opportunities"
+    "availability": "Open to new opportunities",
+    "highlight_1": "Mobile architecture",
+    "highlight_2": "Component governance",
+    "highlight_3": "Accessibility standard",
+    "expand_text": "Read more",
+    "collapse_text": "Read less"
   },
   "experience": {
     "title": "Experience",
@@ -48,7 +53,9 @@
   "contact": {
     "title": "Contact",
     "subtitle": "Let's talk",
+    "availability_note": "Preferred channel",
     "email_label": "Email",
+    "whatsapp_label": "WhatsApp",
     "github_label": "GitHub",
     "linkedin_label": "LinkedIn",
     "medium_label": "Medium"

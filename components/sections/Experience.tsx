@@ -50,7 +50,7 @@ function TimelineItem({
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: '-8% 0px' }}
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      className="relative flex gap-6 pl-4"
+      className="relative flex min-w-0 gap-3 pl-1.5 sm:gap-6 sm:pl-4"
     >
       {/* Timeline dot + line */}
       <div className="relative flex flex-col items-center">
@@ -63,19 +63,19 @@ function TimelineItem({
       </div>
 
       {/* Card */}
-      <GlassCard hover glow="violet" className="mb-8 flex-1 p-6">
+      <GlassCard hover glow="violet" className="mb-6 min-w-0 flex-1 p-4 sm:mb-8 sm:p-6">
         {/* Header */}
-        <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
+        <div className="mb-2.5 flex flex-col items-start gap-1.5 sm:mb-3 sm:gap-2 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h3 className="font-display text-lg font-bold text-content">
+            <h3 className="font-display text-base font-bold text-content sm:text-lg">
               {entry.title[locale]}
             </h3>
-            <p className="font-semibold text-accent-light">{entry.company}</p>
+            <p className="text-sm font-semibold text-accent-light sm:text-base">{entry.company}</p>
           </div>
-          <div className="flex flex-col items-end gap-1.5">
-            <span className="font-mono text-sm text-content-muted">{entry.period[locale]}</span>
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 sm:flex-col sm:items-end sm:gap-1.5">
+            <span className="whitespace-nowrap font-mono text-xs text-content-muted sm:text-sm">{entry.period[locale]}</span>
             {entry.current && (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-2.5 py-0.5 font-mono text-xs text-accent-light">
+              <span className="inline-flex whitespace-nowrap items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-2 py-0.5 font-mono text-[11px] text-accent-light sm:px-2.5 sm:text-xs">
                 <span aria-hidden="true" className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent-light" />
                 {currentLabel}
               </span>
@@ -84,7 +84,7 @@ function TimelineItem({
         </div>
 
         {/* Summary description */}
-        <p className="leading-relaxed text-content-secondary">
+        <p className="text-sm leading-relaxed text-content-secondary sm:text-base">
           {entry.description[locale]}
         </p>
 
@@ -95,7 +95,7 @@ function TimelineItem({
               type="button"
               onClick={() => setExpanded((prev) => !prev)}
               aria-expanded={expanded}
-              className="mt-4 flex items-center gap-1.5 rounded text-sm text-accent-light transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
+              className="mt-3 flex items-center gap-1.5 rounded text-sm text-accent-light transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 sm:mt-4"
             >
               <motion.span
                 aria-hidden="true"
@@ -122,14 +122,14 @@ function TimelineItem({
                     variants={shouldReduceMotion ? undefined : listVariants}
                     initial="hidden"
                     animate="visible"
-                    className="mt-4 space-y-2.5"
+                    className="mt-3 space-y-2 sm:mt-4 sm:space-y-2.5"
                     aria-label={`${entry.title[locale]} — ${entry.company}`}
                   >
                     {bullets.map((bullet, bi) => (
                       <motion.li
                         key={bi}
                         variants={shouldReduceMotion ? undefined : bulletVariants}
-                        className="flex items-start gap-2.5 text-sm leading-relaxed text-content-secondary"
+                        className="flex items-start gap-2 text-sm leading-relaxed text-content-secondary sm:gap-2.5"
                       >
                         <span
                           aria-hidden="true"
@@ -154,7 +154,7 @@ export function Experience() {
   const locale = useLocale() as Locale;
 
   return (
-    <SectionWrapper id="experience" className="relative overflow-hidden">
+    <SectionWrapper id="experience" className="relative overflow-hidden overflow-x-clip">
       {/* Background blobs */}
       <AnimatedBlob variant="indigo" size={480}
         className="-left-40 top-1/4 opacity-25" />
@@ -165,7 +165,7 @@ export function Experience() {
         <SectionHeading title={t('title')} />
 
         {/* Timeline */}
-        <div>
+        <div className="min-w-0">
           {profileData.experience.map((entry, i) => (
             <TimelineItem
               key={`${entry.company}-${i}`}

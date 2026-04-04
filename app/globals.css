@@ -44,6 +44,7 @@
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
+  overflow-x: clip;
 }
 
 body {
@@ -51,6 +52,14 @@ body {
   color: #f9fafb;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+@supports not (overflow: clip) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
 }
 
 /* ── Gradient text utilities ───────────────────────────────────────────────── */
@@ -81,6 +90,46 @@ body {
   50%       { background-position: 100% 50%; }
 }
 
+@keyframes avatar-float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-3px) scale(1.015); }
+}
+
+@keyframes avatar-ring-violet {
+  0%, 100% { transform: scale(1); opacity: 0.55; }
+  50% { transform: scale(1.035); opacity: 0.35; }
+}
+
+@keyframes avatar-ring-cyan {
+  0%, 100% { transform: scale(1.01); opacity: 0.42; }
+  50% { transform: scale(1.05); opacity: 0.2; }
+}
+
+@keyframes avatar-glow {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.06); opacity: 0.58; }
+}
+
+.about-avatar-core {
+  animation: avatar-float 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.about-avatar-ring-violet {
+  animation: avatar-ring-violet 6.8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.about-avatar-ring-cyan {
+  animation: avatar-ring-cyan 7.6s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.about-avatar-glow {
+  animation: avatar-glow 8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
 /* ── Reduced motion overrides ──────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -89,5 +138,11 @@ body {
   .gradient-text-animated {
     animation: none;
     background-size: 100%;
+  }
+  .about-avatar-core,
+  .about-avatar-ring-violet,
+  .about-avatar-ring-cyan,
+  .about-avatar-glow {
+    animation: none;
   }
 }

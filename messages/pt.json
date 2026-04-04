@@ -21,7 +21,12 @@
     "companies_label": "empresas",
     "apps_label": "apps entregues",
     "location": "Brasil",
-    "availability": "Aberto a novas oportunidades"
+    "availability": "Aberto a novas oportunidades",
+    "highlight_1": "Arquitetura mobile",
+    "highlight_2": "Governança de componentes",
+    "highlight_3": "Acessibilidade padrão",
+    "expand_text": "Ler mais",
+    "collapse_text": "Ler menos"
   },
   "experience": {
     "title": "Experiência",
@@ -48,7 +53,9 @@
   "contact": {
     "title": "Contato",
     "subtitle": "Vamos conversar",
+    "availability_note": "Canal preferencial",
     "email_label": "Email",
+    "whatsapp_label": "WhatsApp",
     "github_label": "GitHub",
     "linkedin_label": "LinkedIn",
     "medium_label": "Medium"
