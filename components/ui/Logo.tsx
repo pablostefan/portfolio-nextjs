@@ -19,9 +19,9 @@ export function Logo({ size = 32, className = '' }: LogoProps) {
           id="logo-grad"
           x1="0"
           y1="0"
-          x2="48"
-          y2="48"
-          gradientUnits="userSpaceOnUse"
+          x2="1"
+          y2="1"
+          gradientUnits="objectBoundingBox"
         >
           <stop offset="0%" stopColor="#7C3AED" />
           <stop offset="100%" stopColor="#06B6D4" />
