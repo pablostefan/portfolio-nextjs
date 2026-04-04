@@ -1,21 +1,14 @@
-<div align="center">
-  <img src="public/og-image.png" alt="pablostefan.com.br" width="600" />
+# pablostefan.com.br
 
-  <h1>pablostefan.com.br</h1>
-  <p>Personal portfolio — Software Architect · Flutter · XP Inc.</p>
+Personal portfolio — Software Architect · Flutter · XP Inc.
 
-  <a href="https://pablostefan.com.br">
-    <img alt="Live" src="https://img.shields.io/badge/live-pablostefan.com.br-7C3AED?style=flat-square&logo=vercel&logoColor=white" />
-  </a>
-  &nbsp;
-  <img alt="Next.js" src="https://img.shields.io/badge/Next.js-16.2-black?style=flat-square&logo=next.js" />
-  &nbsp;
-  <img alt="React" src="https://img.shields.io/badge/React-19.2-61DAFB?style=flat-square&logo=react&logoColor=black" />
-  &nbsp;
-  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white" />
-  &nbsp;
-  <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" />
-</div>
+[![Banner do projeto](./public/readme-banner.png)](https://pablostefan.com.br)
+
+[![Live](https://img.shields.io/badge/live-pablostefan.com.br-7C3AED?style=flat-square&logo=vercel&logoColor=white)](https://pablostefan.com.br)
+![Next.js](https://img.shields.io/badge/Next.js-16.2-black?style=flat-square&logo=next.js)
+![React](https://img.shields.io/badge/React-19.2-61DAFB?style=flat-square&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
 
 ---
 
