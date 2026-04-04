@@ -25,7 +25,6 @@ const path = require('path');
 
 const ROOT         = path.resolve(__dirname, '..');
 const PROFILE_PATH = path.join(ROOT, 'data', 'profile.json');
-const CERTS_PATH   = path.join(ROOT, 'data', 'certifications.json');
 const DEFAULT_PDF  = path.join(ROOT, 'linkedin.pdf');
 
 // ─── Month maps ───────────────────────────────────────────────────────────────
@@ -463,9 +462,7 @@ async function main() {
 
   const summaryText  = extractSummary(lines);
   const experience   = extractExperience(lines);
-  const newCerts     = extractCertifications(lines);
   const existing     = JSON.parse(fs.readFileSync(PROFILE_PATH, 'utf-8'));
-  const existingCerts = JSON.parse(fs.readFileSync(CERTS_PATH, 'utf-8')).certifications ?? [];
 
   // Merge: preserve EN descriptions that were manually translated
   const mergedExp = experience.length > 0
@@ -486,10 +483,6 @@ async function main() {
 
   fs.writeFileSync(PROFILE_PATH, JSON.stringify(updated, null, 2) + '\n', 'utf-8');
 
-  // ── Write certifications.json ───────────────────────────────────────────────
-  const mergedCerts = mergeCertifications(newCerts, existingCerts);
-  fs.writeFileSync(CERTS_PATH, JSON.stringify({ certifications: mergedCerts }, null, 2) + '\n', 'utf-8');
-
   // ── Report ─────────────────────────────────────────────────────────────────
   console.log('✅  data/profile.json atualizado!\n');
   console.log(`    Resumo (PT): ${summaryText ? '✓ atualizado' : '⚠ não encontrado — mantido existente'}`);
@@ -502,12 +495,7 @@ async function main() {
     console.log(`      ${e.company} | ${e.period.pt} | EN: ${e.period.en}`);
   });
 
-  console.log(`\n    Certificações: ${mergedCerts.length} encontrada(s)`);
-  mergedCerts.forEach(c => {
-    const credly = c.credentialUrl?.includes('credly.com') ? ' [Credly ✓]' : '';
-    console.log(`      • ${c.name} — ${c.issuer}${credly}`);
-  });
-
+  console.log('\n    ℹ️  Certificações gerenciadas via PDFs individuais (data/certifications.json)');
   console.log('');
 }
 
