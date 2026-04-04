@@ -1,0 +1,47 @@
+{
+  "about": {
+    "pt": "Desenvolvedor Flutter Pleno na XP Inc, especializado em criar experiências móveis de alto impacto. Trabalho com Flutter e Dart no desenvolvimento de aplicações financeiras escaláveis, com foco em performance, clean architecture e experiência do usuário. Apaixonado por open source e compartilhamento de conhecimento.",
+    "en": "Flutter Developer at XP Inc, specialized in creating high-impact mobile experiences. I work with Flutter and Dart to build scalable financial applications, focusing on performance, clean architecture, and user experience. Passionate about open source and knowledge sharing."
+  },
+  "experience": [
+    {
+      "title": {
+        "pt": "Desenvolvedor Flutter Pleno",
+        "en": "Flutter Developer"
+      },
+      "company": "XP Inc",
+      "period": "2023 — Atual",
+      "description": {
+        "pt": "Desenvolvimento de aplicações móveis para o ecossistema financeiro da XP Inc utilizando Flutter e Dart. Implementação de features para milhões de usuários, com foco em performance, acessibilidade e arquitetura limpa.",
+        "en": "Mobile application development for the XP Inc financial ecosystem using Flutter and Dart. Implementing features for millions of users, focusing on performance, accessibility, and clean architecture."
+      },
+      "current": true
+    },
+    {
+      "title": {
+        "pt": "Desenvolvedor Flutter Júnior",
+        "en": "Junior Flutter Developer"
+      },
+      "company": "Empresa Anterior",
+      "period": "2021 — 2023",
+      "description": {
+        "pt": "Desenvolvimento de aplicações móveis multiplataforma com Flutter. Participação em todo o ciclo de desenvolvimento, desde o design até a publicação nas stores.",
+        "en": "Cross-platform mobile application development with Flutter. Participation in the full development cycle, from design to store publication."
+      },
+      "current": false
+    }
+  ],
+  "skills": [
+    "Flutter",
+    "Dart",
+    "Next.js",
+    "TypeScript",
+    "Firebase",
+    "REST APIs",
+    "Git",
+    "Clean Architecture",
+    "BLoC",
+    "Provider"
+  ],
+  "medium": "https://medium.com/@pablo.stefan"
+}

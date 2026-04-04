@@ -186,6 +186,7 @@ Três blobs no background em posições fixas, animados com Framer Motion (`anim
   "hero": {
     "greeting": "Olá, eu sou",
     "role": "Flutter Developer",
+    "typewriter": ["Flutter Developer", "Mobile Engineer", "Open Source Dev"],
     "subtitle": "Construindo experiências móveis de alto impacto",
     "cta_projects": "Ver Projetos",
     "cta_contact": "Entrar em Contato"
@@ -208,7 +209,8 @@ Três blobs no background em posições fixas, animados com Framer Motion (`anim
     "subtitle": "Vamos conversar",
     "email_label": "Email",
     "github_label": "GitHub",
-    "linkedin_label": "LinkedIn"
+    "linkedin_label": "LinkedIn",
+    "medium_label": "Medium"
   }
 }
 ```
@@ -458,25 +460,25 @@ jobs:
 ## 13. Ordem de Implementação
 
 ### Fase 1 — Setup Base
-- [ ] `tailwind.config.ts` (design tokens, fontes)
-- [ ] `next.config.ts` (i18n locales, headers de segurança)
-- [ ] `i18n.ts` (configuração next-intl)
-- [ ] `middleware.ts` (redirect `/` → locale do browser)
-- [ ] `messages/pt.json` e `messages/en.json`
-- [ ] `types/index.ts`
-- [ ] `data/profile.json`
-- [ ] `.env.example`
+- [x] `app/globals.css` — design tokens via `@theme` (Tailwind v4 usa CSS, não `tailwind.config.ts`)
+- [x] `next.config.ts` (i18n locales, headers de segurança)
+- [x] `i18n.ts` (configuração next-intl)
+- [x] `middleware.ts` (redirect `/` → locale do browser)
+- [x] `messages/pt.json` e `messages/en.json`
+- [x] `types/index.ts`
+- [x] `data/profile.json`
+- [x] `.env.example`
 
 ### Fase 2 — Layout e UI Base
-- [ ] `components/ui/AnimatedBlob.tsx`
-- [ ] `components/ui/GlassCard.tsx`
-- [ ] `components/ui/GradientText.tsx`
-- [ ] `components/ui/SectionWrapper.tsx`
-- [ ] `components/ui/TypewriterText.tsx`
-- [ ] `components/ui/SkillBadge.tsx`
-- [ ] `components/layout/Navbar.tsx`
-- [ ] `components/layout/Footer.tsx`
-- [ ] `app/[locale]/layout.tsx`
+- [x] `components/ui/AnimatedBlob.tsx`
+- [x] `components/ui/GlassCard.tsx`
+- [x] `components/ui/GradientText.tsx`
+- [x] `components/ui/SectionWrapper.tsx`
+- [x] `components/ui/TypewriterText.tsx`
+- [x] `components/ui/SkillBadge.tsx`
+- [x] `components/layout/Navbar.tsx`
+- [x] `components/layout/Footer.tsx`
+- [x] `app/[locale]/layout.tsx`
 
 ### Fase 3 — APIs
 - [ ] `lib/github.ts`

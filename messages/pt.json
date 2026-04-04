@@ -1,0 +1,37 @@
+{
+  "nav": {
+    "about": "Sobre",
+    "experience": "Experiência",
+    "projects": "Projetos",
+    "contact": "Contato"
+  },
+  "hero": {
+    "greeting": "Olá, eu sou",
+    "role": "Flutter Developer",
+    "typewriter": ["Flutter Developer", "Mobile Engineer", "Open Source Dev"],
+    "subtitle": "Construindo experiências móveis de alto impacto",
+    "cta_projects": "Ver Projetos",
+    "cta_contact": "Entrar em Contato"
+  },
+  "about": {
+    "title": "Sobre Mim",
+    "skills_title": "Tecnologias"
+  },
+  "experience": {
+    "title": "Experiência",
+    "current": "Atual"
+  },
+  "projects": {
+    "title": "Projetos",
+    "view_github": "Ver no GitHub",
+    "view_demo": "Demo"
+  },
+  "contact": {
+    "title": "Contato",
+    "subtitle": "Vamos conversar",
+    "email_label": "Email",
+    "github_label": "GitHub",
+    "linkedin_label": "LinkedIn",
+    "medium_label": "Medium"
+  }
+}
