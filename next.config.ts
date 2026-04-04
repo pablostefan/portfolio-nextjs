@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: 'media.licdn.com' },
       { protocol: 'https', hostname: 'avatars.githubusercontent.com' },
+      { protocol: 'https', hostname: 'images.credly.com' },
+      { protocol: 'https', hostname: 'cdn.credly.com' },
     ],
   },
   async headers() {

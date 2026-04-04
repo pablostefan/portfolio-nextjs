@@ -2,6 +2,7 @@ import { Hero } from '@/components/sections/Hero';
 import { About } from '@/components/sections/About';
 import { Experience } from '@/components/sections/Experience';
 import { Projects } from '@/components/sections/Projects';
+import { Certifications } from '@/components/sections/Certifications';
 import { Contact } from '@/components/sections/Contact';
 import type { Locale } from '@/i18n';
 
@@ -20,6 +21,7 @@ async function HomePage({ params }: HomePageProps) {
       <About locale={locale as Locale} />
       <Experience />
       <Projects />
+      <Certifications />
       <Contact />
     </>
   );

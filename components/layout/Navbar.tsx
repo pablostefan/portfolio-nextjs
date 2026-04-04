@@ -9,7 +9,7 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { GradientText } from '@/components/ui/GradientText';
 
-const NAV_KEYS = ['about', 'experience', 'projects', 'contact'] as const;
+const NAV_KEYS = ['about', 'experience', 'projects', 'certifications', 'contact'] as const;
 type NavKey = (typeof NAV_KEYS)[number];
 
 export function Navbar() {

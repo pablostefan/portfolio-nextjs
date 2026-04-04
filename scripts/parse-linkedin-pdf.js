@@ -25,6 +25,7 @@ const path = require('path');
 
 const ROOT         = path.resolve(__dirname, '..');
 const PROFILE_PATH = path.join(ROOT, 'data', 'profile.json');
+const CERTS_PATH   = path.join(ROOT, 'data', 'certifications.json');
 const DEFAULT_PDF  = path.join(ROOT, 'linkedin.pdf');
 
 // ─── Month maps ───────────────────────────────────────────────────────────────
@@ -296,6 +297,141 @@ function mergeWithExisting(newExp, existingExp) {
   });
 }
 
+// ─── Certifications extractor ─────────────────────────────────────────────────
+
+/**
+ * Extracts the "Licenças e certificações" section from a LinkedIn PDF.
+ *
+ * PDF structure per entry:
+ *   Cert Name
+ *   Issuer
+ *   Emitido: jan. de 2024   Sem vencimento
+ *   Código da credencial: 1234567         (optional)
+ *   https://www.credly.com/badges/uuid    (optional)
+ */
+function extractCertifications(lines) {
+  const certStart = lines.findIndex(l =>
+    /^Licen[cç]as e certifica[cç][oõ]es$/i.test(l) ||
+    /^Licenses? & Certifications?$/i.test(l) ||
+    /^Licen[cç]as e certifica[cç][oõ]es acadêmicas$/i.test(l)
+  );
+  if (certStart === -1) return [];
+
+  // Find the next major section (Formação / Competências / Honras / Idiomas)
+  const certEnd = lines.findIndex((l, i) =>
+    i > certStart && /^(Forma[cç][aã]o|Compet[eê]ncias|Honras e pr[eê]mios|Idiomas|Projetos|Publications|Awards|Skills|Education|Languages)$/i.test(l)
+  );
+
+  const certLines = lines.slice(certStart + 1, certEnd > certStart ? certEnd : certStart + 200);
+
+  const certs = [];
+  let i = 0;
+
+  while (i < certLines.length) {
+    const nameLine = certLines[i];
+
+    // A cert entry starts with a non-empty line that isn't a URL/date/code
+    if (!nameLine || /^https?:\/\//i.test(nameLine) || /^Emitido/i.test(nameLine) ||
+        /^C[oó]digo/i.test(nameLine) || nameLine.length < 2) {
+      i++;
+      continue;
+    }
+
+    const cert = {
+      id: nameLine.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
+      name: nameLine,
+      issuer: '',
+      issueDate: '',
+      expiryDate: undefined,
+      credentialId: undefined,
+      credentialUrl: undefined,
+    };
+
+    i++;
+
+    // Next non-empty line that isn't a date/code/URL → issuer
+    while (i < certLines.length) {
+      const l = certLines[i].trim();
+      if (!l) { i++; continue; }
+      if (/^https?:\/\//i.test(l)) break;
+      if (/^Emitido/i.test(l)) break;
+      if (/^C[oó]digo/i.test(l)) break;
+      cert.issuer = l;
+      i++;
+      break;
+    }
+
+    // Scan remaining lines that belong to this entry
+    while (i < certLines.length) {
+      const l = certLines[i].trim();
+      if (!l) { i++; continue; }
+
+      // Stop at what looks like the start of the next cert (a non-URL, non-meta line
+      // that follows after we already have the issuer)
+      if (cert.issuer && !l.startsWith('http') &&
+          !/^Emitido/i.test(l) && !/^C[oó]digo/i.test(l) &&
+          !/^Sem vencimento/i.test(l) && !/^Vence:/i.test(l) &&
+          l.length > 2) {
+        break;
+      }
+
+      // "Emitido: jan. de 2024   Vence: jan. de 2026"
+      // "Emitido: mar. de 2023   Sem vencimento"
+      if (/^Emitido/i.test(l)) {
+        const issuedM = l.match(/Emitido:?\s+(.+?)(?:\s{2,}|$)/i);
+        if (issuedM) cert.issueDate = issuedM[1].trim();
+
+        const expiresM = l.match(/Vence:?\s+(.+?)(?:\s{2,}|$)/i);
+        if (expiresM) cert.expiryDate = expiresM[1].trim();
+
+        const noExpiry = /Sem vencimento/i.test(l);
+        if (noExpiry) cert.expiryDate = undefined;
+
+        i++; continue;
+      }
+
+      // "Código da credencial: XXXX"
+      if (/^C[oó]digo da credencial/i.test(l)) {
+        cert.credentialId = l.replace(/^C[oó]digo da credencial:?\s*/i, '').trim();
+        i++; continue;
+      }
+
+      // URL line
+      if (/^https?:\/\//i.test(l)) {
+        cert.credentialUrl = l;
+        i++; continue;
+      }
+
+      i++;
+    }
+
+    if (cert.name && cert.issuer) {
+      certs.push(cert);
+    }
+  }
+
+  return certs;
+}
+
+// ─── Certifications merge ─────────────────────────────────────────────────────
+
+function mergeCertifications(newCerts, existingCerts) {
+  if (!newCerts.length) return existingCerts;
+
+  return newCerts.map(nc => {
+    const existing = existingCerts.find(e => e.id === nc.id || e.name === nc.name);
+    if (existing) {
+      // Preserve credentialUrl if it was manually added to existing
+      return {
+        ...nc,
+        credentialUrl: nc.credentialUrl ?? existing.credentialUrl,
+        credentialId:  nc.credentialId  ?? existing.credentialId,
+      };
+    }
+    return nc;
+  });
+}
+
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -327,7 +463,9 @@ async function main() {
 
   const summaryText  = extractSummary(lines);
   const experience   = extractExperience(lines);
+  const newCerts     = extractCertifications(lines);
   const existing     = JSON.parse(fs.readFileSync(PROFILE_PATH, 'utf-8'));
+  const existingCerts = JSON.parse(fs.readFileSync(CERTS_PATH, 'utf-8')).certifications ?? [];
 
   // Merge: preserve EN descriptions that were manually translated
   const mergedExp = experience.length > 0
@@ -348,6 +486,10 @@ async function main() {
 
   fs.writeFileSync(PROFILE_PATH, JSON.stringify(updated, null, 2) + '\n', 'utf-8');
 
+  // ── Write certifications.json ───────────────────────────────────────────────
+  const mergedCerts = mergeCertifications(newCerts, existingCerts);
+  fs.writeFileSync(CERTS_PATH, JSON.stringify({ certifications: mergedCerts }, null, 2) + '\n', 'utf-8');
+
   // ── Report ─────────────────────────────────────────────────────────────────
   console.log('✅  data/profile.json atualizado!\n');
   console.log(`    Resumo (PT): ${summaryText ? '✓ atualizado' : '⚠ não encontrado — mantido existente'}`);
@@ -358,6 +500,12 @@ async function main() {
     const indicator = e.current ? '● ' : '  ';
     console.log(`    ${indicator}${e.title.pt}`);
     console.log(`      ${e.company} | ${e.period.pt} | EN: ${e.period.en}`);
+  });
+
+  console.log(`\n    Certificações: ${mergedCerts.length} encontrada(s)`);
+  mergedCerts.forEach(c => {
+    const credly = c.credentialUrl?.includes('credly.com') ? ' [Credly ✓]' : '';
+    console.log(`      • ${c.name} — ${c.issuer}${credly}`);
   });
 
   console.log('');

@@ -3,6 +3,7 @@
     "about": "Sobre",
     "experience": "Experiência",
     "projects": "Projetos",
+    "certifications": "Certificações",
     "contact": "Contato"
   },
   "hero": {
@@ -26,6 +27,18 @@
     "view_github": "Ver no GitHub",
     "view_demo": "Demo",
     "view_all": "Ver todos no GitHub"
+  },
+  "certifications": {
+    "title": "Certificações",
+    "subtitle": "Aprendizado contínuo",
+    "issued": "Emitido em",
+    "expires": "Válido até",
+    "no_expiry": "Sem vencimento",
+    "verify": "Verificar",
+    "valid": "Válido",
+    "expired": "Expirado",
+    "empty": "Nenhuma certificação adicionada ainda.",
+    "view_credly": "Ver no Credly"
   },
   "contact": {
     "title": "Contato",

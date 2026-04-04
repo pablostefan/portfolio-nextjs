@@ -31,3 +31,15 @@ export interface LinkedInProfile {
   headline?: string;
   photoUrl?: string;
 }
+
+export interface Certification {
+  id: string;
+  name: string;
+  issuer: string;
+  issueDate: string;
+  expiryDate?: string;
+  credentialId?: string;
+  credentialUrl?: string;
+  /** Populated at runtime via Credly OBI v2 or fallback */
+  badgeImageUrl?: string;
+}

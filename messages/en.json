@@ -3,6 +3,7 @@
     "about": "About",
     "experience": "Experience",
     "projects": "Projects",
+    "certifications": "Certifications",
     "contact": "Contact"
   },
   "hero": {
@@ -26,6 +27,18 @@
     "view_github": "View on GitHub",
     "view_demo": "Demo",
     "view_all": "View all on GitHub"
+  },
+  "certifications": {
+    "title": "Certifications",
+    "subtitle": "Continuous learning",
+    "issued": "Issued",
+    "expires": "Valid until",
+    "no_expiry": "No expiry",
+    "verify": "Verify",
+    "valid": "Valid",
+    "expired": "Expired",
+    "empty": "No certifications added yet.",
+    "view_credly": "View on Credly"
   },
   "contact": {
     "title": "Contact",
