@@ -7,7 +7,15 @@
  *   node scripts/parse-linkedin-pdf.js [path/to/linkedin.pdf]
  *   npm run update-profile              (uses ./linkedin.pdf by default — gitignored)
  *
- * Requirements: pdf-parse (installed as devDependency)
+ * PDF structure per entry:
+ *   COMPANY NAME
+ *   [TENURE SUMMARY]   (optional — e.g. "2 anos 4 meses")
+ *   Job Title
+ *   month de YYYY - month de YYYY (duration)   ← DATE ANCHOR
+ *   City, Region
+ *   [Intro paragraph]
+ *   • bullet text (may wrap to next line)
+ *   ...
  */
 
 'use strict';
@@ -19,99 +27,272 @@ const ROOT         = path.resolve(__dirname, '..');
 const PROFILE_PATH = path.join(ROOT, 'data', 'profile.json');
 const DEFAULT_PDF  = path.join(ROOT, 'linkedin.pdf');
 
-// Portuguese month names as they appear in LinkedIn PDFs
-const PT_MONTHS_RE = [
+// ─── Month maps ───────────────────────────────────────────────────────────────
+
+const PT_MONTHS = [
   'janeiro','fevereiro','março','abril','maio','junho',
   'julho','agosto','setembro','outubro','novembro','dezembro',
-].join('|');
+];
+const EN_MONTHS = [
+  'January','February','March','April','May','June',
+  'July','August','September','October','November','December',
+];
 
-// Matches: "julho de 2025 - Present (10 meses)"  or  "janeiro de 2025 - julho de 2025 (7 meses)"
+function translateMonths(str) {
+  let result = str;
+  PT_MONTHS.forEach((pt, i) => {
+    // Replace "<month> de <year>" → "<Month> <year>" (remove 'de' in English)
+    result = result.replace(
+      new RegExp(pt + '\\s+de\\s+(\\d{4})', 'gi'),
+      EN_MONTHS[i] + ' $1',
+    );
+    // Fallback: plain month name
+    result = result.replace(new RegExp('\\b' + pt + '\\b', 'gi'), EN_MONTHS[i]);
+  });
+  return result;
+}
+
+// ─── Regex patterns ───────────────────────────────────────────────────────────
+
 const DATE_LINE_RE = new RegExp(
-  `^(${PT_MONTHS_RE})\\s+de\\s+\\d{4}\\s*[-–]`,
+  `^(${PT_MONTHS.join('|')})\\s+de\\s+\\d{4}\\s*[-–]`,
   'i'
 );
 
-// Matches LinkedIn tenure summary line: "2 anos 4 meses" | "10 meses"
-const TENURE_RE = /^\d+\s+(ano|anos|mês|mes|meses)/i;
+// "2 anos 4 meses" | "10 meses" | "1 ano 1 mês"
+const TENURE_RE = /^\d+\s+(ano|anos|m[eê]s|meses)\b/i;
+
+// Bullet character
+const BULLET_RE = /^[•·]\s*/;
+
+// Location line heuristic: short, contains comma
+const LOCATION_RE = /^[A-Za-zÀ-ú\s]+,\s+[A-Za-zÀ-ú\s]+$/;
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
-
-function formatPeriod(dateLine) {
-  const clean = dateLine.replace(/\s*\([^)]*\)/g, '').trim(); // remove "(X meses)"
-  const parts = clean.split(/\s*[-–]\s*/);
-  const start = (parts[0] ?? '').trim();
-  const end   = (parts[1] ?? '').trim();
-  if (!end || /^present$/i.test(end)) return `${start} — Atual`;
-  return `${start} — ${end}`;
-}
 
 function cleanLines(text) {
   return text
     .split('\n')
     .map(l => l.trim())
-    .filter(l => !/^Page\s+\d+\s+of\s+\d+$/i.test(l)) // remove "Page X of Y"
-    .filter(Boolean);
+    .filter(l => l.length > 0)
+    .filter(l => !/^Page\s+\d+\s+of\s+\d+$/i.test(l));
+}
+
+// PT sentence fragments / connectors that start continuation lines, NOT company names.
+// This lets lowercase-starting brands like "nav9" or "fiibo" pass while rejecting
+// description continuations that start with PT prepositions / conjunctions.
+const FRAGMENT_RE = /^(e\s|de\s|do\s|da\s|dos\s|das\s|que\s|com\s|em\s|no\s|na\s|nos\s|nas\s|por\s|para\s|ou\s|ao\s|às?\s|um\s+|uma\s+|se\s|ao\s|os\s|as\s|os\s|sob\s|até\s|pelo\s|pela\s|pelos\s|pelas\s)/i;
+
+/**
+ * A line is likely a company/employer name if:
+ * - Short (≤ 60 chars)
+ * - No bullet prefix
+ * - Not a date line
+ * - Not a tenure summary
+ * - No parentheses (job titles like "Desenvolvedor Mobile (Flutter)" have them)
+ * - Does not start with common PT sentence fragments/prepositions/conjunctions
+ */
+function isLikelyCompany(line) {
+  if (!line || line.trim() === '') return false;
+  if (BULLET_RE.test(line)) return false;
+  if (DATE_LINE_RE.test(line)) return false;
+  if (TENURE_RE.test(line)) return false;
+  if (/[()]/.test(line)) return false;            // job titles have parentheses
+  if (line.length > 60) return false;             // description lines are long
+  if (FRAGMENT_RE.test(line)) return false;       // continuation of description
+  return true;
+}
+
+/**
+ * Build bilingual { pt, en } period from a LinkedIn date line.
+ * Input: "julho de 2025 - Present (10 meses)"
+ * Output: { pt: "julho de 2025 — Atual", en: "July 2025 — Present" }
+ */
+function buildPeriod(dateLine) {
+  const clean = dateLine.replace(/\s*\([^)]*\)/g, '').trim();
+  const [startRaw, endRaw = ''] = clean.split(/\s*[-–]\s*/);
+
+  const startPt = (startRaw ?? '').trim();
+  const endStr  = (endRaw ?? '').trim();
+  const isPresent = !endStr || /^present$/i.test(endStr) || /^atual$/i.test(endStr);
+
+  return {
+    pt: isPresent
+      ? `${startPt} — Atual`
+      : `${startPt} — ${endStr}`,
+    en: isPresent
+      ? `${translateMonths(startPt)} — Present`
+      : `${translateMonths(startPt)} — ${translateMonths(endStr)}`,
+  };
+}
+
+/**
+ * Merge continuations into their bullet.
+ *
+ * Lines like:
+ *   "• Organização do ciclo de vida de componentes (criação, evolução e"
+ *   "depreciação)"
+ * should become one bullet.
+ *
+ * Heuristic: a continuation line is non-empty, doesn't start with "•",
+ * doesn't match a date/tenure/likely-company pattern,
+ * and follows immediately after a bullet line.
+ */
+function mergeBulletContinuations(lines) {
+  const merged = [];
+
+  for (const line of lines) {
+    if (BULLET_RE.test(line)) {
+      merged.push(line.replace(BULLET_RE, '').trim());
+    } else if (merged.length > 0 && line.length > 0
+               && !DATE_LINE_RE.test(line) && !TENURE_RE.test(line)
+               && !isLikelyCompany(line)) {
+      // continuation of previous bullet
+      merged[merged.length - 1] += ' ' + line.trim();
+    }
+    // else: header/intro lines not starting with bullet — skip for bullets list
+  }
+
+  return merged.map(b => b.replace(/[;,]\s*$/, '').trim()).filter(Boolean);
 }
 
 // ─── Section extractors ───────────────────────────────────────────────────────
 
 function extractSummary(lines) {
   const start = lines.findIndex(l => /^Resumo$/i.test(l));
-  const end   = lines.findIndex(l => /^Experiência$/i.test(l));
+  const end   = lines.findIndex((l, i) => i > start && /^Experi[eê]ncia$/i.test(l));
   if (start === -1) return '';
-  const slice = lines.slice(start + 1, end > start ? end : start + 30);
-  return slice.join(' ').trim();
+  const slice = lines.slice(start + 1, end > start ? end : start + 40);
+  // Join into single paragraph, collapse extra spaces
+  return slice.filter(l => l.length > 0).join(' ').replace(/\s{2,}/g, ' ').trim();
 }
 
 function extractExperience(lines) {
-  const expStart  = lines.findIndex(l => /^Experiência$/i.test(l));
-  const expEnd    = lines.findIndex(l => /^Formação/i.test(l));
+  const expStart = lines.findIndex(l => /^Experi[eê]ncia$/i.test(l));
+  const expEnd   = lines.findIndex((l, i) => i > expStart && /^Forma[çc][aã]o/i.test(l));
   if (expStart === -1) return [];
 
-  const expLines = lines.slice(expStart + 1, expEnd > expStart ? expEnd : undefined);
+  const expLines = lines.slice(
+    expStart + 1,
+    expEnd > expStart ? expEnd : undefined,
+  );
 
-  // Use date lines as anchors — they are uniquely formatted
+  // ── Find all date line indices (main anchors) ──────────────────────────────
   const dateIndices = expLines
     .map((l, i) => DATE_LINE_RE.test(l) ? i : -1)
     .filter(i => i !== -1);
 
   if (dateIndices.length === 0) return [];
 
+  let lastCompany = '';
+
   return dateIndices.map((dateIdx, entryNum) => {
     const dateLine = expLines[dateIdx];
 
-    // Walk backwards from date line to find title and company
-    // Ignore LinkedIn's total-tenure lines like "2 anos 4 meses"
-    const prevMeaningful = [];
-    for (let i = dateIdx - 1; i >= 0 && prevMeaningful.length < 3; i--) {
-      const l = expLines[i];
-      if (!l || DATE_LINE_RE.test(l)) break;
-      if (!TENURE_RE.test(l)) prevMeaningful.unshift(l);
+    // ── Title: the line immediately before the date line ──────────────────────
+    const title = (expLines[dateIdx - 1] ?? '').trim();
+
+    // ── Company detection ────────────────────────────────────────────────────
+    // Pattern A: COMPANY / TITLE / DATE           → look at D-2
+    // Pattern B: COMPANY / TENURE / TITLE / DATE  → look at D-3 (D-2 is tenure)
+    // Pattern C: TITLE / DATE  (shared company)   → inherit lastCompany
+
+    const prevTwo   = (expLines[dateIdx - 2] ?? '').trim();
+    const prevThree = (expLines[dateIdx - 3] ?? '').trim();
+
+    let company = lastCompany;
+
+    if (TENURE_RE.test(prevTwo)) {
+      // Pattern B
+      if (isLikelyCompany(prevThree)) {
+        company = prevThree;
+      }
+    } else if (isLikelyCompany(prevTwo)) {
+      // Pattern A
+      company = prevTwo;
+    }
+    // else: Pattern C — inherit lastCompany
+
+    if (company) lastCompany = company;
+
+    // ── Description: collect everything between date+1 and next date ──────────
+    const nextDateIdx = dateIndices[entryNum + 1] ?? expLines.length;
+
+    // D+1 = location line (skip) — detect by LOCATION_RE or just skip first line
+    const rawDescLines = expLines.slice(dateIdx + 2, nextDateIdx);
+
+    // Intro paragraph: non-bullet lines before first bullet
+    let intro = '';
+    let firstBulletIdx = rawDescLines.findIndex(l => BULLET_RE.test(l));
+    if (firstBulletIdx > 0) {
+      intro = rawDescLines
+        .slice(0, firstBulletIdx)
+        .filter(l => !TENURE_RE.test(l) && !isLikelyCompany(l) && l.length > 10)
+        .join(' ')
+        .trim();
     }
 
-    const title   = prevMeaningful[prevMeaningful.length - 1] ?? '';
-    const company = prevMeaningful[prevMeaningful.length - 2] ?? title;
+    // Bullets (with continuations)
+    const bulletLines = firstBulletIdx >= 0
+      ? rawDescLines.slice(firstBulletIdx)
+      : rawDescLines;
 
-    // Collect bullet points until next entry's date line
-    const nextDateIdx = dateIndices[entryNum + 1] ?? expLines.length;
-    const bullets = expLines
-      .slice(dateIdx + 1, nextDateIdx)
-      .filter(l => l.startsWith('•') || l.startsWith('·'))
-      .map(l => l.replace(/^[•·]\s*/, '').replace(/;\s*$/, '').trim())
-      .filter(Boolean);
+    const bullets = mergeBulletContinuations(bulletLines);
 
-    const description = bullets.join('. ');
+    // Build description string
+    let descPt = '';
+    if (intro) descPt = intro;
+    if (bullets.length > 0) {
+      const bulletsStr = bullets.join('. ');
+      descPt = descPt ? `${descPt} ${bulletsStr}` : bulletsStr;
+    }
+    if (!descPt) {
+      descPt = `Atuei como ${title} na ${company}.`;
+    }
+
+    const isCurrentEntry = /Present/i.test(dateLine) || /Atual/i.test(dateLine);
 
     return {
       title:  { pt: title, en: title },
       company,
-      period: formatPeriod(dateLine),
+      period: buildPeriod(dateLine),
       description: {
-        pt: description || `Atuei como ${title} na ${company}.`,
-        en: description || `Worked as ${title} at ${company}.`,
+        pt: descPt,
+        // Keep EN empty initially — will be preserved from existing if available
+        en: descPt,
       },
-      current: /Present/i.test(dateLine),
+      current: isCurrentEntry,
     };
+  })
+  .sort((a, b) => {
+    if (a.current && !b.current) return -1;
+    if (!a.current && b.current) return 1;
+    return 0;
+  });
+}
+
+// ─── Smart merge: preserve manually-translated EN descriptions ────────────────
+
+function mergeWithExisting(newExp, existingExp) {
+  return newExp.map(newEntry => {
+    // Find matching entry in existing by company + title similarity
+    const match = existingExp.find(e =>
+      e.company === newEntry.company &&
+      (e.title?.pt === newEntry.title.pt || e.title?.en === newEntry.title.pt)
+    );
+
+    if (match && match.description?.en && match.description.en !== match.description?.pt) {
+      // User had a manual EN translation — preserve it
+      return {
+        ...newEntry,
+        description: {
+          pt: newEntry.description.pt,
+          en: match.description.en,
+        },
+      };
+    }
+
+    return newEntry;
   });
 }
 
@@ -124,10 +305,8 @@ async function main() {
     console.error(`❌  PDF não encontrado: ${pdfPath}`);
     console.error('');
     console.error('    Como usar:');
-    console.error('    1. Baixe o PDF do seu perfil no LinkedIn');
-    console.error('       (Perfil → Mais → Salvar como PDF)');
-    console.error('    2. Coloque o arquivo como linkedin.pdf na raiz do projeto');
-    console.error('       (está no .gitignore — não será commitado)');
+    console.error('    1. No LinkedIn: Perfil → Mais → Salvar como PDF');
+    console.error('    2. Renomeie para linkedin.pdf e coloque na raiz do projeto');
     console.error('    3. Execute: npm run update-profile');
     process.exit(1);
   }
@@ -140,7 +319,7 @@ async function main() {
     process.exit(1);
   }
 
-  console.log(`📄  Lendo: ${path.basename(pdfPath)}`);
+  console.log(`\n📄  Processando: ${path.basename(pdfPath)}\n`);
 
   const buffer       = fs.readFileSync(pdfPath);
   const { text }     = await pdfParse(buffer);
@@ -148,28 +327,44 @@ async function main() {
 
   const summaryText  = extractSummary(lines);
   const experience   = extractExperience(lines);
+  const existing     = JSON.parse(fs.readFileSync(PROFILE_PATH, 'utf-8'));
 
-  const existing = JSON.parse(fs.readFileSync(PROFILE_PATH, 'utf-8'));
+  // Merge: preserve EN descriptions that were manually translated
+  const mergedExp = experience.length > 0
+    ? mergeWithExisting(experience, existing.experience ?? [])
+    : existing.experience;
 
   const updated = {
     about: summaryText
-      ? { pt: summaryText, en: summaryText }
+      ? {
+          pt: summaryText,
+          en: existing.about?.en ?? summaryText, // preserve manual EN translation if exists
+        }
       : existing.about,
-    experience: experience.length > 0
-      ? experience.sort((a, b) => (a.current === b.current ? 0 : a.current ? -1 : 1))
-      : existing.experience,
-    skills: existing.skills,   // always preserved — update manually
-    medium: existing.medium,   // always preserved
+    experience: mergedExp,
+    skills:  existing.skills,
+    medium:  existing.medium,
   };
 
   fs.writeFileSync(PROFILE_PATH, JSON.stringify(updated, null, 2) + '\n', 'utf-8');
 
-  console.log('✅  data/profile.json atualizado com sucesso!');
-  console.log(`    Resumo:     ${summaryText ? 'atualizado ✓' : 'não encontrado — mantido existente'}`);
-  console.log(`    Experiência: ${updated.experience.length} posição(ões) importada(s)`);
+  // ── Report ─────────────────────────────────────────────────────────────────
+  console.log('✅  data/profile.json atualizado!\n');
+  console.log(`    Resumo (PT): ${summaryText ? '✓ atualizado' : '⚠ não encontrado — mantido existente'}`);
+  console.log(`    Resumo (EN): ${existing.about?.en ? '✓ preservado' : '⚠ copiado do PT — traduza manualmente'}`);
+  console.log(`\n    Experiências: ${updated.experience.length} posição(ões)`);
+
+  updated.experience.forEach(e => {
+    const indicator = e.current ? '● ' : '  ';
+    console.log(`    ${indicator}${e.title.pt}`);
+    console.log(`      ${e.company} | ${e.period.pt} | EN: ${e.period.en}`);
+  });
+
+  console.log('');
 }
 
 main().catch(err => {
   console.error('❌  Erro:', err.message);
+  console.error(err.stack);
   process.exit(1);
 });

@@ -71,11 +71,49 @@ function readCsv(filename) {
   return parseCsv(fs.readFileSync(filepath, 'utf-8'));
 }
 
+// ─── Month translation (EN abbreviations from LinkedIn CSV → Portuguese) ───────
+
+const EN_ABBR_TO_PT = {
+  Jan: 'janeiro', Feb: 'fevereiro', Mar: 'março',   Apr: 'abril',
+  May: 'maio',    Jun: 'junho',     Jul: 'julho',    Aug: 'agosto',
+  Sep: 'setembro',Oct: 'outubro',   Nov: 'novembro', Dec: 'dezembro',
+};
+
+function csvDateToPt(dateStr) {
+  if (!dateStr || !dateStr.trim()) return '';
+  // LinkedIn CSV: "Jan 2025" → "janeiro de 2025"
+  return dateStr.trim().replace(
+    /^([A-Za-z]{3})\s+(\d{4})$/,
+    (_, mon, year) => `${EN_ABBR_TO_PT[mon] ?? mon.toLowerCase()} de ${year}`,
+  );
+}
+
+function csvDateToEn(dateStr) {
+  if (!dateStr || !dateStr.trim()) return '';
+  // LinkedIn CSV: "Jan 2025" → "January 2025"
+  const EN_FULL = {
+    Jan: 'January',  Feb: 'February', Mar: 'March',    Apr: 'April',
+    May: 'May',      Jun: 'June',     Jul: 'July',      Aug: 'August',
+    Sep: 'September',Oct: 'October',  Nov: 'November',  Dec: 'December',
+  };
+  return dateStr.trim().replace(
+    /^([A-Za-z]{3})\s+(\d{4})$/,
+    (_, mon, year) => `${EN_FULL[mon] ?? mon} ${year}`,
+  );
+}
+
+// Returns { pt, en } period object
 function formatPeriod(startedOn, finishedOn) {
-  if (!startedOn) return '';
-  const start = startedOn.trim();
-  if (!finishedOn || finishedOn.trim() === '') return `${start} — Atual`;
-  return `${start} — ${finishedOn.trim()}`;
+  if (!startedOn) return { pt: '', en: '' };
+  const current = !finishedOn || finishedOn.trim() === '';
+  return {
+    pt: current
+      ? `${csvDateToPt(startedOn)} — Atual`
+      : `${csvDateToPt(startedOn)} — ${csvDateToPt(finishedOn)}`,
+    en: current
+      ? `${csvDateToEn(startedOn)} — Present`
+      : `${csvDateToEn(startedOn)} — ${csvDateToEn(finishedOn)}`,
+  };
 }
 
 function isCurrent(finishedOn) {
