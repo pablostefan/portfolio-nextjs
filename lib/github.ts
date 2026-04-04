@@ -35,7 +35,7 @@ export async function fetchPortfolioProjects(): Promise<Project[]> {
 
   const res = await fetch(url, {
     headers: buildHeaders(),
-    next: { revalidate: 3600 },
+    cache: 'no-store',
   });
 
   if (!res.ok) {
