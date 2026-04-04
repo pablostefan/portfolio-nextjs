@@ -30,19 +30,19 @@ const locales = ['pt', 'en'];
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'https://pablostefan.com.br'),
-  title: 'Pablo Stefan — Flutter Developer',
+  title: 'Pablo Stefan — Software Architect',
   description:
-    'Portfólio de Pablo Stefan, Flutter Developer Pleno na XP Inc. Especializado em aplicações móveis de alto impacto.',
+    'Portfólio de Pablo Stefan, Software Architect Mobile/Flutter @ XP Inc. Especializado em Design Systems e arquitetura de aplicações móveis de alto impacto.',
   openGraph: {
     type: 'website',
     url: process.env.NEXT_PUBLIC_APP_URL,
-    title: 'Pablo Stefan — Flutter Developer',
-    description: 'Flutter Developer specializing in high-impact mobile experiences.',
+    title: 'Pablo Stefan — Software Architect',
+    description: 'Software Architect specializing in mobile Design Systems and Flutter architecture at XP Inc.',
     images: [{ url: `${process.env.NEXT_PUBLIC_APP_URL}/og-image.png` }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Pablo Stefan — Flutter Developer',
+    title: 'Pablo Stefan — Software Architect',
   },
 };
 

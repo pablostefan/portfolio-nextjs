@@ -9,7 +9,7 @@ interface HomePageProps {
   params: Promise<{ locale: string }>;
 }
 
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
