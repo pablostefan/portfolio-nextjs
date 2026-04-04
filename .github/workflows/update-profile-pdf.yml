@@ -1,12 +1,12 @@
 name: Update Profile from LinkedIn PDF
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'uploads/linkedin/**.pdf'
   workflow_dispatch:
     inputs:
-      pdf_url:
-        description: 'URL direta do PDF do LinkedIn (Google Drive, Dropbox, etc.)'
-        required: true
-        type: string
       skip_ai:
         description: 'Pular enriquecimento com AI (só parse do PDF)'
         required: false
@@ -33,17 +33,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Download LinkedIn PDF
+      - name: Find LinkedIn PDF
+        id: find_pdf
         run: |
-          curl -L "${{ github.event.inputs.pdf_url }}" \
-               -o linkedin.pdf \
-               --fail \
-               --silent \
-               --show-error
-          echo "✅ PDF baixado ($(wc -c < linkedin.pdf) bytes)"
+          PDF=$(find uploads/linkedin -name '*.pdf' | head -1)
+          if [ -z "$PDF" ]; then
+            echo "Nenhum PDF encontrado em uploads/linkedin/"
+            exit 1
+          fi
+          echo "pdf=$PDF" >> $GITHUB_OUTPUT
+          echo "✅ PDF encontrado: $PDF ($(wc -c < "$PDF") bytes)"
 
       - name: Parse and update profile.json
-        run: node scripts/parse-linkedin-pdf.js linkedin.pdf
+        run: node scripts/parse-linkedin-pdf.js "${{ steps.find_pdf.outputs.pdf }}"
 
       - name: Enhance with AI (PT polish + EN translations)
         if: ${{ !inputs.skip_ai }}
@@ -54,14 +56,12 @@ jobs:
       - name: Show diff
         run: git diff data/profile.json || echo "(sem alterações)"
 
-      - name: Remove PDF (privacidade)
-        run: rm -f linkedin.pdf
-
-      - name: Commit updated profile
+      - name: Remove PDF (privacidade) e commitar
         run: |
           git config user.name  "GitHub Actions"
           git config user.email "actions@github.com"
-          git add data/profile.json
+          rm -f "${{ steps.find_pdf.outputs.pdf }}"
+          git add data/profile.json uploads/linkedin/
           git diff --staged --quiet \
             && echo "Nenhuma alteração para commitar" \
             || git commit -m "chore: update profile from LinkedIn PDF [skip ci]"

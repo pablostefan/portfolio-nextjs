@@ -1,6 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # LinkedIn PDF export — drop here to run npm run update-profile (never committed)
+# Para atualizar via GitHub Action: suba o PDF em uploads/linkedin/ pelo GitHub.com
 linkedin.pdf
 linkedin-export.pdf
 
