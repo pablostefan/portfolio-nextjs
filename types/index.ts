@@ -15,6 +15,7 @@ export interface ExperienceEntry {
   company: string;
   period: { pt: string; en: string };
   description: { pt: string; en: string };
+  bullets?: { pt: string[]; en: string[] };
   current: boolean;
 }
 

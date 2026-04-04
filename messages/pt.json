@@ -20,7 +20,9 @@
   },
   "experience": {
     "title": "Experiência",
-    "current": "Atual"
+    "current": "Atual",
+    "show_details": "Ver atividades",
+    "hide_details": "Ocultar atividades"
   },
   "projects": {
     "title": "Projetos",

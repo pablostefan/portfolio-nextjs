@@ -20,7 +20,9 @@
   },
   "experience": {
     "title": "Experience",
-    "current": "Current"
+    "current": "Current",
+    "show_details": "Show activities",
+    "hide_details": "Hide activities"
   },
   "projects": {
     "title": "Projects",

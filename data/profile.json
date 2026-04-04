@@ -18,6 +18,28 @@
         "pt": "Atuação focada na evolução arquitetural do Design System mobile (SOMA). Definição de padrões para componentes Flutter, organização do ciclo de vida via RFCs e ADRs, consolidação da acessibilidade como padrão estrutural e suporte técnico às squads na adoção consistente do Design System.",
         "en": "Led the architectural evolution of XP Inc.'s mobile Design System (SOMA). Defined standards for Flutter components, structured their lifecycle through RFCs and ADRs, and established accessibility as a foundational standard. Provided technical support to squads, ensuring consistent adoption and integration of the Design System across projects."
       },
+      "bullets": {
+        "pt": [
+          "Definição de padrões arquiteturais para componentes em Flutter",
+          "Organização do ciclo de vida de componentes (criação, evolução e depreciação)",
+          "Formalização de decisões técnicas por meio de RFCs e ADRs",
+          "Evolução e implementação de componentes alinhados às especificações de design",
+          "Suporte técnico às squads na adoção consistente do Design System",
+          "Liderança na consolidação da acessibilidade como padrão estrutural, desde a definição das diretrizes até a implementação nos componentes",
+          "Estruturação do modelo de governança da acessibilidade, com alinhamento entre engenharia, design e auditoria",
+          "Organização de estratégias para gestão de componentes deprecated e mecanismos de reforço de qualidade e consistência"
+        ],
+        "en": [
+          "Defining architectural patterns for Flutter components",
+          "Organizing the component lifecycle (creation, evolution, and deprecation)",
+          "Formalizing technical decisions through RFCs and ADRs",
+          "Evolving and implementing components aligned with design specifications",
+          "Providing technical support to squads in the consistent adoption of the Design System",
+          "Leading the consolidation of accessibility as a structural standard, from guidelines definition to component-level implementation",
+          "Structuring the accessibility governance model with cross-functional alignment across engineering, design, and audit",
+          "Organizing strategies for deprecated component management and quality consistency enforcement"
+        ]
+      },
       "current": true
     },
     {
@@ -33,6 +55,24 @@
       "description": {
         "pt": "Desenvolvimento do app da Caju (benefícios corporativos) com liderança técnica como Feature Lead. Organização técnica, arquitetura, testes automatizados com alta cobertura e monitoramento com Firebase Analytics e Crashlytics.",
         "en": "Developed the Caju corporate benefits app, serving as Feature Lead and driving technical leadership. Designed robust architecture, implemented automated tests with high coverage, and ensured seamless monitoring using Firebase Analytics and Crashlytics."
+      },
+      "bullets": {
+        "pt": [
+          "Desenvolvimento do app principal da Caju, com foco em benefícios corporativos",
+          "Liderança técnica como Feature Lead: organização técnica, arquitetura e entrega",
+          "Colaboração com áreas de produto e design no refinamento de requisitos",
+          "Implementação de componentes do design system e codificação de elementos reutilizáveis",
+          "Criação de testes automatizados (unitários, widget, integração) com alta cobertura",
+          "Monitoramento com Firebase Analytics e Crashlytics para performance e estabilidade"
+        ],
+        "en": [
+          "Developed the main Caju app focused on corporate employee benefits",
+          "Technical leadership as Feature Lead: technical organization, architecture, and delivery",
+          "Collaborated with product and design teams in requirements refinement",
+          "Implemented design system components and coded reusable elements",
+          "Created automated tests (unit, widget, integration) with high coverage",
+          "Monitoring with Firebase Analytics and Crashlytics for performance and stability"
+        ]
       },
       "current": false
     },
@@ -50,6 +90,32 @@
         "pt": "Desenvolvimento e manutenção do app principal (saúde e bem-estar). Integração com REST APIs e GraphQL, funcionalidades offline-first, pipelines CI/CD, white labels com Flavors e mentoria técnica ao time.",
         "en": "Developed and maintained Fiibo's main health and wellness app. Integrated REST APIs and GraphQL, implemented offline-first functionalities, optimized CI/CD pipelines, and managed white-label solutions using Flavors. Provided technical mentorship to the team to ensure high-quality development practices."
       },
+      "bullets": {
+        "pt": [
+          "Desenvolvimento e manutenção do aplicativo principal focado em saúde e bem-estar",
+          "Integração com APIs RESTful e GraphQL, otimizando a comunicação e o desempenho",
+          "Garantia de alta performance e estabilidade com testes automatizados",
+          "Monitoramento e análise de métricas com Firebase Analytics e New Relic",
+          "Desenvolvimento de funcionalidades offline-first, garantindo uso mesmo sem conectividade",
+          "Mentoria e apoio técnico a membros da equipe, promovendo crescimento e troca de conhecimento",
+          "Implementação e manutenção de white labels e configuração de Flavors para diferentes clientes",
+          "Codificação de componentes visuais reutilizáveis com base no design system da empresa",
+          "Implantação e manutenção de pipelines CI/CD para integração e entrega contínua",
+          "Condução e liderança de POCs para validação de novas soluções e tecnologias"
+        ],
+        "en": [
+          "Development and maintenance of the main health and wellness app",
+          "Integration with RESTful and GraphQL APIs, optimizing communication and performance",
+          "Ensuring high performance and stability with automated tests and best practices",
+          "Monitoring and metrics analysis with Firebase Analytics and New Relic",
+          "Development of offline-first features, ensuring usability without connectivity",
+          "Technical mentoring and support for team members, promoting growth and knowledge sharing",
+          "Implementation and maintenance of white-label solutions and Flavors for different clients",
+          "Coding reusable visual components based on the company's design system",
+          "Deployment and maintenance of CI/CD pipelines for continuous integration and delivery",
+          "Conducting and leading POCs for validation of new solutions and technologies"
+        ]
+      },
       "current": false
     },
     {
@@ -66,6 +132,30 @@
         "pt": "Liderança de equipe de 3 desenvolvedores, desenvolvimento de features com Flutter, arquiteturas modulares, revisões de código e implementação de testes unitários, de widget e de integração.",
         "en": "Led a team of three developers in building features with Flutter. Designed modular architectures, conducted thorough code reviews, and implemented unit, widget, and integration tests to ensure code quality and reliability."
       },
+      "bullets": {
+        "pt": [
+          "Liderança de uma equipe de 3 desenvolvedores, incluindo treinamento e orientação",
+          "Desenvolvimento de novas features com Flutter, garantindo implementação eficiente e de alta qualidade",
+          "Realização de revisões de código e fornecimento de feedback à equipe mobile",
+          "Projeto e implementação de arquiteturas modulares seguindo os principais padrões e boas práticas",
+          "Elaboração e sugestão das melhores práticas e soluções para o aplicativo",
+          "Colaboração com desenvolvedores, designers e stakeholders para entregas de alta qualidade",
+          "Identificação e correção de problemas de desempenho, otimizando a performance dos aplicativos",
+          "Implantação de testes unitários, de widgets e de integração, garantindo robustez e qualidade",
+          "Versionamento de código e gestão de releases, assegurando controle eficaz das atualizações"
+        ],
+        "en": [
+          "Led a team of 3 developers, including training and mentoring to promote growth and efficiency",
+          "Developed new features ensuring efficient, high-quality Flutter implementation",
+          "Conducted code reviews and provided feedback to the mobile team",
+          "Designed and implemented modular architectures following best development practices",
+          "Developed and proposed best practices and solutions for the app",
+          "Collaborated with developers, designers, and stakeholders to ensure quality within deadlines",
+          "Identified and resolved performance issues, optimizing app performance",
+          "Implemented unit, widget, and integration tests ensuring app robustness and quality",
+          "Managed code versioning and release management ensuring organized update control"
+        ]
+      },
       "current": false
     },
     {
@@ -81,6 +171,24 @@
       "description": {
         "pt": "Desenvolvimento do aplicativo Krykto (carteira de criptomoedas e rede social) com Flutter, animações e gráficos dinâmicos, integração via REST e GraphQL e monitoramento com Firebase Crashlytics.",
         "en": "Developed the Krykto app, a cryptocurrency wallet and social network, using Flutter. Implemented dynamic animations and charts, integrated REST and GraphQL APIs, and ensured app stability through Firebase Crashlytics monitoring."
+      },
+      "bullets": {
+        "pt": [
+          "Desenvolvimento do app Krykto, uma carteira de criptomoedas e rede social, com foco em implementação precisa e alinhada ao Figma",
+          "Integração de sistemas via APIs RESTful e GraphQL",
+          "Escalabilidade de componentes, realizando ajustes e grandes refatorações conforme necessário",
+          "Desenvolvimento de animações e gráficos animados dinâmicos para visualização de criptomoedas",
+          "Versionamento de código com Git e Bitbucket",
+          "Integração com Firebase Crashlytics para monitoramento e análise de falhas"
+        ],
+        "en": [
+          "Developed the Krykto app, a cryptocurrency wallet and social network, with pixel-perfect Figma implementation",
+          "System integration via RESTful and GraphQL APIs",
+          "Component scalability with adjustments and major refactors as needed",
+          "Development of dynamic animations and animated charts for cryptocurrency data visualization",
+          "Code versioning with Git and Bitbucket",
+          "Firebase Crashlytics integration for crash monitoring and analysis"
+        ]
       },
       "current": false
     }
