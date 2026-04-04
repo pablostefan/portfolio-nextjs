@@ -129,14 +129,65 @@ export function Hero() {
       {/* ── Scroll indicator ── */}
       <motion.div
         aria-hidden="true"
-        initial={shouldReduceMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.8, duration: 0.8 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.8, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2.5"
       >
-        <div className="flex flex-col items-center gap-2">
-          <div className="h-10 w-px bg-gradient-to-b from-transparent via-accent to-transparent animate-[bounce_2s_ease-in-out_infinite]" />
+        {/* Mouse body */}
+        <div className="relative flex h-10 w-[22px] items-start justify-center rounded-full border border-accent/35 bg-accent/[0.06] pt-[5px] shadow-[0_0_12px_rgba(124,58,237,0.15)]">
+          {/* Scrolling dot */}
+          <motion.span
+            className="h-1.5 w-1.5 rounded-full bg-gradient-to-b from-accent-light to-accent-cyan"
+            animate={shouldReduceMotion ? {} : {
+              y:       [0, 13, 13],
+              opacity: [0.9, 0.9, 0],
+            }}
+            transition={{
+              duration:   1.9,
+              repeat:     Infinity,
+              repeatType: 'loop',
+              ease:       'easeInOut',
+              times:      [0, 0.65, 1],
+            }}
+          />
         </div>
+
+        {/* Staggered chevrons */}
+        <div className="flex flex-col items-center -space-y-[5px]">
+          {[0, 1, 2].map((i) => (
+            <motion.svg
+              key={i}
+              width="14" height="8" viewBox="0 0 14 8" fill="none"
+              animate={shouldReduceMotion ? {} : { opacity: [0.15, 0.65, 0.15] }}
+              transition={{
+                duration: 1.9,
+                repeat:   Infinity,
+                delay:    i * 0.22,
+                ease:     'easeInOut',
+              }}
+            >
+              <path
+                d="M1 1l6 6 6-6"
+                stroke="url(#chev-grad)"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <defs>
+                <linearGradient id="chev-grad" x1="1" y1="1" x2="13" y2="1" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#a78bfa" />
+                  <stop offset="1" stopColor="#06b6d4" />
+                </linearGradient>
+              </defs>
+            </motion.svg>
+          ))}
+        </div>
+
+        {/* Label */}
+        <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-content-muted/60">
+          scroll
+        </span>
       </motion.div>
     </section>
   );
