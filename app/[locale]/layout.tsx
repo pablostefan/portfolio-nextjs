@@ -6,6 +6,7 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { SplashScreen } from '@/components/ui/SplashScreen';
 import '../globals.css';
 
 const spaceGrotesk = Space_Grotesk({
@@ -76,6 +77,7 @@ async function LocaleLayout({ children, params }: LocaleLayoutProps) {
     >
       <body className="min-h-screen bg-bg-base text-content font-sans antialiased">
         <NextIntlClientProvider messages={messages}>
+          <SplashScreen />
           <Navbar />
           <main id="top">{children}</main>
           <Footer />

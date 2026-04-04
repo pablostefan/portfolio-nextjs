@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { ExternalLink, Code2, Star, Calendar, ArrowUpRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
+import { AnimatedBlob } from '@/components/ui/AnimatedBlob';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { GlassCard } from '@/components/ui/GlassCard';
 import { langColor, formatDate } from '@/lib/utils';
@@ -168,8 +169,14 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <SectionWrapper id="projects">
-      <div className="mx-auto max-w-6xl">
+    <SectionWrapper id="projects" className="relative overflow-hidden">
+      {/* Background blobs */}
+      <AnimatedBlob variant="violet" size={480}
+        className="left-1/4 -top-24 opacity-22" />
+      <AnimatedBlob variant="cyan" size={420}
+        className="-right-20 bottom-0 opacity-18" />
+
+      <div className="relative z-10 mx-auto max-w-6xl">
         <SectionHeading title={t('title')} />
 
         {projects.length === 0 ? (

@@ -6,6 +6,7 @@ import { ExternalLink, Copy, Check, ShieldCheck, Calendar } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
+import { AnimatedBlob } from '@/components/ui/AnimatedBlob';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { GlassCard } from '@/components/ui/GlassCard';
 import type { Certification } from '@/types';
@@ -205,8 +206,14 @@ export function CertificationsClient({ certs }: CertificationsClientProps) {
   if (certs.length === 0) return null;
 
   return (
-    <SectionWrapper id="certifications">
-      <div className="mx-auto max-w-6xl">
+    <SectionWrapper id="certifications" className="relative overflow-hidden">
+      {/* Background blobs */}
+      <AnimatedBlob variant="cyan" size={460}
+        className="-right-24 -top-20 opacity-22" />
+      <AnimatedBlob variant="indigo" size={400}
+        className="-left-20 bottom-0 opacity-18" />
+
+      <div className="relative z-10 mx-auto max-w-6xl">
         <SectionHeading title={t('title')} subtitle={t('subtitle')} />
 
         {/* Grid */}

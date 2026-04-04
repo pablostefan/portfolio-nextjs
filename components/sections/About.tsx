@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { MapPin, Briefcase } from 'lucide-react';
 import { fetchLinkedInProfile } from '@/lib/linkedin';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
+import { AnimatedBlob } from '@/components/ui/AnimatedBlob';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { GlassCard } from '@/components/ui/GlassCard';
 import { SkillBadgeList } from '@/components/ui/SkillBadgeList';
@@ -30,8 +31,14 @@ export async function About({ locale }: AboutProps) {
     : ['Flutter', 'Design Systems', 'Mobile Architecture'];
 
   return (
-    <SectionWrapper id="about">
-      <div className="mx-auto max-w-6xl">
+    <SectionWrapper id="about" className="relative overflow-hidden">
+      {/* Background blobs */}
+      <AnimatedBlob variant="violet" size={500}
+        className="-left-32 -top-32 opacity-25" />
+      <AnimatedBlob variant="cyan" size={420}
+        className="-right-20 bottom-0 opacity-20" />
+
+      <div className="relative z-10 mx-auto max-w-6xl">
 
         <SectionHeading title={t('title')} />
 

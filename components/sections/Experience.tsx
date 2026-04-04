@@ -7,6 +7,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { GlassCard } from '@/components/ui/GlassCard';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
+import { AnimatedBlob } from '@/components/ui/AnimatedBlob';
 import profileData from '@/data/profile.json';
 import type { Locale } from '@/i18n';
 
@@ -153,8 +154,14 @@ export function Experience() {
   const locale = useLocale() as Locale;
 
   return (
-    <SectionWrapper id="experience">
-      <div className="mx-auto max-w-3xl">
+    <SectionWrapper id="experience" className="relative overflow-hidden">
+      {/* Background blobs */}
+      <AnimatedBlob variant="indigo" size={480}
+        className="-left-40 top-1/4 opacity-25" />
+      <AnimatedBlob variant="violet" size={380}
+        className="-right-24 bottom-10 opacity-20" />
+
+      <div className="relative z-10 mx-auto max-w-3xl">
         <SectionHeading title={t('title')} />
 
         {/* Timeline */}
