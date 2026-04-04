@@ -210,7 +210,7 @@ function CertCard({
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${tVerify} — ${cert.name}`}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-2.5 font-mono text-xs text-content-secondary transition-all duration-200 hover:border-accent/30 hover:bg-accent/10 hover:text-accent-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 font-mono text-xs text-content-secondary transition-all duration-200 hover:border-accent/30 hover:bg-accent/10 hover:text-accent-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
             >
               <ExternalLink size={12} aria-hidden="true" />
               {isCredly ? tViewCredy : tVerify}
