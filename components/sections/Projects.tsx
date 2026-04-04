@@ -134,7 +134,7 @@ export async function Projects() {
             className="inline-flex items-center gap-2 rounded-xl border border-white/[0.1] bg-white/[0.04] px-6 py-3 font-semibold text-content-secondary transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:bg-accent/10 hover:text-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
             <Code2 size={18} aria-hidden="true" />
-            Ver todos no GitHub
+            {t('view_all')}
           </a>
         </div>
       </div>

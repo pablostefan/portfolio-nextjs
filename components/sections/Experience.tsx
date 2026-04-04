@@ -51,7 +51,7 @@ function TimelineItem({
             <p className="font-semibold text-accent-light">{entry.company}</p>
           </div>
           <div className="flex flex-col items-end gap-1.5">
-            <span className="font-mono text-sm text-content-muted">{entry.period}</span>
+            <span className="font-mono text-sm text-content-muted">{entry.period[locale]}</span>
             {entry.current && (
               <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-2.5 py-0.5 font-mono text-xs text-accent-light">
                 <span aria-hidden="true" className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent-light" />

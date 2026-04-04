@@ -10,7 +10,7 @@
         "en": "Software Architect"
       },
       "company": "XP Inc.",
-      "period": "julho de 2025 — Atual",
+      "period": { "pt": "julho de 2025 — Atual", "en": "July 2025 — Present" },
       "description": {
         "pt": "Atuação focada na evolução arquitetural do Design System mobile (SOMA). Definição de padrões para componentes Flutter, organização do ciclo de vida via RFCs e ADRs, consolidação da acessibilidade como padrão estrutural e suporte técnico às squads na adoção consistente do Design System.",
         "en": "Focused on the architectural evolution of the mobile Design System (SOMA). Defining Flutter component standards, managing component lifecycle via RFCs and ADRs, consolidating accessibility as a structural standard, and providing technical support to squads."
@@ -23,7 +23,7 @@
         "en": "Mobile Developer (Flutter)"
       },
       "company": "nav9",
-      "period": "janeiro de 2025 — julho de 2025",
+      "period": { "pt": "janeiro de 2025 — julho de 2025", "en": "January 2025 — July 2025" },
       "description": {
         "pt": "Desenvolvimento do app da Caju (benefícios corporativos) com liderança técnica como Feature Lead. Organização técnica, arquitetura, testes automatizados com alta cobertura e monitoramento com Firebase Analytics e Crashlytics.",
         "en": "Developed the Caju app (corporate benefits) with technical leadership as Feature Lead. Technical organization, architecture, automated tests with high coverage, and monitoring with Firebase Analytics and Crashlytics."
@@ -36,7 +36,7 @@
         "en": "Mobile Developer (Flutter)"
       },
       "company": "Fiibo",
-      "period": "abril de 2024 — dezembro de 2024",
+      "period": { "pt": "abril de 2024 — dezembro de 2024", "en": "April 2024 — December 2024" },
       "description": {
         "pt": "Desenvolvimento e manutenção do app principal (saúde e bem-estar). Integração com REST APIs e GraphQL, funcionalidades offline-first, pipelines CI/CD, white labels com Flavors e mentoria técnica ao time.",
         "en": "Development and maintenance of the main health and wellness app. REST API and GraphQL integration, offline-first features, CI/CD pipelines, white labels with Flavors, and technical mentoring."
@@ -49,7 +49,7 @@
         "en": "Mobile Developer (Flutter)"
       },
       "company": "Krykto",
-      "period": "janeiro de 2023 — abril de 2024",
+      "period": { "pt": "janeiro de 2023 — abril de 2024", "en": "January 2023 — April 2024" },
       "description": {
         "pt": "Liderança de equipe de 3 desenvolvedores, desenvolvimento de features com Flutter, arquiteturas modulares, revisões de código e implementação de testes unitários, de widget e de integração.",
         "en": "Led a team of 3 developers, built features with Flutter, modular architectures, code reviews, and unit, widget, and integration tests."
@@ -62,7 +62,7 @@
         "en": "Junior Mobile Developer (Flutter)"
       },
       "company": "Krykto",
-      "period": "janeiro de 2022 — janeiro de 2023",
+      "period": { "pt": "janeiro de 2022 — janeiro de 2023", "en": "January 2022 — January 2023" },
       "description": {
         "pt": "Desenvolvimento do aplicativo Krykto (carteira de criptomoedas e rede social) com Flutter, animações e gráficos dinâmicos, integração via REST e GraphQL e monitoramento com Firebase Crashlytics.",
         "en": "Developed the Krykto app (crypto wallet and social network) with Flutter, dynamic animations and charts, REST and GraphQL integrations, and Firebase Crashlytics monitoring."

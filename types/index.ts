@@ -13,7 +13,7 @@ export interface Project {
 export interface ExperienceEntry {
   title: { pt: string; en: string };
   company: string;
-  period: string;
+  period: { pt: string; en: string };
   description: { pt: string; en: string };
   current: boolean;
 }

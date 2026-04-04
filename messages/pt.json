@@ -7,9 +7,9 @@
   },
   "hero": {
     "greeting": "Olá, eu sou",
-    "role": "Flutter Developer",
-    "typewriter": ["Flutter Developer", "Mobile Engineer", "Open Source Dev"],
-    "subtitle": "Construindo experiências móveis de alto impacto",
+    "role": "Software Architect",
+    "typewriter": ["Software Architect", "Flutter Expert", "Mobile Engineer"],
+    "subtitle": "Arquitetando experiências móveis de alto impacto",
     "cta_projects": "Ver Projetos",
     "cta_contact": "Entrar em Contato"
   },
@@ -24,7 +24,8 @@
   "projects": {
     "title": "Projetos",
     "view_github": "Ver no GitHub",
-    "view_demo": "Demo"
+    "view_demo": "Demo",
+    "view_all": "Ver todos no GitHub"
   },
   "contact": {
     "title": "Contato",
