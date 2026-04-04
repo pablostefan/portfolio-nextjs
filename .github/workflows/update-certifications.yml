@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'public/certs/**.pdf'
+      - 'uploads/certs/**.pdf'
 
 jobs:
   update:
@@ -35,7 +35,8 @@ jobs:
         run: |
           git config user.name  "GitHub Actions"
           git config user.email "actions@github.com"
-          git add data/certifications.json
+          find uploads/certs -name '*.pdf' -delete
+          git add data/certifications.json uploads/certs/
           git diff --staged --quiet \
             && echo "Nenhuma alteração para commitar" \
             || git commit -m "chore: update certifications from PDFs [skip ci]"
