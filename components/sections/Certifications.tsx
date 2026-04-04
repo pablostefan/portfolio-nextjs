@@ -60,11 +60,11 @@ function IssuerAvatar({ cert }: { cert: Certification }) {
   return (
     <div
       aria-label={cert.issuer}
-      className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl font-display text-base font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.4)]"
+      className="relative h-14 w-14 shrink-0 overflow-hidden rounded-2xl font-display text-base font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.4)]"
       style={{ background: `linear-gradient(145deg, ${from}, ${to})` }}
     >
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-black/20" />
-      <span className="relative z-10 tracking-wide">{initials}</span>
+      <span className="absolute inset-0 z-10 flex items-center justify-center">{initials}</span>
     </div>
   );
 }
