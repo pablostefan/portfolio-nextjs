@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "update-profile": "node scripts/parse-linkedin-pdf.js"
+    "update-profile": "node scripts/parse-linkedin-pdf.js && node scripts/enhance-profile-ai.js",
+    "update-profile:pdf": "node scripts/parse-linkedin-pdf.js",
+    "update-profile:ai": "node scripts/enhance-profile-ai.js"
   },
   "dependencies": {
     "framer-motion": "^12.38.0",

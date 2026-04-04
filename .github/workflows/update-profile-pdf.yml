@@ -7,12 +7,18 @@ on:
         description: 'URL direta do PDF do LinkedIn (Google Drive, Dropbox, etc.)'
         required: true
         type: string
+      skip_ai:
+        description: 'Pular enriquecimento com AI (só parse do PDF)'
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   update:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      models: read   # GitHub Models API (gpt-4o free with Copilot)
 
     steps:
       - name: Checkout repository
@@ -38,6 +44,12 @@ jobs:
 
       - name: Parse and update profile.json
         run: node scripts/parse-linkedin-pdf.js linkedin.pdf
+
+      - name: Enhance with AI (PT polish + EN translations)
+        if: ${{ !inputs.skip_ai }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/enhance-profile-ai.js
 
       - name: Show diff
         run: git diff data/profile.json || echo "(sem alterações)"
