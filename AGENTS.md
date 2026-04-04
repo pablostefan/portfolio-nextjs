@@ -481,24 +481,25 @@ jobs:
 - [x] `app/[locale]/layout.tsx`
 
 ### Fase 3 — APIs
-- [ ] `lib/github.ts`
-- [ ] `lib/linkedin.ts`
-- [ ] `app/api/github/route.ts`
-- [ ] `app/api/linkedin/route.ts`
+- [x] `lib/github.ts`
+- [x] `lib/linkedin.ts`
+- [x] `lib/utils.ts`
+- [x] `app/api/github/route.ts`
+- [x] `app/api/linkedin/route.ts`
 
 ### Fase 4 — Seções
-- [ ] `components/sections/Hero.tsx`
-- [ ] `components/sections/About.tsx`
-- [ ] `components/sections/Experience.tsx`
-- [ ] `components/sections/Projects.tsx`
-- [ ] `components/sections/Contact.tsx`
+- [x] `components/sections/Hero.tsx`
+- [x] `components/sections/About.tsx`
+- [x] `components/sections/Experience.tsx`
+- [x] `components/sections/Projects.tsx`
+- [x] `components/sections/Contact.tsx`
 
 ### Fase 5 — Página Principal
-- [ ] `app/[locale]/page.tsx`
+- [x] `app/[locale]/page.tsx`
 
 ### Fase 6 — Automação
-- [ ] `scripts/parse-linkedin.js`
-- [ ] `.github/workflows/update-profile.yml`
+- [x] `scripts/parse-linkedin.js`
+- [x] `.github/workflows/update-profile.yml`
 
 ### Fase 7 — Deploy
 - [ ] Conectar repo ao Vercel
@@ -523,6 +524,8 @@ jobs:
 - Fazer requests ao LinkedIn no client-side
 - Usar bibliotecas de UI externas (shadcn, MUI, Chakra) — apenas Tailwind + componentes próprios
 - Alterar paleta de cores da seção 4 sem aprovação explícita
+- Usar ícones `Github` ou `Linkedin` do lucide-react — eles **não existem** na v1.7.0; usar `Code2` e `Globe` respectivamente
+- Em `Variants` do Framer Motion, usar `{}` como valor de fallback para `shouldReduceMotion` — usar `undefined`
 
 ### Convenções de Código
 - Componentes: **named export** (não default)

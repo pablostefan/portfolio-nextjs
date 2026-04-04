@@ -1,0 +1,61 @@
+name: Update Profile from LinkedIn Export
+
+on:
+  workflow_dispatch:
+    inputs:
+      linkedin_zip_url:
+        description: 'URL do arquivo LinkedIn Export (.zip) — ex: link do Google Drive ou Dropbox'
+        required: true
+        type: string
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download LinkedIn Export
+        run: |
+          curl -L "${{ github.event.inputs.linkedin_zip_url }}" \
+               -o linkedin.zip \
+               --fail \
+               --silent \
+               --show-error
+          echo "✅ Downloaded linkedin.zip"
+
+      - name: Unzip LinkedIn Export
+        run: |
+          unzip linkedin.zip -d linkedin_data
+          echo "📂 Contents:"
+          ls linkedin_data/
+
+      - name: Parse and update profile.json
+        run: node scripts/parse-linkedin.js
+
+      - name: Show diff
+        run: git diff data/profile.json || echo "(no changes)"
+
+      - name: Commit updated profile
+        run: |
+          git config user.name  "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add data/profile.json
+          git diff --staged --quiet \
+            && echo "No changes to commit" \
+            || git commit -m "chore: update profile from LinkedIn export [skip ci]"
+
+      - name: Push changes
+        run: git push

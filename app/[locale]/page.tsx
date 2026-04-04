@@ -1,14 +1,27 @@
-import { getTranslations } from 'next-intl/server';
+import { Hero } from '@/components/sections/Hero';
+import { About } from '@/components/sections/About';
+import { Experience } from '@/components/sections/Experience';
+import { Projects } from '@/components/sections/Projects';
+import { Contact } from '@/components/sections/Contact';
+import type { Locale } from '@/i18n';
 
-async function HomePage() {
-  const t = await getTranslations('hero');
+interface HomePageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export const revalidate = 3600;
+
+async function HomePage({ params }: HomePageProps) {
+  const { locale } = await params;
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center">
-      <h1 className="font-display text-4xl font-bold">
-        {t('greeting')} Pablo Stefan
-      </h1>
-    </main>
+    <>
+      <Hero />
+      <About locale={locale as Locale} />
+      <Experience />
+      <Projects />
+      <Contact />
+    </>
   );
 }
 

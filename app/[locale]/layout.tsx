@@ -29,6 +29,7 @@ const jetbrainsMono = JetBrains_Mono({
 const locales = ['pt', 'en'];
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'https://pablostefan.com.br'),
   title: 'Pablo Stefan — Flutter Developer',
   description:
     'Portfólio de Pablo Stefan, Flutter Developer Pleno na XP Inc. Especializado em aplicações móveis de alto impacto.',
