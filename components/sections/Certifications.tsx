@@ -210,9 +210,9 @@ export function CertificationsClient({ certs }: CertificationsClientProps) {
         <SectionHeading title={t('title')} subtitle={t('subtitle')} />
 
         {/* Grid */}
-        <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="flex flex-wrap justify-center gap-6">
           {certs.map((cert, i) => (
-            <li key={cert.id}>
+            <li key={cert.id} className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] flex-none">
               <CertCard
                 cert={cert}
                 index={i}

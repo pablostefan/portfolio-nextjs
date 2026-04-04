@@ -41,15 +41,17 @@ interface ProjectCardProps {
   tViewGithub: string;
   tViewDemo: string;
   tUpdated: string;
+  className?: string;
 }
 
-function ProjectCard({ project, index, tViewGithub, tViewDemo, tUpdated }: ProjectCardProps) {
+function ProjectCard({ project, index, tViewGithub, tViewDemo, tUpdated, className }: ProjectCardProps) {
   const shouldReduceMotion = useReducedMotion();
   const color = project.language ? langColor(project.language) : '#94a3b8';
   const visibleTopics = project.topics.filter((t) => t !== 'portfolio');
 
   return (
     <motion.li
+      className={className}
       initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-6% 0px' }}
@@ -182,7 +184,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
             </p>
           </div>
         ) : (
-          <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="flex flex-wrap justify-center gap-6">
             {projects.map((project, i) => (
               <ProjectCard
                 key={project.id}
@@ -191,6 +193,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
                 tViewGithub={t('view_github')}
                 tViewDemo={t('view_demo')}
                 tUpdated={t('updated')}
+                className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] flex-none"
               />
             ))}
           </ul>

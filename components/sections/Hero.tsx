@@ -134,25 +134,6 @@ export function Hero() {
         transition={{ delay: 1.8, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2.5"
       >
-        {/* Mouse body */}
-        <div className="relative flex h-10 w-[22px] items-start justify-center rounded-full border border-accent/35 bg-accent/[0.06] pt-[5px] shadow-[0_0_12px_rgba(124,58,237,0.15)]">
-          {/* Scrolling dot */}
-          <motion.span
-            className="h-1.5 w-1.5 rounded-full bg-gradient-to-b from-accent-light to-accent-cyan"
-            animate={shouldReduceMotion ? {} : {
-              y:       [0, 13, 13],
-              opacity: [0.9, 0.9, 0],
-            }}
-            transition={{
-              duration:   1.9,
-              repeat:     Infinity,
-              repeatType: 'loop',
-              ease:       'easeInOut',
-              times:      [0, 0.65, 1],
-            }}
-          />
-        </div>
-
         {/* Staggered chevrons */}
         <div className="flex flex-col items-center -space-y-[5px]">
           {[0, 1, 2].map((i) => (
