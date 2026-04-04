@@ -1,3 +1,29 @@
 {
-  "certifications": []
+  "certifications": [
+    {
+      "id": "app-development-with-swift-certified-user",
+      "name": "App Development with Swift Certified User",
+      "issuer": "Certiport",
+      "issueDate": "2025-06",
+      "credentialId": "Cw3V-DwzA",
+      "credentialUrl": "https://verify.certiport.com"
+    },
+    {
+      "id": "certificado-pablo-stefan744-181c5a7fea2f132b76fb4e79a5826dda",
+      "name": "Arquiteto(a) de Software",
+      "issuer": "XP Educação",
+      "issueDate": "2024-09",
+      "credentialId": "181c5a7fea2f132b76fb4e79a5826dda",
+      "credentialUrl": "https://certificados.xpeducacao.com.br"
+    },
+    {
+      "id": "certificado-pablo-stefan744-b38d6ca0b0e9dc65a22ddb1f51856828",
+      "name": "Desenvolvedor(a) Mobile Multiplataforma",
+      "issuer": "XP Educação",
+      "issueDate": "2024-10",
+      "credentialId": "b38d6ca0b0e9dc65a22ddb1f51856828",
+      "credentialUrl": "https://certificados.xpeducacao.com.br"
+    }
+  ]
 }
+

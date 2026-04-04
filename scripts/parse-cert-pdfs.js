@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * parse-cert-pdfs.js
- * Reads every PDF in public/certs/ and rebuilds data/certifications.json
+ * Reads every PDF in uploads/certs/ and rebuilds data/certifications.json
  *
  * Supported formats detected automatically:
  *   - Certiport   (Apple Developer certs)
@@ -20,12 +20,12 @@
 
 'use strict';
 
-const fs       = require('fs');
-const path     = require('path');
-const pdfParse = require('pdf-parse');
+const fs            = require('fs');
+const path          = require('path');
+const { PDFParse }  = require('pdf-parse');
 
 const ROOT       = path.resolve(__dirname, '..');
-const CERTS_DIR  = path.join(ROOT, 'public', 'certs');
+const CERTS_DIR  = path.join(ROOT, 'uploads', 'certs');
 const CERTS_PATH = path.join(ROOT, 'data', 'certifications.json');
 
 // ─── Date parsing ─────────────────────────────────────────────────────────────
@@ -74,15 +74,18 @@ function slugify(str) {
 
 // ─── Format detection ─────────────────────────────────────────────────────────
 
-function detectFormat(text) {
+function detectFormat(text, filename) {
   const t = text.toLowerCase();
+  const f = filename.toLowerCase();
   if (t.includes('certiport') || t.includes('verify.certiport.com')) return 'certiport';
+  // Certiport certs have a mixed-case XXXX-XXXX credential code
+  if (/\b[A-Za-z0-9]{4}-[A-Za-z0-9]{4}\b/.test(text)) return 'certiport';
   if (
-    t.includes('xp educação') ||
-    t.includes('xp educacao') ||
+    t.includes('xp educa') ||
     t.includes('xpeducacao') ||
-    t.includes('certificado de conclusão') ||
-    t.includes('faculdade xp')
+    t.includes('certificado de conclus') ||
+    t.includes('faculdade xp') ||
+    f.startsWith('certificado_') // image-based XP cert (no extractable text)
   )
     return 'xpeducacao';
   return 'generic';
@@ -90,17 +93,19 @@ function detectFormat(text) {
 
 // ─── Format parsers ───────────────────────────────────────────────────────────
 
-function parseCertiport(text) {
-  // Cert name: grab "App Development with Swift\nCertified User" style blocks
+function parseCertiport(text, filename) {
+  // Try to extract name from text first; fall back to filename
   const nameMatch =
     text.match(/App\s+Development\s+with\s+Swift[\s\n]+Certified\s+User/i) ||
     text.match(/([A-Z][A-Za-z\s]+(?:Certified|Associate|Professional|Specialist|Expert)[A-Za-z\s]*)/);
 
+  const nameFromFile = path.basename(filename, '.pdf').replace(/\s+/g, ' ').trim();
+
   const name = nameMatch
     ? nameMatch[0].replace(/\s*\n\s*/g, ' ').trim()
-    : 'Apple Certification';
+    : nameFromFile || 'Apple Certification';
 
-  // Credential code like "Cw3V-DwzA" or "A1B2-C3D4"
+  // Credential code like "Cw3V-DwzA"
   const codeMatch = text.match(/\b([A-Z0-9]{4}-[A-Z0-9]{4})\b/);
   const credentialId = codeMatch ? codeMatch[1] : null;
 
@@ -113,22 +118,24 @@ function parseCertiport(text) {
   };
 }
 
-function parseXpEducacao(text) {
-  // Course name: after "profissional " and before ", no período" or newline
+function parseXpEducacao(text, filename) {
+  // Course name from text (text-based PDF)
   const courseMatch = text.match(/profissional\s+([^\n,]+)/i);
   const name = courseMatch
     ? courseMatch[1].trim()
-    : 'Certificado XP Educação';
+    : null; // null = image-based PDF, name must come from existing JSON
 
-  // Date: "11 de setembro de 2024"
-  const issueDate = parsePtDate(text);
+  // Date from text, or null for image-based
+  const issueDate = parsePtDate(text) || null;
 
-  // Credential: 32-char lowercase hex appended at the bottom
-  const codeMatch = text.match(/\b([0-9a-f]{32})\b/i);
-  const credentialId = codeMatch ? codeMatch[1].toLowerCase() : null;
+  // Credential: 32-char lowercase hex — from text OR from filename
+  const hexInText = text.match(/\b([0-9a-f]{32})\b/i);
+  const hexInFile = path.basename(filename, '.pdf').match(/([0-9a-f]{32})$/);
+  const rawId = hexInText ? hexInText[1] : hexInFile ? hexInFile[1] : null;
+  const credentialId = rawId ? rawId.toLowerCase() : null;
 
   return {
-    name,
+    name: name ?? `Certificado XP Educação (${credentialId ?? 'sem-id'})`,
     issuer: 'XP Educação',
     issueDate,
     credentialId,
@@ -152,17 +159,27 @@ function parseGeneric(text, filename) {
 
 // ─── Parse a single PDF ───────────────────────────────────────────────────────
 
+async function extractPdfText(buffer) {
+  try {
+    const parser = new PDFParse({ data: buffer });
+    const result = await parser.getText();
+    return result.text ?? '';
+  } catch {
+    return '';
+  }
+}
+
 async function parseCertPdf(filePath) {
-  const buffer     = fs.readFileSync(filePath);
-  const { text }   = await pdfParse(buffer);
-  const filename   = path.basename(filePath);
-  const id         = slugify(filename.replace(/\.pdf$/i, ''));
-  const format     = detectFormat(text);
+  const buffer   = fs.readFileSync(filePath);
+  const text     = await extractPdfText(buffer);
+  const filename = path.basename(filePath);
+  const id       = slugify(filename.replace(/\.pdf$/i, ''));
+  const format   = detectFormat(text, filename);
 
   let data;
-  if (format === 'certiport')   data = parseCertiport(text);
-  else if (format === 'xpeducacao') data = parseXpEducacao(text);
-  else                          data = parseGeneric(text, filename);
+  if (format === 'certiport')       data = parseCertiport(text, filename);
+  else if (format === 'xpeducacao') data = parseXpEducacao(text, filename);
+  else                              data = parseGeneric(text, filename);
 
   return { id, ...data };
 }
@@ -183,6 +200,12 @@ function mergeCertifications(freshParsed, existing) {
       result[idx] = {
         ...result[idx],
         ...cert,
+        // Preserve existing name if parsed name is a generic fallback
+        name: cert.name.startsWith('Certificado XP Educação (')
+          ? result[idx].name ?? cert.name
+          : cert.name,
+        // Preserve existing issueDate if parsed is null (image-based PDF)
+        issueDate: cert.issueDate ?? result[idx].issueDate,
         // Keep Credly URL if already set manually
         credentialUrl: result[idx].credentialUrl?.includes('credly.com')
           ? result[idx].credentialUrl
@@ -218,11 +241,11 @@ async function main() {
     .map((f) => path.join(CERTS_DIR, f));
 
   if (pdfFiles.length === 0) {
-    console.log('⚠️  Nenhum PDF encontrado em public/certs/ — certifications.json não alterado.');
+    console.log('⚠️  Nenhum PDF encontrado em uploads/certs/ — certifications.json não alterado.');
     return;
   }
 
-  console.log(`📄  Processando ${pdfFiles.length} PDF(s) em public/certs/...\n`);
+  console.log(`📄  Processando ${pdfFiles.length} PDF(s) em uploads/certs/...\n`);
 
   const freshParsed = [];
   for (const file of pdfFiles) {
