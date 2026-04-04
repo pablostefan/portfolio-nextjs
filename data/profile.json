@@ -1,7 +1,7 @@
 {
   "about": {
-    "pt": "Atuo como Software Architect no Design System mobile da XP (SOMA), contribuindo para a evolução da base arquitetural que sustenta a engenharia mobile. Estruturo como componentes nascem, evoluem e são descontinuados, garantindo que cada decisão técnica seja clara e sustentável. Defino padrões, formalizo direcionamentos via RFCs e ADRs, desenvolvo automações de qualidade e apoio squads na adoção consistente do Design System.",
-    "en": "I work as a Software Architect at XP's mobile Design System (SOMA), contributing to the evolution of the architectural foundation that supports mobile engineering. I structure how components are born, evolve, and deprecated, ensuring every technical decision is clear and sustainable. I define standards, formalize guidelines via RFCs and ADRs, build quality automations, and support squads in consistently adopting the Design System."
+    "pt": "Atuo como Software Architect no Design System mobile da XP Inc. (SOMA), contribuindo para a evolução da base arquitetural que sustenta a engenharia mobile. Estruturo como componentes nascem, evoluem e são descontinuados, garantindo que cada decisão técnica seja clara e sustentável. Defino padrões, formalizo direcionamentos via RFCs e ADRs, desenvolvo automações de qualidade e apoio squads na adoção consistente do Design System.",
+    "en": "I work as a Software Architect for XP Inc.'s mobile Design System (SOMA), driving the architectural evolution that underpins mobile engineering. I design how components are created, evolve, and are deprecated, ensuring every technical decision is clear and sustainable. I establish standards, formalize directions through RFCs and ADRs, develop quality automation, and support squads in the consistent adoption of the Design System."
   },
   "experience": [
     {
@@ -10,10 +10,13 @@
         "en": "Software Architect"
       },
       "company": "XP Inc.",
-      "period": { "pt": "julho de 2025 — Atual", "en": "July 2025 — Present" },
+      "period": {
+        "pt": "julho de 2025 — Atual",
+        "en": "July 2025 — Present"
+      },
       "description": {
         "pt": "Atuação focada na evolução arquitetural do Design System mobile (SOMA). Definição de padrões para componentes Flutter, organização do ciclo de vida via RFCs e ADRs, consolidação da acessibilidade como padrão estrutural e suporte técnico às squads na adoção consistente do Design System.",
-        "en": "Focused on the architectural evolution of the mobile Design System (SOMA). Defining Flutter component standards, managing component lifecycle via RFCs and ADRs, consolidating accessibility as a structural standard, and providing technical support to squads."
+        "en": "Led the architectural evolution of XP Inc.'s mobile Design System (SOMA). Defined standards for Flutter components, structured their lifecycle through RFCs and ADRs, and established accessibility as a foundational standard. Provided technical support to squads, ensuring consistent adoption and integration of the Design System across projects."
       },
       "current": true
     },
@@ -23,10 +26,13 @@
         "en": "Mobile Developer (Flutter)"
       },
       "company": "nav9",
-      "period": { "pt": "janeiro de 2025 — julho de 2025", "en": "January 2025 — July 2025" },
+      "period": {
+        "pt": "janeiro de 2025 — julho de 2025",
+        "en": "January 2025 — July 2025"
+      },
       "description": {
         "pt": "Desenvolvimento do app da Caju (benefícios corporativos) com liderança técnica como Feature Lead. Organização técnica, arquitetura, testes automatizados com alta cobertura e monitoramento com Firebase Analytics e Crashlytics.",
-        "en": "Developed the Caju app (corporate benefits) with technical leadership as Feature Lead. Technical organization, architecture, automated tests with high coverage, and monitoring with Firebase Analytics and Crashlytics."
+        "en": "Developed the Caju corporate benefits app, serving as Feature Lead and driving technical leadership. Designed robust architecture, implemented automated tests with high coverage, and ensured seamless monitoring using Firebase Analytics and Crashlytics."
       },
       "current": false
     },
@@ -36,10 +42,13 @@
         "en": "Mobile Developer (Flutter)"
       },
       "company": "Fiibo",
-      "period": { "pt": "abril de 2024 — dezembro de 2024", "en": "April 2024 — December 2024" },
+      "period": {
+        "pt": "abril de 2024 — dezembro de 2024",
+        "en": "April 2024 — December 2024"
+      },
       "description": {
         "pt": "Desenvolvimento e manutenção do app principal (saúde e bem-estar). Integração com REST APIs e GraphQL, funcionalidades offline-first, pipelines CI/CD, white labels com Flavors e mentoria técnica ao time.",
-        "en": "Development and maintenance of the main health and wellness app. REST API and GraphQL integration, offline-first features, CI/CD pipelines, white labels with Flavors, and technical mentoring."
+        "en": "Developed and maintained Fiibo's main health and wellness app. Integrated REST APIs and GraphQL, implemented offline-first functionalities, optimized CI/CD pipelines, and managed white-label solutions using Flavors. Provided technical mentorship to the team to ensure high-quality development practices."
       },
       "current": false
     },
@@ -49,10 +58,13 @@
         "en": "Mobile Developer (Flutter)"
       },
       "company": "Krykto",
-      "period": { "pt": "janeiro de 2023 — abril de 2024", "en": "January 2023 — April 2024" },
+      "period": {
+        "pt": "janeiro de 2023 — abril de 2024",
+        "en": "January 2023 — April 2024"
+      },
       "description": {
         "pt": "Liderança de equipe de 3 desenvolvedores, desenvolvimento de features com Flutter, arquiteturas modulares, revisões de código e implementação de testes unitários, de widget e de integração.",
-        "en": "Led a team of 3 developers, built features with Flutter, modular architectures, code reviews, and unit, widget, and integration tests."
+        "en": "Led a team of three developers in building features with Flutter. Designed modular architectures, conducted thorough code reviews, and implemented unit, widget, and integration tests to ensure code quality and reliability."
       },
       "current": false
     },
@@ -62,10 +74,13 @@
         "en": "Junior Mobile Developer (Flutter)"
       },
       "company": "Krykto",
-      "period": { "pt": "janeiro de 2022 — janeiro de 2023", "en": "January 2022 — January 2023" },
+      "period": {
+        "pt": "janeiro de 2022 — janeiro de 2023",
+        "en": "January 2022 — January 2023"
+      },
       "description": {
         "pt": "Desenvolvimento do aplicativo Krykto (carteira de criptomoedas e rede social) com Flutter, animações e gráficos dinâmicos, integração via REST e GraphQL e monitoramento com Firebase Crashlytics.",
-        "en": "Developed the Krykto app (crypto wallet and social network) with Flutter, dynamic animations and charts, REST and GraphQL integrations, and Firebase Crashlytics monitoring."
+        "en": "Developed the Krykto app, a cryptocurrency wallet and social network, using Flutter. Implemented dynamic animations and charts, integrated REST and GraphQL APIs, and ensured app stability through Firebase Crashlytics monitoring."
       },
       "current": false
     }

@@ -78,7 +78,8 @@ function buildRequestOptions(model) {
     hostname: useOpenAI
       ? 'api.openai.com'
       : 'models.inference.ai.azure.com',
-    path: '/v1/chat/completions',
+    // OpenAI uses /v1/chat/completions; GitHub Models uses /chat/completions
+    path: useOpenAI ? '/v1/chat/completions' : '/chat/completions',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${useOpenAI ? OPENAI_KEY : GITHUB_TOKEN}`,
