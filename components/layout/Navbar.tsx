@@ -48,10 +48,21 @@ export function Navbar() {
         className={[
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
           isScrolled || isMenuOpen
-            ? 'bg-bg-base/80 backdrop-blur-[20px] border-b border-glass-border shadow-[0_4px_30px_rgba(0,0,0,0.4)]'
+            ? 'bg-bg-base/80 backdrop-blur-[20px] shadow-[0_4px_30px_rgba(0,0,0,0.4)]'
             : '',
         ].join(' ')}
       >
+        {/* Gradient bottom border — visible on scroll */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-[1px] transition-opacity duration-300"
+          style={{
+            background:
+              'linear-gradient(90deg, transparent, rgba(124,58,237,0.35) 30%, rgba(6,182,212,0.25) 70%, transparent)',
+            opacity: isScrolled || isMenuOpen ? 1 : 0,
+          }}
+        />
+
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
 
