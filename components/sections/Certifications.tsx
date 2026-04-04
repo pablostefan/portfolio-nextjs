@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ExternalLink, CheckCircle, Clock, Copy, Check } from 'lucide-react';
+import { ExternalLink, Copy, Check } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
@@ -43,13 +43,13 @@ function IssuerAvatar({ cert }: { cert: Certification }) {
 
   if (cert.badgeImageUrl) {
     return (
-      <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-white/[0.1] bg-white/[0.04]">
+      <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-2xl border border-white/[0.12] bg-white/[0.04] shadow-lg">
         <Image
           src={cert.badgeImageUrl}
           alt={`${cert.issuer} badge`}
           fill
-          className="object-contain p-1.5"
-          sizes="80px"
+          className="object-contain p-1"
+          sizes="56px"
         />
       </div>
     );
@@ -60,15 +60,11 @@ function IssuerAvatar({ cert }: { cert: Certification }) {
   return (
     <div
       aria-label={cert.issuer}
-      className="relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-2xl font-display text-xl font-bold text-white shadow-lg"
-      style={{ background: `linear-gradient(135deg, ${from}, ${to})` }}
+      className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl font-display text-base font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.4)]"
+      style={{ background: `linear-gradient(145deg, ${from}, ${to})` }}
     >
-      {/* shine overlay */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"
-      />
-      <span className="relative z-10">{initials}</span>
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-black/20" />
+      <span className="relative z-10 tracking-wide">{initials}</span>
     </div>
   );
 }
@@ -151,53 +147,39 @@ function CertCard({
         />
 
         {/* Avatar + title */}
-        <div className="mb-5 flex items-start gap-4">
+        <div className="mb-4 flex items-center gap-3">
           <IssuerAvatar cert={cert} />
 
-          <div className="min-w-0 flex-1 pt-1">
-            <h3 className="font-display text-base font-bold leading-snug text-content">
+          <div className="min-w-0 flex-1">
+            <h3 className="font-display text-sm font-bold leading-snug text-content">
               {cert.name}
             </h3>
-            <p className="mt-1 font-mono text-sm text-accent-light">
+            <p className="mt-0.5 font-mono text-xs text-accent-light">
               {cert.issuer}
             </p>
-
-            {/* Status badge */}
-            {cert.expiryDate && (
-              <span
-                className={[
-                  'mt-2 inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-mono text-[10px] font-semibold',
-                  expired
-                    ? 'border border-red-500/20 bg-red-500/10 text-red-400'
-                    : 'border border-emerald-500/20 bg-emerald-500/10 text-emerald-400',
-                ].join(' ')}
-              >
-                {expired
-                  ? <Clock size={10} aria-hidden="true" />
-                  : <CheckCircle size={10} aria-hidden="true" />}
-                {expired ? tExpired : tValid}
-              </span>
-            )}
           </div>
         </div>
 
+        {/* Divider */}
+        <div aria-hidden="true" className="mb-4 h-px bg-white/[0.06]" />
+
         {/* Dates */}
-        <dl className="mb-4 space-y-1.5 text-xs">
-          <div className="flex items-center justify-between">
-            <dt className="text-content-muted">{tIssued}</dt>
-            <dd className="font-mono text-content-secondary">{formatCertDate(cert.issueDate)}</dd>
+        <dl className="mb-4 space-y-2 text-xs">
+          <div className="flex items-center justify-between gap-4">
+            <dt className="shrink-0 text-content-muted">{tIssued}</dt>
+            <dd className="whitespace-nowrap font-mono text-content-secondary">{formatCertDate(cert.issueDate)}</dd>
           </div>
           {cert.expiryDate ? (
-            <div className="flex items-center justify-between">
-              <dt className={expired ? 'text-red-400/70' : 'text-content-muted'}>{tExpires}</dt>
-              <dd className={['font-mono', expired ? 'text-red-400' : 'text-content-secondary'].join(' ')}>
+            <div className="flex items-center justify-between gap-4">
+              <dt className={['shrink-0', expired ? 'text-red-400/70' : 'text-content-muted'].join(' ')}>{tExpires}</dt>
+              <dd className={['whitespace-nowrap font-mono', expired ? 'text-red-400' : 'text-content-secondary'].join(' ')}>
                 {formatCertDate(cert.expiryDate)}
               </dd>
             </div>
           ) : (
-            <div className="flex items-center justify-between">
-              <dt className="text-content-muted">{tNoExpiry}</dt>
-              <dd className="font-mono text-emerald-400/70">∞</dd>
+            <div className="flex items-center justify-between gap-4">
+              <dt className="shrink-0 text-content-muted">{tNoExpiry}</dt>
+              <dd className="font-mono text-emerald-400/60">∞</dd>
             </div>
           )}
         </dl>
