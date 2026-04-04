@@ -16,7 +16,12 @@
   },
   "about": {
     "title": "About Me",
-    "skills_title": "Technologies"
+    "skills_title": "Technologies",
+    "years_label": "years of experience",
+    "companies_label": "companies",
+    "apps_label": "apps shipped",
+    "location": "Brazil",
+    "availability": "Open to new opportunities"
   },
   "experience": {
     "title": "Experience",
@@ -40,7 +45,8 @@
     "valid": "Valid",
     "expired": "Expired",
     "empty": "No certifications added yet.",
-    "view_credly": "View on Credly"
+    "view_credly": "View on Credly",
+    "credential_id": "ID"
   },
   "contact": {
     "title": "Contact",
