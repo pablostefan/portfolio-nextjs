@@ -1,32 +1,71 @@
 {
   "about": {
-    "pt": "Desenvolvedor Flutter Pleno na XP Inc, especializado em criar experiências móveis de alto impacto. Trabalho com Flutter e Dart no desenvolvimento de aplicações financeiras escaláveis, com foco em performance, clean architecture e experiência do usuário. Apaixonado por open source e compartilhamento de conhecimento.",
-    "en": "Flutter Developer at XP Inc, specialized in creating high-impact mobile experiences. I work with Flutter and Dart to build scalable financial applications, focusing on performance, clean architecture, and user experience. Passionate about open source and knowledge sharing."
+    "pt": "Atuo como Software Architect no Design System mobile da XP (SOMA), contribuindo para a evolução da base arquitetural que sustenta a engenharia mobile. Estruturo como componentes nascem, evoluem e são descontinuados, garantindo que cada decisão técnica seja clara e sustentável. Defino padrões, formalizo direcionamentos via RFCs e ADRs, desenvolvo automações de qualidade e apoio squads na adoção consistente do Design System.",
+    "en": "I work as a Software Architect at XP's mobile Design System (SOMA), contributing to the evolution of the architectural foundation that supports mobile engineering. I structure how components are born, evolve, and deprecated, ensuring every technical decision is clear and sustainable. I define standards, formalize guidelines via RFCs and ADRs, build quality automations, and support squads in consistently adopting the Design System."
   },
   "experience": [
     {
       "title": {
-        "pt": "Desenvolvedor Flutter Pleno",
-        "en": "Flutter Developer"
+        "pt": "Arquiteto de Software",
+        "en": "Software Architect"
       },
-      "company": "XP Inc",
-      "period": "2023 — Atual",
+      "company": "XP Inc.",
+      "period": "julho de 2025 — Atual",
       "description": {
-        "pt": "Desenvolvimento de aplicações móveis para o ecossistema financeiro da XP Inc utilizando Flutter e Dart. Implementação de features para milhões de usuários, com foco em performance, acessibilidade e arquitetura limpa.",
-        "en": "Mobile application development for the XP Inc financial ecosystem using Flutter and Dart. Implementing features for millions of users, focusing on performance, accessibility, and clean architecture."
+        "pt": "Atuação focada na evolução arquitetural do Design System mobile (SOMA). Definição de padrões para componentes Flutter, organização do ciclo de vida via RFCs e ADRs, consolidação da acessibilidade como padrão estrutural e suporte técnico às squads na adoção consistente do Design System.",
+        "en": "Focused on the architectural evolution of the mobile Design System (SOMA). Defining Flutter component standards, managing component lifecycle via RFCs and ADRs, consolidating accessibility as a structural standard, and providing technical support to squads."
       },
       "current": true
     },
     {
       "title": {
-        "pt": "Desenvolvedor Flutter Júnior",
-        "en": "Junior Flutter Developer"
+        "pt": "Desenvolvedor Mobile (Flutter)",
+        "en": "Mobile Developer (Flutter)"
       },
-      "company": "Empresa Anterior",
-      "period": "2021 — 2023",
+      "company": "nav9",
+      "period": "janeiro de 2025 — julho de 2025",
       "description": {
-        "pt": "Desenvolvimento de aplicações móveis multiplataforma com Flutter. Participação em todo o ciclo de desenvolvimento, desde o design até a publicação nas stores.",
-        "en": "Cross-platform mobile application development with Flutter. Participation in the full development cycle, from design to store publication."
+        "pt": "Desenvolvimento do app da Caju (benefícios corporativos) com liderança técnica como Feature Lead. Organização técnica, arquitetura, testes automatizados com alta cobertura e monitoramento com Firebase Analytics e Crashlytics.",
+        "en": "Developed the Caju app (corporate benefits) with technical leadership as Feature Lead. Technical organization, architecture, automated tests with high coverage, and monitoring with Firebase Analytics and Crashlytics."
+      },
+      "current": false
+    },
+    {
+      "title": {
+        "pt": "Desenvolvedor Mobile (Flutter)",
+        "en": "Mobile Developer (Flutter)"
+      },
+      "company": "Fiibo",
+      "period": "abril de 2024 — dezembro de 2024",
+      "description": {
+        "pt": "Desenvolvimento e manutenção do app principal (saúde e bem-estar). Integração com REST APIs e GraphQL, funcionalidades offline-first, pipelines CI/CD, white labels com Flavors e mentoria técnica ao time.",
+        "en": "Development and maintenance of the main health and wellness app. REST API and GraphQL integration, offline-first features, CI/CD pipelines, white labels with Flavors, and technical mentoring."
+      },
+      "current": false
+    },
+    {
+      "title": {
+        "pt": "Desenvolvedor Mobile (Flutter)",
+        "en": "Mobile Developer (Flutter)"
+      },
+      "company": "Krykto",
+      "period": "janeiro de 2023 — abril de 2024",
+      "description": {
+        "pt": "Liderança de equipe de 3 desenvolvedores, desenvolvimento de features com Flutter, arquiteturas modulares, revisões de código e implementação de testes unitários, de widget e de integração.",
+        "en": "Led a team of 3 developers, built features with Flutter, modular architectures, code reviews, and unit, widget, and integration tests."
+      },
+      "current": false
+    },
+    {
+      "title": {
+        "pt": "Desenvolvedor Mobile Júnior (Flutter)",
+        "en": "Junior Mobile Developer (Flutter)"
+      },
+      "company": "Krykto",
+      "period": "janeiro de 2022 — janeiro de 2023",
+      "description": {
+        "pt": "Desenvolvimento do aplicativo Krykto (carteira de criptomoedas e rede social) com Flutter, animações e gráficos dinâmicos, integração via REST e GraphQL e monitoramento com Firebase Crashlytics.",
+        "en": "Developed the Krykto app (crypto wallet and social network) with Flutter, dynamic animations and charts, REST and GraphQL integrations, and Firebase Crashlytics monitoring."
       },
       "current": false
     }
@@ -34,14 +73,16 @@
   "skills": [
     "Flutter",
     "Dart",
-    "Next.js",
+    "Design Systems",
+    "Clean Architecture",
     "TypeScript",
     "Firebase",
     "REST APIs",
+    "GraphQL",
+    "CI/CD",
+    "Fastlane",
     "Git",
-    "Clean Architecture",
-    "BLoC",
-    "Provider"
+    "BLoC"
   ],
   "medium": "https://medium.com/@pablo.stefan"
 }

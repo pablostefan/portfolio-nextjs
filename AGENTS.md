@@ -7,7 +7,7 @@
 
 ## 1. Visão Geral
 
-Portfólio pessoal auto-atualizado de **Pablo Stefan** (Flutter Developer Pleno na XP Inc).  
+Portfólio pessoal auto-atualizado de **Pablo Stefan** (Software Architect - Mobile/Flutter @ XP Inc).  
 Construído com **Next.js 15 (App Router)**, design **Glassmorphism premium**, bilíngue **PT/EN**.
 
 | Item | Valor |
