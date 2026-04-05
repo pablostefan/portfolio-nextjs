@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { ArrowDown, Mail } from 'lucide-react';
 import { AnimatedBlob } from '@/components/ui/AnimatedBlob';
 import { GradientText } from '@/components/ui/GradientText';
+import { useAfterSplash } from '@/hooks/useAfterSplash';
 import { TypewriterText } from '@/components/ui/TypewriterText';
 
 const container: Variants = {
@@ -20,6 +21,7 @@ const item: Variants = {
 export function Hero() {
   const t                  = useTranslations('hero');
   const shouldReduceMotion = useReducedMotion();
+  const splashReady        = useAfterSplash();
 
   const typewriterTexts: string[] = [
     t('typewriter.0'),
@@ -56,7 +58,7 @@ export function Hero() {
       <motion.div
         variants={shouldReduceMotion ? undefined : container}
         initial="hidden"
-        animate="show"
+        animate={splashReady ? 'show' : 'hidden'}
         className="relative z-10 mx-auto max-w-4xl text-center"
       >
         {/* Badge */}
@@ -130,7 +132,7 @@ export function Hero() {
       <motion.div
         aria-hidden="true"
         initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={(shouldReduceMotion || splashReady) ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
         transition={{ delay: 1.8, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2.5"
       >

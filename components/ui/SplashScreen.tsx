@@ -18,9 +18,10 @@ export function SplashScreen() {
   if (shouldReduceMotion) return null;
 
   return (
-    <AnimatePresence>
+    <AnimatePresence onExitComplete={() => window.dispatchEvent(new Event('splash-done'))}>
       {visible && (
         <motion.div
+          id="splash-screen"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { duration: 0.3 } }}
           exit={{ opacity: 0, scale: 0.97, transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] } }}

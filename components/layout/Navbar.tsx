@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
+import { useAfterSplash } from '@/hooks/useAfterSplash';
 
 const NAV_KEYS = ['about', 'experience', 'projects', 'certifications', 'contact'] as const;
 type NavKey = (typeof NAV_KEYS)[number];
@@ -18,6 +19,7 @@ export function Navbar() {
   const [hovered, setHovered]       = useState<NavKey | null>(null);
   const [activeSection, setActiveSection] = useState<NavKey | null>(null);
   const shouldReduceMotion          = useReducedMotion();
+  const splashReady                 = useAfterSplash();
   const t                           = useTranslations('nav');
   const locale                      = useLocale();
   const pathname                    = usePathname();
@@ -64,7 +66,7 @@ export function Navbar() {
     <>
       <motion.header
         initial={shouldReduceMotion ? false : { y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        animate={(shouldReduceMotion || splashReady) ? { y: 0, opacity: 1 } : { y: -80, opacity: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className={[
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
