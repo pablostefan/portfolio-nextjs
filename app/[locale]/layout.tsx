@@ -8,6 +8,7 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { SplashScreen } from '@/components/ui/SplashScreen';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
+import { ScrollToTop } from '@/components/ui/ScrollToTop';
 import '../globals.css';
 
 const spaceGrotesk = Space_Grotesk({
@@ -78,6 +79,7 @@ async function LocaleLayout({ children, params }: LocaleLayoutProps) {
           <Navbar />
           <main id="top">{children}</main>
           <Footer />
+          <ScrollToTop />
         </NextIntlClientProvider>
       </body>
     </html>

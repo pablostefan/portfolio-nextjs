@@ -90,9 +90,13 @@ export function Contact() {
                 </p>
               </div>
 
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-accent/30 bg-accent/10 text-accent-cyan transition-transform duration-300 group-hover:scale-105">
+              <motion.div
+                whileHover={shouldReduceMotion ? undefined : { scale: 1.15 }}
+                transition={{ type: 'spring', stiffness: 380, damping: 20 }}
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-accent/30 bg-accent/10 text-accent-cyan"
+              >
                 <Mail size={20} aria-hidden="true" />
-              </div>
+              </motion.div>
             </a>
           </GlassCard>
         </motion.div>
@@ -120,9 +124,13 @@ export function Contact() {
                   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent',
                 ].join(' ')}
               >
-                <div className={`flex h-11 w-11 items-center justify-center rounded-xl border border-glass-border bg-glass-bg ${color} transition-transform duration-300 group-hover:scale-105`}>
+                <motion.div
+                  whileHover={shouldReduceMotion ? undefined : { scale: 1.15 }}
+                  transition={{ type: 'spring', stiffness: 380, damping: 20 }}
+                  className={`flex h-11 w-11 items-center justify-center rounded-xl border border-glass-border bg-glass-bg ${color}`}
+                >
                   <Icon size={20} aria-hidden="true" />
-                </div>
+                </motion.div>
 
                 <div>
                   <p className="mb-1 font-mono text-xs text-content-muted">{t(key)}</p>

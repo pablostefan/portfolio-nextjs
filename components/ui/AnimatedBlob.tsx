@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 
 interface AnimatedBlobProps {
   variant?: 'violet' | 'cyan' | 'indigo';
@@ -29,23 +29,36 @@ const configs: Record<
   },
 };
 
+const parallaxFactors: Record<'violet' | 'cyan' | 'indigo', number> = {
+  violet: 0.08,
+  cyan: 0.12,
+  indigo: 0.1,
+};
+
 export function AnimatedBlob({ variant = 'violet', className = '', size = 700 }: AnimatedBlobProps) {
   const shouldReduceMotion = useReducedMotion();
   const { gradient, animate, duration } = configs[variant];
+  const { scrollY } = useScroll();
+  const yOffset = useTransform(scrollY, [0, 3000], [0, 3000 * parallaxFactors[variant]]);
 
   return (
     <motion.div
       aria-hidden="true"
-      className={`pointer-events-none absolute rounded-full ${className}`}
-      style={{
-        width: size,
-        height: size,
-        background: gradient,
-        willChange: 'transform',
-        filter: 'blur(80px)',
-      }}
-      animate={shouldReduceMotion ? {} : animate}
-      transition={{ duration, repeat: Infinity, ease: 'easeInOut' }}
-    />
+      className={`pointer-events-none absolute ${className}`}
+      style={{ y: shouldReduceMotion ? 0 : yOffset }}
+    >
+      <motion.div
+        className="rounded-full"
+        style={{
+          width: size,
+          height: size,
+          background: gradient,
+          willChange: 'transform',
+          filter: 'blur(80px)',
+        }}
+        animate={shouldReduceMotion ? {} : animate}
+        transition={{ duration, repeat: Infinity, ease: 'easeInOut' }}
+      />
+    </motion.div>
   );
 }

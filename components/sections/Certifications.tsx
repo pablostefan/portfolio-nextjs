@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Copy, Check, ShieldCheck, Calendar } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
@@ -71,6 +71,7 @@ function IssuerAvatar({ cert }: { cert: Certification }) {
 
 function CopyButton({ value }: { value: string }) {
   const [copied, setCopied] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(value);
@@ -85,9 +86,31 @@ function CopyButton({ value }: { value: string }) {
       aria-label="Copiar ID"
       className="rounded-md p-1 text-content-muted transition-colors hover:bg-glass-bg-hover hover:text-accent-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
     >
-      {copied
-        ? <Check size={12} className="text-emerald-400" aria-hidden="true" />
-        : <Copy size={12} aria-hidden="true" />}
+      <AnimatePresence mode="wait" initial={false}>
+        {copied ? (
+          <motion.span
+            key="check"
+            initial={shouldReduceMotion ? undefined : { scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={shouldReduceMotion ? undefined : { scale: 0.5, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="flex"
+          >
+            <Check size={12} className="text-emerald-400" aria-hidden="true" />
+          </motion.span>
+        ) : (
+          <motion.span
+            key="copy"
+            initial={shouldReduceMotion ? undefined : { scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={shouldReduceMotion ? undefined : { scale: 0.5, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="flex"
+          >
+            <Copy size={12} aria-hidden="true" />
+          </motion.span>
+        )}
+      </AnimatePresence>
     </button>
   );
 }

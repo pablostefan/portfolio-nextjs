@@ -130,7 +130,7 @@ export async function About({ locale }: AboutProps) {
             <span className="flex items-center gap-2 text-xs text-content-muted">
               <span
                 aria-hidden="true"
-                className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)]"
+                className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)] animate-pulse"
               />
               {t('availability')}
             </span>

@@ -16,6 +16,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hovered, setHovered]       = useState<NavKey | null>(null);
+  const [activeSection, setActiveSection] = useState<NavKey | null>(null);
   const shouldReduceMotion          = useReducedMotion();
   const t                           = useTranslations('nav');
   const locale                      = useLocale();
@@ -31,6 +32,26 @@ export function Navbar() {
     const handle = () => { if (window.innerWidth >= 768) setIsMenuOpen(false); };
     window.addEventListener('resize', handle);
     return () => window.removeEventListener('resize', handle);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id as NavKey);
+          }
+        }
+      },
+      { rootMargin: '0px 0px -60% 0px', threshold: 0 },
+    );
+
+    for (const key of NAV_KEYS) {
+      const el = document.getElementById(key);
+      if (el) observer.observe(el);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
   const otherLocale      = locale === 'pt' ? 'en' : 'pt';
@@ -85,12 +106,21 @@ export function Navbar() {
                   href={`#${key}`}
                   onMouseEnter={() => setHovered(key)}
                   onMouseLeave={() => setHovered(null)}
-                  className="relative rounded-lg px-4 py-2 text-sm text-content-secondary transition-colors duration-200 hover:text-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  className={`relative rounded-lg px-4 py-2 text-sm transition-colors duration-200 hover:text-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+                    activeSection === key ? 'text-content' : 'text-content-secondary'
+                  }`}
                 >
                   {hovered === key && (
                     <motion.span
                       layoutId="nav-bg"
                       className="absolute inset-0 rounded-lg bg-glass-bg-hover"
+                      transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+                    />
+                  )}
+                  {activeSection === key && (
+                    <motion.span
+                      layoutId="nav-active"
+                      className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-gradient-to-r from-accent to-accent-cyan"
                       transition={{ type: 'spring', stiffness: 380, damping: 28 }}
                     />
                   )}
