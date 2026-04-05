@@ -19,6 +19,8 @@ jobs:
     permissions:
       contents: write
       models: read   # GitHub Models API (gpt-4o free with Copilot)
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Checkout repository
