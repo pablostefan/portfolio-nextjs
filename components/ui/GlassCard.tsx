@@ -1,9 +1,10 @@
 'use client';
 
-import { useRef, useCallback } from 'react';
+import { type ReactNode, useRef, useCallback } from 'react';
 import { motion, useReducedMotion, useMotionValue, useSpring, type HTMLMotionProps } from 'framer-motion';
 
 interface GlassCardProps extends HTMLMotionProps<'div'> {
+  children?: ReactNode;
   hover?: boolean;
   glow?: 'violet' | 'cyan' | 'none';
 }
