@@ -1,5 +1,5 @@
 ---
-mode: agent
+agent: agent
 description: >
   Atualiza data/profile.json a partir do conteúdo do PDF do LinkedIn.
   Anexe o PDF exportado do LinkedIn e rode este prompt para gerar
