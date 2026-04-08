@@ -58,7 +58,7 @@ function ProjectCard({ project, index, tViewGithub, tViewDemo, tUpdated, classNa
       viewport={{ once: true, margin: '-6% 0px' }}
       transition={{ duration: 0.5, delay: index * 0.09, ease: [0.22, 1, 0.36, 1] }}
     >
-      <GlassCard hover glow="violet" className="group/proj relative flex h-full flex-col overflow-hidden">
+      <GlassCard hover speed="fast" glow="violet" className="group/proj relative flex h-full flex-col overflow-hidden">
 
         {/* ── Header ── */}
         <div className="px-5 pt-5 pb-4">

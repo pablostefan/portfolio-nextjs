@@ -116,7 +116,9 @@ export function Hero() {
             className="group inline-flex items-center gap-2 rounded-xl bg-accent px-7 py-3.5 font-semibold text-white shadow-glow-violet transition-all duration-300 hover:-translate-y-1 hover:bg-accent/90 hover:shadow-[0_0_50px_rgba(124,58,237,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base"
           >
             {t('cta_projects')}
-            <ArrowDown size={18} className="transition-transform duration-300 group-hover:translate-y-1" />
+            <span className="inline-flex group-hover:animate-[bounce-down_0.6s_ease-in-out_infinite]">
+              <ArrowDown size={18} />
+            </span>
           </a>
           <a
             href="#contact"

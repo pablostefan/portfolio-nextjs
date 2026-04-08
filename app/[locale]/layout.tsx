@@ -36,6 +36,11 @@ export const metadata: Metadata = {
   title: 'Pablo Stefan — Software Architect',
   description:
     'Portfólio de Pablo Stefan, Software Architect Mobile/Flutter @ XP Inc. Especializado em Design Systems e arquitetura de aplicações móveis de alto impacto.',
+  icons: {
+    icon: [{ url: '/icon', type: 'image/png' }],
+    apple: [{ url: '/apple-icon', type: 'image/png' }],
+    shortcut: ['/favicon.ico'],
+  },
   openGraph: {
     type: 'website',
     url: process.env.NEXT_PUBLIC_APP_URL,

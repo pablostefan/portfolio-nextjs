@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
 interface ExpandableTextProps {
@@ -12,7 +12,12 @@ interface ExpandableTextProps {
 export function ExpandableText({ text, expandLabel, collapseLabel }: ExpandableTextProps) {
   const [expanded, setExpanded] = useState(false);
   const shouldReduceMotion = useReducedMotion();
-  const contentRef = useRef<HTMLParagraphElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const paragraphs = useMemo(
+    () => text.split(/\n\s*\n/).map((paragraph) => paragraph.trim()).filter(Boolean),
+    [text],
+  );
 
   return (
     <div>
@@ -22,23 +27,32 @@ export function ExpandableText({ text, expandLabel, collapseLabel }: ExpandableT
           animate={
             shouldReduceMotion
               ? undefined
-              : { height: expanded ? 'auto' : contentRef.current ? Math.min(contentRef.current.scrollHeight, 216) : 216 }
+              : {
+                  height: expanded
+                    ? 'auto'
+                    : contentRef.current
+                      ? Math.min(contentRef.current.scrollHeight, 240)
+                      : 240,
+                }
           }
           transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
           className={expanded ? '' : 'overflow-hidden md:!h-auto md:overflow-visible'}
         >
-          <p
-            ref={contentRef}
-            className={[
-              'leading-relaxed text-content-secondary',
-              !expanded
-                ? '[display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:9] md:block'
-                : '',
-            ].join(' ')}
-          >
-            {text}
-          </p>
+          <div ref={contentRef} className="space-y-5 text-[13px] text-content-secondary sm:text-sm">
+            {paragraphs.map((paragraph, index) => (
+              <p key={`${index}-${paragraph.slice(0, 24)}`} className="text-pretty leading-7">
+                {paragraph}
+              </p>
+            ))}
+          </div>
         </motion.div>
+
+        {!expanded ? (
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-[#0b1120] via-[#0b1120]/80 to-transparent md:hidden"
+          />
+        ) : null}
       </div>
 
       <button

@@ -6,20 +6,27 @@ import { motion, useReducedMotion, useMotionValue, useSpring, type HTMLMotionPro
 interface GlassCardProps extends HTMLMotionProps<'div'> {
   children?: ReactNode;
   hover?: boolean;
-  glow?: 'violet' | 'cyan' | 'none';
+  glow?: 'violet' | 'cyan' | 'indigo' | 'none';
+  speed?: 'normal' | 'fast';
 }
 
 const glowMap = {
-  violet: 'hover:border-glass-border-hover hover:shadow-glow-violet',
-  cyan:   'hover:border-accent-cyan/30 hover:shadow-glow-cyan',
-  none:   '',
+  violet:
+    'hover:border-glass-border-hover hover:shadow-glow-violet',
+  cyan:
+    'hover:border-accent-cyan/30 hover:shadow-glow-cyan',
+  indigo:
+    'hover:border-indigo-400/28 hover:shadow-glow-indigo',
+  none: '',
 };
 
-const springConfig = { stiffness: 280, damping: 22 };
+const normalSpringConfig = { stiffness: 280, damping: 22 };
+const fastSpringConfig = { stiffness: 320, damping: 28, mass: 0.8 };
 
 export function GlassCard({
   hover = false,
   glow = 'none',
+  speed = 'normal',
   className = '',
   children,
   style,
@@ -27,6 +34,13 @@ export function GlassCard({
 }: GlassCardProps) {
   const shouldReduceMotion = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
+  const springConfig = speed === 'fast' ? fastSpringConfig : normalSpringConfig;
+  const hoverAnimation = hover && !shouldReduceMotion
+    ? { y: speed === 'fast' ? -5 : -6, scale: speed === 'fast' ? 1.012 : 1.015 }
+    : undefined;
+  const hoverTransition = speed === 'fast'
+    ? { type: 'tween' as const, duration: 0.18, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }
+    : { type: 'spring' as const, ...springConfig };
 
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
@@ -55,8 +69,8 @@ export function GlassCard({
   return (
     <motion.div
       ref={ref}
-      whileHover={hover && !shouldReduceMotion ? { y: -6, scale: 1.015 } : undefined}
-      transition={{ type: 'spring', ...springConfig }}
+      whileHover={hoverAnimation}
+      transition={hoverTransition}
       onMouseMove={tiltEnabled ? handleMouseMove : undefined}
       onMouseLeave={tiltEnabled ? handleMouseLeave : undefined}
       style={{
@@ -66,9 +80,11 @@ export function GlassCard({
         ...style,
       }}
       className={[
-        'relative overflow-hidden bg-glass-bg backdrop-blur-[16px]',
-        'border border-glass-border rounded-2xl',
-        'transition-all duration-300',
+        'relative overflow-hidden rounded-2xl border border-glass-border bg-glass-bg backdrop-blur-[16px]',
+        'transition-[background-color,border-color,box-shadow]',
+        speed === 'fast'
+          ? 'duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]'
+          : 'duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]',
         'hover:bg-glass-bg-hover',
         glowMap[glow],
         className,

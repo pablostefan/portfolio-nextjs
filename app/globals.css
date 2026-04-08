@@ -26,6 +26,7 @@
   /* Glow shadows */
   --shadow-glow-violet: 0 8px 40px rgba(124, 58, 237, 0.22);
   --shadow-glow-cyan: 0 8px 40px rgba(6, 182, 212, 0.22);
+  --shadow-glow-indigo: 0 0 0 1px rgba(99, 102, 241, 0.10), 0 9px 30px rgba(79, 70, 229, 0.17), 0 0 16px rgba(129, 140, 248, 0.08);
   --shadow-glow-sm-violet: 0 0 24px rgba(124, 58, 237, 0.2);
   --shadow-glow-sm-cyan: 0 0 28px rgba(6, 182, 212, 0.25);
 
@@ -121,6 +122,11 @@ body::after {
 @keyframes avatar-glow {
   0%, 100% { transform: scale(1); opacity: 0.8; }
   50% { transform: scale(1.06); opacity: 0.58; }
+}
+
+@keyframes bounce-down {
+  0%, 100% { transform: translateY(-2px); }
+  50% { transform: translateY(4px); }
 }
 
 .about-avatar-core {

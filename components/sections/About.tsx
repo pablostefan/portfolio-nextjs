@@ -137,8 +137,8 @@ export async function About({ locale }: AboutProps) {
           </GlassCard>
 
           {/* Bio card */}
-          <GlassCard className="p-8 lg:col-span-2">
-            <div className="relative pl-5">
+          <GlassCard glow="indigo" className="p-8 lg:col-span-2">
+            <div className="relative pl-5 sm:pl-6">
               <div
                 aria-hidden="true"
                 className="absolute left-0 top-0 bottom-0 w-[2px] rounded-full bg-gradient-to-b from-violet-500 via-cyan-500 to-transparent"
@@ -159,7 +159,7 @@ export async function About({ locale }: AboutProps) {
                 ))}
               </div>
 
-              <div className="pb-6">
+              <div className="pb-2">
                 <ExpandableText
                   text={aboutText}
                   expandLabel={t('expand_text')}
@@ -187,7 +187,7 @@ export async function About({ locale }: AboutProps) {
         </div>
 
         {/* Skills */}
-        <div className="mt-8">
+        <div className="mt-20">
           <div className="mb-6 flex items-center justify-center gap-3">
             <span
               aria-hidden="true"

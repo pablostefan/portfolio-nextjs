@@ -63,7 +63,7 @@ function TimelineItem({
       </div>
 
       {/* Card */}
-      <GlassCard hover glow="violet" className="mb-6 min-w-0 flex-1 p-4 sm:mb-8 sm:p-6">
+      <GlassCard hover speed="fast" glow="violet" className="mb-6 min-w-0 flex-1 p-4 sm:mb-8 sm:p-6">
         {/* Header */}
         <div className="mb-2.5 flex flex-col items-start gap-1.5 sm:mb-3 sm:gap-2 sm:flex-row sm:items-start sm:justify-between">
           <div>

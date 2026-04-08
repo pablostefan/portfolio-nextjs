@@ -147,6 +147,7 @@ function CertCard({
     >
       <GlassCard
         hover
+        speed="fast"
         glow="violet"
         className="group/cert relative flex h-full flex-col overflow-hidden p-0"
       >
