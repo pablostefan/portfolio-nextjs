@@ -34,10 +34,10 @@ const locales = ['pt', 'en'];
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'https://pablostefan.com.br'),
   title: {
-    default: 'Pablo Stefan | Software Architect · Flutter · XP Inc.',
+    default: 'Pablo Stefan',
     template: '%s | Pablo Stefan',
   },
-  description: 'Software Architect no SOMA da XP Inc.',
+  description: 'Software Architect · Flutter · XP Inc.',
   icons: {
     icon: [{ url: '/icon', type: 'image/png' }],
     apple: [{ url: '/apple-icon', type: 'image/png' }],
@@ -46,16 +46,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: process.env.NEXT_PUBLIC_APP_URL,
-    title: 'Pablo Stefan | Software Architect · Flutter · XP Inc.',
-    description: 'Software Architect no SOMA da XP Inc.',
+    title: 'Pablo Stefan',
+    description: 'Software Architect · Flutter · XP Inc.',
     siteName: 'Pablo Stefan',
     locale: 'pt_BR',
     alternateLocale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Pablo Stefan | Software Architect · Flutter · XP Inc.',
-    description: 'Software Architect no SOMA da XP Inc.',
+    title: 'Pablo Stefan',
+    description: 'Software Architect · Flutter · XP Inc.',
   },
 };
 

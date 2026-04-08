@@ -11,35 +11,22 @@ export default function OgImage() {
         style={{
           width: '100%',
           height: '100%',
-          background: '#030712',
+          background: 'linear-gradient(135deg, #7C3AED 0%, #06B6D4 100%)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
         }}
       >
-        {/* Logo */}
-        <div
+        <span
           style={{
-            width: 260,
-            height: 260,
-            background: 'linear-gradient(135deg, #7C3AED 0%, #06B6D4 100%)',
-            borderRadius: 48,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+            fontSize: 320,
+            fontWeight: 700,
+            color: 'white',
+            letterSpacing: -10,
           }}
         >
-          <span
-            style={{
-              fontSize: 140,
-              fontWeight: 700,
-              color: 'white',
-              letterSpacing: -4,
-            }}
-          >
-            PS
-          </span>
-        </div>
+          PS
+        </span>
       </div>
     ),
     { ...size },
