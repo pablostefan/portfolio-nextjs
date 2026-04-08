@@ -51,13 +51,11 @@ export const metadata: Metadata = {
     siteName: 'Pablo Stefan',
     locale: 'pt_BR',
     alternateLocale: 'en_US',
-    images: [{ url: '/logo.png' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Pablo Stefan | Software Architect · Flutter · XP Inc.',
     description: 'Software Architect no SOMA da XP Inc.',
-    images: ['/logo.png'],
   },
 };
 
