@@ -46,13 +46,6 @@ export function ExpandableText({ text, expandLabel, collapseLabel }: ExpandableT
             ))}
           </div>
         </motion.div>
-
-        {!expanded ? (
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-[#0b1120] via-[#0b1120]/80 to-transparent md:hidden"
-          />
-        ) : null}
       </div>
 
       <button

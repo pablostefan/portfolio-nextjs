@@ -59,44 +59,35 @@ export async function About({ locale }: AboutProps) {
             glow="violet"
             className="flex flex-col items-center gap-6 p-8 text-center lg:row-span-2"
           >
-            {/* Avatar with ambient glow */}
-            <div className="relative flex h-52 w-52 items-center justify-center">
+            {/* Avatar with glow effect */}
+            <div className="relative flex h-52 w-52 items-center justify-center sm:h-56 sm:w-56">
               <div
                 aria-hidden="true"
-                className="about-avatar-glow absolute inset-0 rounded-full bg-gradient-to-br from-violet-500/25 to-cyan-500/15 blur-2xl"
-              />
-              <div
-                aria-hidden="true"
-                className="about-avatar-ring-violet absolute h-40 w-40 rounded-full border border-accent/15"
-              />
-              <div
-                aria-hidden="true"
-                className="about-avatar-ring-cyan absolute h-48 w-48 rounded-full border border-cyan-500/10"
+                className="about-avatar-glow absolute inset-4 rounded-full bg-gradient-to-br from-violet-500/18 via-indigo-500/10 to-cyan-500/10 blur-3xl"
               />
 
-              {profile?.photoUrl ? (
-                <div className="about-avatar-core relative z-10 h-32 w-32 overflow-hidden rounded-full border-2 border-accent/40">
-                  <Image
-                    src={profile.photoUrl}
-                    alt={`${profile.firstName} ${profile.lastName}`}
-                    fill
-                    className="object-cover"
-                    sizes="128px"
-                    priority
-                  />
-                </div>
-              ) : (
-                <div className="about-avatar-core relative z-10 flex h-32 w-32 items-center justify-center rounded-full border-2 border-accent/40 bg-gradient-to-br from-violet-700 to-cyan-600">
-                  <span className="font-display text-3xl font-bold text-white">PS</span>
-                </div>
-              )}
+              <div
+                aria-hidden="true"
+                className="absolute z-10 h-[180px] w-[180px] rounded-full border border-cyan-400/14 sm:h-[196px] sm:w-[196px]"
+              />
+
+              <div className="relative z-10 h-[164px] w-[164px] overflow-hidden rounded-full border border-white/10 bg-slate-950 shadow-[0_0_40px_rgba(124,58,237,0.14)] sm:h-[180px] sm:w-[180px]">
+                <Image
+                  src="/avatar.jpg"
+                  alt="Pablo Stefan"
+                  fill
+                  className="object-cover"
+                  sizes="176px"
+                  priority
+                />
+              </div>
             </div>
 
             {/* Name + headline */}
             <div>
               <h3 className="font-display text-2xl font-bold text-content">Pablo Stefan</h3>
               <p className="mt-1.5 font-mono text-sm text-content-muted">
-                {profile?.headline ?? 'Software Architect · Flutter'}
+                {profile?.headline ?? 'Flutter Expert · Mobile Engineer'}
               </p>
             </div>
 
@@ -111,7 +102,11 @@ export async function About({ locale }: AboutProps) {
             {/* Location */}
             <span className="flex items-center gap-2 text-sm text-content-muted">
               <MapPin className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-              {t('location')}
+              {t('location_city')}
+              <span className="text-content-muted/40">·</span>
+              {t('location_state')}
+              <span className="text-content-muted/40">·</span>
+              {t('location_country')}
             </span>
 
             {/* Specialty tags */}
