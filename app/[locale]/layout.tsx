@@ -37,8 +37,7 @@ export const metadata: Metadata = {
     default: 'Pablo Stefan | Software Architect · Flutter · XP Inc.',
     template: '%s | Pablo Stefan',
   },
-  description:
-    'Portfólio de Pablo Stefan, Software Architect no Design System SOMA da XP Inc. Especializado em Flutter, Design Systems e arquitetura mobile.',
+  description: 'Software Architect no SOMA da XP Inc.',
   icons: {
     icon: [{ url: '/icon', type: 'image/png' }],
     apple: [{ url: '/apple-icon', type: 'image/png' }],
@@ -48,17 +47,17 @@ export const metadata: Metadata = {
     type: 'website',
     url: process.env.NEXT_PUBLIC_APP_URL,
     title: 'Pablo Stefan | Software Architect · Flutter · XP Inc.',
-    description:
-      'Software Architect no Design System SOMA da XP Inc. Flutter, Design Systems e arquitetura mobile de alto impacto.',
+    description: 'Software Architect no SOMA da XP Inc.',
     siteName: 'Pablo Stefan',
     locale: 'pt_BR',
     alternateLocale: 'en_US',
+    images: [{ url: '/logo.png' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Pablo Stefan | Software Architect · Flutter · XP Inc.',
-    description:
-      'Software Architect no Design System SOMA da XP Inc. Flutter, Design Systems e arquitetura mobile.',
+    description: 'Software Architect no SOMA da XP Inc.',
+    images: ['/logo.png'],
   },
 };
 
