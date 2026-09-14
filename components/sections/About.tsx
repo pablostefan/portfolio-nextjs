@@ -87,7 +87,7 @@ export async function About({ locale }: AboutProps) {
             <div>
               <h3 className="font-display text-2xl font-bold text-content">Pablo Stefan</h3>
               <p className="mt-1.5 font-mono text-sm text-content-muted">
-                {profile?.headline ?? 'Flutter Expert · Mobile Engineer'}
+                {profile?.headline ?? 'Software Architect · Mobile/Flutter'}
               </p>
             </div>
 

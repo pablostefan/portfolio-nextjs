@@ -9,8 +9,8 @@
   "hero": {
     "greeting": "Olá, eu sou",
     "role": "Software Architect",
-    "typewriter": ["Software Architect", "Flutter Expert", "Mobile Engineer"],
-    "subtitle": "Arquitetando experiências móveis de alto impacto",
+    "typewriter": ["Software Architect", "Mobile Architect", "Flutter Engineer"],
+    "subtitle": "Arquitetando experiências móveis de alto impacto na XP Inc.",
     "cta_projects": "Ver Projetos",
     "cta_contact": "Entrar em Contato"
   },

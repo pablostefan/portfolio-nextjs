@@ -2,6 +2,7 @@ import type { Project } from '@/types';
 
 const GITHUB_API = 'https://api.github.com';
 const USERNAME   = 'pablostefan';
+const FEATURED_REPOSITORIES = new Set(['morphix']);
 
 /** Raw shape returned by the GitHub REST API */
 interface GitHubRepo {
@@ -58,9 +59,14 @@ export async function fetchPortfolioProjects(): Promise<Project[]> {
         !r.fork &&
         !r.private &&
         !r.archived &&
-        r.topics.includes('portfolio'),
+        (r.topics.includes('portfolio') || FEATURED_REPOSITORIES.has(r.name)),
     )
-    .sort((a, b) => b.stargazers_count - a.stargazers_count)
+    .sort((a, b) => {
+      const aFeatured = FEATURED_REPOSITORIES.has(a.name);
+      const bFeatured = FEATURED_REPOSITORIES.has(b.name);
+      if (aFeatured !== bFeatured) return aFeatured ? -1 : 1;
+      return b.stargazers_count - a.stargazers_count;
+    })
     .slice(0, 6)
     .map((r) => ({
       id:               r.id,

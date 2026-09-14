@@ -1,7 +1,7 @@
 {
   "about": {
-    "pt": "Hoje atuo como Software Architect no Design System da XP (SOMA), contribuindo para a evolução da base arquitetural que sustenta a engenharia mobile.\n\nMeu trabalho passa por estruturar como os componentes nascem, evoluem e eventualmente são descontinuados, garantindo que cada decisão técnica seja clara e sustentável ao longo do tempo. Defino padrões e formalizo direcionamentos para que a plataforma cresça com consistência.\n\nTambém desenvolvo automações que reforçam qualidade sem engessar a engenharia e participo ativamente da evolução dos componentes em Flutter. Além disso, apoio as squads na adoção consistente do Design System, conectando diretrizes à prática do dia a dia.\n\nEntre as iniciativas que conduzi, destaco a estruturação da governança de componentes deprecated e a consolidação da acessibilidade como parte estrutural do sistema. Meu foco está em garantir que a plataforma continue evoluindo com responsabilidade técnica e visão de longo prazo.",
-    "en": "I currently work as a Software Architect at XP's Design System (SOMA), contributing to the architectural foundation that underpins mobile engineering.\n\nMy work involves structuring how components are born, evolve, and are eventually deprecated, ensuring every technical decision remains clear and sustainable over time. I define standards and formalize directions so the platform grows consistently.\n\nI also build automations that reinforce quality without constraining engineering, and I actively contribute to Flutter component evolution. In parallel, I support squads in the consistent adoption of the Design System, connecting guidelines to day-to-day practice.\n\nAmong the initiatives I have led, I highlight the governance model for deprecated components and the consolidation of accessibility as a structural pillar of the system. My focus is to ensure the platform continues evolving with technical responsibility and a long-term vision."
+    "pt": "Sou Software Architect na XP Inc. e trabalho no SOMA, o Design System da empresa. Participo das decisões de arquitetura, defino padrões, registro decisões em RFCs e ADRs e atuo no desenvolvimento, manutenção e evolução dos componentes. Também apoio os times que utilizam o sistema, ajudando na adoção, esclarecendo dúvidas e oferecendo suporte técnico.\n\nNo SOMA, trabalhei na implementação de acessibilidade em mais de 250 componentes e na criação de um padrão de testes de widgets que ajudou a reduzir em 40% os chamados de suporte por sprint. Também planejei e implementei uma biblioteca de gráficos para o Design System, criando uma base reutilizável para manter as visualizações consistentes e facilitar sua evolução.\n\nIdealizei, planejei e desenvolvi o Morphix, uma ferramenta que compara versões de componentes em cada PR e mostra os nós de semântica do Flutter. Ela ajuda engenharia, design e produto a encontrar problemas visuais e de acessibilidade antes do merge, com economia anual estimada de US$ 6.240. Também planejei a arquitetura de animações utilizada em mais de 650 pontos do aplicativo.\n\nMinha experiência combina arquitetura mobile, desenvolvimento de produtos e liderança técnica. Na Krykto, liderei uma equipe de três desenvolvedores. Na nav9, atuei como Feature Lead no aplicativo da Caju. Na Fiibo, trabalhei com soluções offline-first, white-label, CI/CD, testes automatizados, observabilidade e performance.",
+    "en": "I am a Software Architect at XP Inc., working on SOMA, the company's Design System. I contribute to architecture decisions, define standards, document decisions in RFCs and ADRs, and work on the development, maintenance, and evolution of its components. I also support the teams that use the system by helping with adoption, answering questions, and providing technical guidance.\n\nAt SOMA, I contributed to implementing accessibility across more than 250 components and created a widget testing standard that helped reduce support requests by 40% per sprint. I also planned and implemented a charting library for the Design System, creating a reusable foundation for consistent, evolvable visualizations.\n\nI conceived, planned, and developed Morphix, a tool that compares component versions in each pull request and exposes Flutter semantics nodes. It helps engineering, design, and product identify visual and accessibility issues before merge, with estimated annual licensing savings of US$6,240. I also planned the animation architecture used across more than 650 points in the application.\n\nMy experience combines mobile architecture, product development, and technical leadership. At Krykto, I led a team of three developers. At nav9, I worked as Feature Lead on the Caju app. At Fiibo, I worked with offline-first solutions, white-label apps, CI/CD, automated testing, observability, and performance."
   },
   "experience": [
     {
@@ -15,29 +15,21 @@
         "en": "July 2025 — Present"
       },
       "description": {
-        "pt": "Atuação focada na evolução arquitetural do Design System mobile (SOMA). Definição de padrões para componentes Flutter, organização do ciclo de vida via RFCs e ADRs, consolidação da acessibilidade como padrão estrutural e suporte técnico às squads na adoção consistente do Design System.",
-        "en": "Led the architectural evolution of XP Inc.'s mobile Design System (SOMA). Defined standards for Flutter components, structured their lifecycle through RFCs and ADRs, and established accessibility as a foundational standard. Provided technical support to squads, ensuring consistent adoption and integration of the Design System across projects."
+        "pt": "Atuo na arquitetura do SOMA, o Design System da XP, e no desenvolvimento, manutenção e evolução de seus componentes em Flutter. Participo da definição de padrões e da governança dos componentes, da criação à depreciação, documento decisões técnicas em RFCs e ADRs e apoio as squads na adoção do sistema.",
+        "en": "Work on the architecture of XP's SOMA Design System and on the development, maintenance, and evolution of its Flutter components. Contribute to standards and component governance from creation through deprecation, document technical decisions in RFCs and ADRs, and support squads adopting the system."
       },
       "bullets": {
         "pt": [
-          "Definição de padrões arquiteturais para componentes em Flutter",
-          "Organização do ciclo de vida de componentes (criação, evolução e depreciação)",
-          "Formalização de decisões técnicas por meio de RFCs e ADRs",
-          "Evolução e implementação de componentes alinhados às especificações de design",
-          "Suporte técnico às squads na adoção consistente do Design System",
-          "Liderança na consolidação da acessibilidade como padrão estrutural, desde a definição das diretrizes até a implementação nos componentes",
-          "Estruturação do modelo de governança da acessibilidade, com alinhamento entre engenharia, design e auditoria",
-          "Organização de estratégias para gestão de componentes deprecated e mecanismos de reforço de qualidade e consistência"
+          "Participei da implementação de acessibilidade em mais de 250 componentes, seguindo as diretrizes da WCAG, e criei um padrão de testes de widgets que ajudou a reduzir em 40% os chamados de suporte por sprint",
+          "Planejei e implementei, em parceria com outro desenvolvedor, uma biblioteca de gráficos para o Design System, criando uma base reutilizável para visualizações mais consistentes e fáceis de evoluir",
+          "Idealizei, planejei e desenvolvi o Morphix, ferramenta que gera previews, compara versões de componentes em cada PR e exibe os nós de semântica do Flutter, com economia anual estimada de US$ 6.240 em licenciamento",
+          "Planejei a arquitetura de animações utilizada em mais de 650 pontos do aplicativo, com uma base compartilhada para implementação e evolução, contribuindo para modernizar a experiência visual e melhorar o desempenho"
         ],
         "en": [
-          "Defining architectural patterns for Flutter components",
-          "Organizing the component lifecycle (creation, evolution, and deprecation)",
-          "Formalizing technical decisions through RFCs and ADRs",
-          "Evolving and implementing components aligned with design specifications",
-          "Providing technical support to squads in the consistent adoption of the Design System",
-          "Leading the consolidation of accessibility as a structural standard, from guidelines definition to component-level implementation",
-          "Structuring the accessibility governance model with cross-functional alignment across engineering, design, and audit",
-          "Organizing strategies for deprecated component management and quality consistency enforcement"
+          "Implemented accessibility across more than 250 components following WCAG guidelines and created a widget testing standard that helped reduce support requests by 40% per sprint",
+          "Planned and implemented, in partnership with another developer, a charting library for the Design System, creating a reusable foundation for more consistent and evolvable visualizations",
+          "Conceived, planned, and developed Morphix, a tool that generates previews, compares component versions in each pull request, and exposes Flutter semantics nodes, with estimated annual licensing savings of US$6,240",
+          "Planned the animation architecture used across more than 650 points in the application, providing a shared foundation for implementation and evolution while improving the visual experience and performance"
         ]
       },
       "current": true
@@ -53,25 +45,21 @@
         "en": "January 2025 — July 2025"
       },
       "description": {
-        "pt": "Desenvolvimento do app da Caju (benefícios corporativos) com liderança técnica como Feature Lead. Organização técnica, arquitetura, testes automatizados com alta cobertura e monitoramento com Firebase Analytics e Crashlytics.",
-        "en": "Developed the Caju corporate benefits app, serving as Feature Lead and driving technical leadership. Designed robust architecture, implemented automated tests with high coverage, and ensured seamless monitoring using Firebase Analytics and Crashlytics."
+        "pt": "Atuei no desenvolvimento do aplicativo da Caju, voltado a benefícios corporativos, com atuação como Feature Lead em entregas de componentes em Flutter. Organizei entregas, participei de decisões de arquitetura e do refinamento de requisitos em colaboração com produto e design.",
+        "en": "Developed the Caju app for corporate benefits while serving as Feature Lead for Flutter component deliveries. Organized deliveries, contributed to architecture decisions, and refined requirements in collaboration with product and design."
       },
       "bullets": {
         "pt": [
-          "Desenvolvimento do app principal da Caju, com foco em benefícios corporativos",
-          "Liderança técnica como Feature Lead: organização técnica, arquitetura e entrega",
-          "Colaboração com áreas de produto e design no refinamento de requisitos",
-          "Implementação de componentes do design system e codificação de elementos reutilizáveis",
-          "Criação de testes automatizados (unitários, widget, integração) com alta cobertura",
-          "Monitoramento com Firebase Analytics e Crashlytics para performance e estabilidade"
+          "Organizei entregas e participei das decisões de arquitetura e do refinamento de requisitos em colaboração com produto e design",
+          "Desenvolvi componentes reutilizáveis, como listas e cards, alinhados ao Design System para manter a consistência entre as interfaces",
+          "Implementei testes unitários, de widgets e de integração para validar o comportamento dos componentes e dos fluxos do aplicativo",
+          "Acompanhei eventos de uso com Firebase Analytics e investiguei falhas com Crashlytics, apoiando a manutenção da estabilidade do aplicativo"
         ],
         "en": [
-          "Developed the main Caju app focused on corporate employee benefits",
-          "Technical leadership as Feature Lead: technical organization, architecture, and delivery",
-          "Collaborated with product and design teams in requirements refinement",
-          "Implemented design system components and coded reusable elements",
-          "Created automated tests (unit, widget, integration) with high coverage",
-          "Monitoring with Firebase Analytics and Crashlytics for performance and stability"
+          "Organized deliveries and contributed to architecture decisions and requirements refinement with product and design",
+          "Developed reusable components such as lists and cards, aligned with the Design System to keep interfaces consistent",
+          "Implemented unit, widget, and integration tests to validate component and application flow behavior",
+          "Tracked usage events with Firebase Analytics and investigated failures with Crashlytics to support application stability"
         ]
       },
       "current": false
@@ -87,33 +75,23 @@
         "en": "April 2024 — December 2024"
       },
       "description": {
-        "pt": "Desenvolvimento e manutenção do app principal (saúde e bem-estar). Integração com REST APIs e GraphQL, funcionalidades offline-first, pipelines CI/CD, white labels com Flavors e mentoria técnica ao time.",
-        "en": "Developed and maintained Fiibo's main health and wellness app. Integrated REST APIs and GraphQL, implemented offline-first functionalities, optimized CI/CD pipelines, and managed white-label solutions using Flavors. Provided technical mentorship to the team to ensure high-quality development practices."
+        "pt": "Trabalhei no desenvolvimento e evolução do aplicativo de saúde e bem-estar da Fiibo em Flutter, incluindo versões white-label para diferentes clientes. Atuei com soluções offline-first, APIs RESTful e GraphQL, CI/CD, testes automatizados, observabilidade, performance, provas de conceito e apoio técnico à equipe.",
+        "en": "Developed and evolved Fiibo's Flutter health and wellness app, including white-label versions for different clients. Worked with offline-first solutions, RESTful and GraphQL APIs, CI/CD, automated testing, observability, performance, proof of concepts, and technical support for the team."
       },
       "bullets": {
         "pt": [
-          "Desenvolvimento e manutenção do aplicativo principal focado em saúde e bem-estar",
-          "Integração com APIs RESTful e GraphQL, otimizando a comunicação e o desempenho",
-          "Garantia de alta performance e estabilidade com testes automatizados",
-          "Monitoramento e análise de métricas com Firebase Analytics e New Relic",
-          "Desenvolvimento de funcionalidades offline-first, garantindo uso mesmo sem conectividade",
-          "Mentoria e apoio técnico a membros da equipe, promovendo crescimento e troca de conhecimento",
-          "Implementação e manutenção de white labels e configuração de Flavors para diferentes clientes",
-          "Codificação de componentes visuais reutilizáveis com base no design system da empresa",
-          "Implantação e manutenção de pipelines CI/CD para integração e entrega contínua",
-          "Condução e liderança de POCs para validação de novas soluções e tecnologias"
+          "Implementei funcionalidades offline-first para permitir o uso de recursos do aplicativo sem conexão",
+          "Mantive pelo menos seis versões white-label, utilizando Flavors para organizar as configurações específicas de cada cliente",
+          "Integrei APIs RESTful e GraphQL e desenvolvi componentes reutilizáveis alinhados ao Design System",
+          "Implementei e mantive pipelines de integração e entrega contínuas (CI/CD), além de criar testes automatizados",
+          "Acompanhei o uso e o desempenho do aplicativo com Firebase Analytics e New Relic, conduzi provas de conceito e ofereci mentoria e apoio técnico à equipe"
         ],
         "en": [
-          "Development and maintenance of the main health and wellness app",
-          "Integration with RESTful and GraphQL APIs, optimizing communication and performance",
-          "Ensuring high performance and stability with automated tests and best practices",
-          "Monitoring and metrics analysis with Firebase Analytics and New Relic",
-          "Development of offline-first features, ensuring usability without connectivity",
-          "Technical mentoring and support for team members, promoting growth and knowledge sharing",
-          "Implementation and maintenance of white-label solutions and Flavors for different clients",
-          "Coding reusable visual components based on the company's design system",
-          "Deployment and maintenance of CI/CD pipelines for continuous integration and delivery",
-          "Conducting and leading POCs for validation of new solutions and technologies"
+          "Implemented offline-first features so users could access application resources without a connection",
+          "Maintained at least six white-label versions using Flavors to organize client-specific configurations",
+          "Integrated RESTful and GraphQL APIs and developed reusable components aligned with the Design System",
+          "Implemented and maintained continuous integration and delivery pipelines (CI/CD) and created automated tests",
+          "Monitored application usage and performance with Firebase Analytics and New Relic, conducted proof of concepts, and provided technical mentoring and support"
         ]
       },
       "current": false
@@ -129,31 +107,21 @@
         "en": "January 2023 — April 2024"
       },
       "description": {
-        "pt": "Liderança de equipe de 3 desenvolvedores, desenvolvimento de features com Flutter, arquiteturas modulares, revisões de código e implementação de testes unitários, de widget e de integração.",
-        "en": "Led a team of three developers in building features with Flutter. Designed modular architectures, conducted thorough code reviews, and implemented unit, widget, and integration tests to ensure code quality and reliability."
+        "pt": "Atuei no desenvolvimento de aplicações em Flutter e liderei uma equipe de três desenvolvedores, com orientação técnica, treinamento e revisão de código. Também projetei arquiteturas modulares e desenvolvi uma aplicação Flutter para uma máquina de pagamento integrada ao SDK nativo Android.",
+        "en": "Developed Flutter applications and led a team of three developers through technical guidance, training, and code reviews. Designed modular architectures and built a Flutter application for a payment machine integrated with a native Android SDK."
       },
       "bullets": {
         "pt": [
-          "Liderança de uma equipe de 3 desenvolvedores, incluindo treinamento e orientação",
-          "Desenvolvimento de novas features com Flutter, garantindo implementação eficiente e de alta qualidade",
-          "Realização de revisões de código e fornecimento de feedback à equipe mobile",
-          "Projeto e implementação de arquiteturas modulares seguindo os principais padrões e boas práticas",
-          "Elaboração e sugestão das melhores práticas e soluções para o aplicativo",
-          "Colaboração com desenvolvedores, designers e stakeholders para entregas de alta qualidade",
-          "Identificação e correção de problemas de desempenho, otimizando a performance dos aplicativos",
-          "Implantação de testes unitários, de widgets e de integração, garantindo robustez e qualidade",
-          "Versionamento de código e gestão de releases, assegurando controle eficaz das atualizações"
+          "Projetei e implementei arquiteturas modulares para facilitar a reutilização de código e a manutenção dos aplicativos",
+          "Desenvolvi uma aplicação Flutter para uma máquina de pagamento, integrada ao SDK nativo Android",
+          "Defini práticas de desenvolvimento e apoiei as decisões técnicas da equipe, trabalhando com designers na implementação de funcionalidades",
+          "Investiguei e corrigi problemas de desempenho, implementei testes unitários, de widgets e de integração e cuidei da gestão de versões dos aplicativos"
         ],
         "en": [
-          "Led a team of 3 developers, including training and mentoring to promote growth and efficiency",
-          "Developed new features ensuring efficient, high-quality Flutter implementation",
-          "Conducted code reviews and provided feedback to the mobile team",
-          "Designed and implemented modular architectures following best development practices",
-          "Developed and proposed best practices and solutions for the app",
-          "Collaborated with developers, designers, and stakeholders to ensure quality within deadlines",
-          "Identified and resolved performance issues, optimizing app performance",
-          "Implemented unit, widget, and integration tests ensuring app robustness and quality",
-          "Managed code versioning and release management ensuring organized update control"
+          "Designed and implemented modular architectures to improve code reuse and application maintainability",
+          "Built a Flutter application for a payment machine integrated with a native Android SDK",
+          "Defined development practices and supported the team's technical decisions while working with designers to implement features",
+          "Investigated and fixed performance issues, implemented unit, widget, and integration tests, and managed application versions"
         ]
       },
       "current": false
@@ -169,31 +137,26 @@
         "en": "January 2022 — January 2023"
       },
       "description": {
-        "pt": "Desenvolvimento do aplicativo Krykto (carteira de criptomoedas e rede social) com Flutter, animações e gráficos dinâmicos, integração via REST e GraphQL e monitoramento com Firebase Crashlytics.",
-        "en": "Developed the Krykto app, a cryptocurrency wallet and social network, using Flutter. Implemented dynamic animations and charts, integrated REST and GraphQL APIs, and ensured app stability through Firebase Crashlytics monitoring."
+        "pt": "Trabalhei no desenvolvimento do aplicativo Krykto, uma carteira de criptomoedas e rede social construída em Flutter. Implementei interfaces a partir de layouts do Figma, incluindo animações e gráficos dinâmicos, integrei APIs RESTful, GraphQL e serviços Firebase e acompanhei falhas com Firebase Crashlytics.",
+        "en": "Developed the Krykto app, a cryptocurrency wallet and social network built with Flutter. Implemented interfaces from Figma layouts, including animations and dynamic charts, integrated RESTful APIs, GraphQL, and Firebase services, and monitored failures with Firebase Crashlytics."
       },
       "bullets": {
         "pt": [
-          "Desenvolvimento do app Krykto, uma carteira de criptomoedas e rede social, com foco em implementação precisa e alinhada ao Figma",
-          "Integração de sistemas via APIs RESTful e GraphQL",
-          "Escalabilidade de componentes, realizando ajustes e grandes refatorações conforme necessário",
-          "Desenvolvimento de animações e gráficos animados dinâmicos para visualização de criptomoedas",
-          "Versionamento de código com Git e Bitbucket",
-          "Integração com Firebase Crashlytics para monitoramento e análise de falhas"
+          "Implementei interfaces a partir de layouts do Figma, incluindo animações e gráficos dinâmicos",
+          "Integrei APIs RESTful, GraphQL e serviços Firebase",
+          "Refatorei e evoluí componentes, acompanhei falhas com Firebase Crashlytics e participei do versionamento de código e das entregas com Git e Bitbucket"
         ],
         "en": [
-          "Developed the Krykto app, a cryptocurrency wallet and social network, with pixel-perfect Figma implementation",
-          "System integration via RESTful and GraphQL APIs",
-          "Component scalability with adjustments and major refactors as needed",
-          "Development of dynamic animations and animated charts for cryptocurrency data visualization",
-          "Code versioning with Git and Bitbucket",
-          "Firebase Crashlytics integration for crash monitoring and analysis"
+          "Implemented interfaces from Figma layouts, including animations and dynamic charts",
+          "Integrated RESTful APIs, GraphQL, and Firebase services",
+          "Refactored and evolved components, monitored failures with Firebase Crashlytics, and contributed to code versioning and releases with Git and Bitbucket"
         ]
       },
       "current": false
     }
   ],
   "skills": [
+    "Technical Leadership",
     "Flutter",
     "Dart",
     "Design Systems",
@@ -205,7 +168,8 @@
     "CI/CD",
     "Fastlane",
     "Git",
-    "BLoC"
+    "BLoC",
+    "Workplace Safety Practices"
   ],
   "medium": "https://medium.com/@pablo.stefan"
 }
