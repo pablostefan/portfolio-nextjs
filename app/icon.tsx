@@ -10,7 +10,7 @@ export default function Icon() {
         style={{
           width: '100%',
           height: '100%',
-          background: 'linear-gradient(135deg, #7C3AED 0%, #06B6D4 100%)',
+          background: '#FF4A1C',
           borderRadius: 8,
           display: 'flex',
           alignItems: 'center',
@@ -20,8 +20,8 @@ export default function Icon() {
         <span
           style={{
             fontSize: 18,
-            fontWeight: 700,
-            color: 'white',
+            fontWeight: 800,
+            color: '#000000',
             letterSpacing: -1,
           }}
         >
