@@ -1,29 +1,16 @@
-import { Hero } from '@/components/sections/Hero';
-import { About } from '@/components/sections/About';
-import { Experience } from '@/components/sections/Experience';
-import { ProjectsClient } from '@/components/sections/Projects';
-import { CertificationsClient } from '@/components/sections/Certifications';
-import { Contact } from '@/components/sections/Contact';
-import { fetchEnrichedCertifications } from '@/lib/credly';
-import { fetchPortfolioProjects } from '@/lib/github';
-import type { Locale } from '@/i18n';
+import { Cover } from "@/components/specimen/Cover";
+import { Waterfall } from "@/components/specimen/Waterfall";
+import { Cases } from "@/components/specimen/Cases";
+import { Career } from "@/components/specimen/Career";
+import { Voices } from "@/components/specimen/Voices";
+import { IndexSection } from "@/components/specimen/IndexSection";
+import { Colophon } from "@/components/specimen/Colophon";
+import { fetchEnrichedCertifications } from "@/lib/credly";
+import { fetchPortfolioProjects } from "@/lib/github";
 
-function SectionDivider() {
-  return (
-    <div aria-hidden="true" className="relative mx-auto h-[1px] w-full max-w-5xl">
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
-    </div>
-  );
-}
+export const dynamic = "force-dynamic";
 
-interface HomePageProps {
-  params: Promise<{ locale: string }>;
-}
-
-export const dynamic = 'force-dynamic';
-
-async function HomePage({ params }: HomePageProps) {
-  const { locale } = await params;
+async function HomePage() {
   const [certs, projects] = await Promise.all([
     fetchEnrichedCertifications().catch(() => []),
     fetchPortfolioProjects().catch(() => []),
@@ -31,17 +18,13 @@ async function HomePage({ params }: HomePageProps) {
 
   return (
     <>
-      <Hero />
-      <SectionDivider />
-      <About locale={locale as Locale} />
-      <SectionDivider />
-      <Experience />
-      <SectionDivider />
-      <ProjectsClient projects={projects} />
-      <SectionDivider />
-      <CertificationsClient certs={certs} />
-      <SectionDivider />
-      <Contact />
+      <Cover />
+      <Waterfall />
+      <Cases />
+      <Career />
+      <Voices />
+      <IndexSection projects={projects} certs={certs} />
+      <Colophon />
     </>
   );
 }
