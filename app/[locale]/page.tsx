@@ -1,10 +1,10 @@
-import { Cover } from "@/components/specimen/Cover";
-import { Waterfall } from "@/components/specimen/Waterfall";
-import { Cases } from "@/components/specimen/Cases";
-import { Career } from "@/components/specimen/Career";
-import { Voices } from "@/components/specimen/Voices";
-import { IndexSection } from "@/components/specimen/IndexSection";
-import { Colophon } from "@/components/specimen/Colophon";
+import { Cover } from "@/components/azulejo/Cover";
+import { System } from "@/components/azulejo/System";
+import { Cases } from "@/components/azulejo/Cases";
+import { Career } from "@/components/azulejo/Career";
+import { Voices } from "@/components/azulejo/Voices";
+import { IndexSection } from "@/components/azulejo/IndexSection";
+import { Colophon } from "@/components/azulejo/Colophon";
 import { fetchEnrichedCertifications } from "@/lib/credly";
 import { fetchPortfolioProjects } from "@/lib/github";
 
@@ -19,7 +19,7 @@ async function HomePage() {
   return (
     <>
       <Cover />
-      <Waterfall />
+      <System />
       <Cases />
       <Career />
       <Voices />

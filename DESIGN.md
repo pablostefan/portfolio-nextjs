@@ -1,33 +1,32 @@
 ---
-name: Pablo Stefan — espécime tipográfico cinético
-description: A portfolio that reads like a living type specimen; the name, the numbers and the career are set in one variable face whose axes move.
+name: Pablo Stefan — painel de azulejos
+description: A portfolio built as a modular tile wall; the same few pieces recombine into every section, the way a design system builds different apps.
 colors:
-  vermilion: "#ff4a1c"
-  bottle: "#0e3b2c"
-  fog: "#e6e8eb"
-  ink: "#000000"
-  paper: "#e9ede6"
-  ink-soft: "#4a4d52"
-  paper-soft: "#9fc2a8"
-  rust: "#c2310a"
+  cobalt: "#1c3f94"
+  glaze: "#eef1f5"
+  ink: "#111318"
+  ochre: "#f0b323"
+  ink-soft: "#4a4d55"
+  glaze-soft: "#c9d3ec"
+  ash: "#9aa0ab"
 typography:
   display-cover:
-    fontFamily: "Anybody, sans-serif"
-    fontSize: "clamp(4.5rem, 23vw, 24rem)"
-    fontWeight: 800
-    lineHeight: 0.86
-    letterSpacing: "-0.02em"
+    fontFamily: "Bricolage Grotesque, sans-serif"
+    fontSize: "calc(var(--cell) * 1.28)"
+    fontWeight: 700
+    lineHeight: 0.9
+    letterSpacing: "-0.03em"
   display-section:
-    fontFamily: "Anybody, sans-serif"
+    fontFamily: "Bricolage Grotesque, sans-serif"
     fontSize: "clamp(2.8rem, 6vw, 5.5rem)"
-    fontWeight: 850
-    lineHeight: 0.86
-    letterSpacing: "-0.02em"
+    fontWeight: 700
+    lineHeight: 0.92
+    letterSpacing: "-0.03em"
   figure:
-    fontFamily: "Anybody, sans-serif"
-    fontSize: "clamp(3.6rem, 11vw, 9.5rem)"
-    fontWeight: 850
-    lineHeight: 1.05
+    fontFamily: "Bricolage Grotesque, sans-serif"
+    fontSize: "clamp(3.6rem, 8.5vw, 7.5rem)"
+    fontWeight: 700
+    lineHeight: 0.85
   body:
     fontFamily: "Hanken Grotesk, sans-serif"
     fontSize: "18px"
@@ -47,8 +46,8 @@ spacing:
   section-desktop: "128px"
 components:
   button-primary:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.vermilion}"
+    backgroundColor: "{colors.cobalt}"
+    textColor: "{colors.glaze}"
     rounded: "{rounded.none}"
     height: "48px"
   button-outline:
@@ -57,55 +56,54 @@ components:
     rounded: "{rounded.none}"
     height: "48px"
   index-row-hover:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.fog}"
+    backgroundColor: "{colors.cobalt}"
+    textColor: "{colors.glaze}"
 ---
 
 ## Overview
 
-The site is a type specimen for one person. Each section is a printed sheet with its own stock: vermilion for the cover and colophon, bottle green for SOMA and the recommendations, pale fog for reading, black for the Motion case. The typeface carries the identity; there are no photos, gradients, glass or icons-as-decoration. Motion only ever changes the axes of the variable font, the length of a stroke or a clip, never decorative floating shapes.
+The site is a tile wall in the spirit of Brazilian modernist azulejaria. Eight original motifs, fired in four glazes, are the only ornament. They stand for the design system: the same pieces, turned and combined, build every section. The cover lays a wall with the name and the positioning set on blank glaze blocks aligned to the grid; the "O sistema" section turns sixteen copies of one tile into three compositions as you scroll. Motion only ever turns, lays or reveals tiles.
 
 ## Colors
 
-- **Vermilion** `#ff4a1c` is the cover stock. Text on it is always ink (6.25:1).
-- **Bottle** `#0e3b2c` carries paper `#e9ede6` (10.5:1) and paper-soft `#9fc2a8` (6.4:1) for secondary text. Vermilion on bottle is large text only (3.7:1).
-- **Fog** `#e6e8eb` is the reading stock. Ink-soft `#4a4d52` (6.9:1) for secondary text, rust `#c2310a` (4.6:1) for a figure or an accent mark.
-- **Ink** black is a stock too (Motion case, the floating nav tab, hover inversion of index rows).
-- Never put rust or vermilion on small text over a tinted background without checking contrast.
+- **Cobalt** `#1c3f94` is the main glaze and the ground of SOMA, recommendations and contact. Glaze text on it is 8.5:1, glaze-soft `#c9d3ec` 6.4:1.
+- **Glaze** `#eef1f5` is a cool porcelain white, the reading ground. Ink 16.4:1, ink-soft `#4a4d55` 7.5:1, cobalt 8.5:1.
+- **Ink** `#111318` grounds the Motion case and the footer. Ash `#9aa0ab` for secondary text on it (7.1:1); ochre on ink 9.9:1.
+- **Ochre** `#f0b323` is the accent: one in five tiles at most, the recompose control, diff markers. Never body text on glaze.
 
 ## Typography
 
-- **Anybody** (variable, `wdth` 50–150, `wght` 100–900) is the only display face. Set axes per use with `fontVariationSettings`; the `.display` class lives in the components layer, so `leading-*` and `tracking-*` utilities override its 0.86 line height.
-- **Hanken Grotesk** for all running text, 17–19px, line height 1.5–1.6, max 56–62ch.
-- **JetBrains Mono** for specimen labels only: sizes in the waterfall, `wght` readouts, semantics trees, the bezier caption.
-- Kinetic words never break inside a word: KineticText wraps each word in a nowrap span; numbers with a currency use a non-breaking space.
+- **Bricolage Grotesque** 700 for all display text, tracking −0.03em. The cover size follows the tile cell, so the name always spans whole tiles.
+- **Hanken Grotesk** for running text, 16–19px, line height 1.3 or more, max 56–62ch.
+- **JetBrains Mono** for labels: kickers, stage numbers, diff markers, the motion tokens.
 
 ## Layout
 
-Full-bleed sections, 16px gutter on mobile and 32px from `sm`. Content runs left-aligned on a two-column grid from `lg`, with hairline `border-ink/25` rules between rows like a specimen sheet. The cover is `min-h-svh`. Verified with no horizontal scroll from 320px to 1920px, including the pointer peak on the last glyph of the name.
+Panels are CSS grids sized from their own width with container units: `--cell = 100cqw / --cols`. Text blocks laid over a panel (`.panel-block`) take `--x --y --w --h` in cells, so they snap to the tiles at every breakpoint. Cover: 6 × 11 cells on mobile, 12 × 7 from `md`. Contact: 6 × 12 and 12 × 7. Sections are full-bleed with a 16px gutter on mobile and 32px from `sm`. Verified with no horizontal scroll from 320px to 1920px.
 
 ## Elevation & Depth
 
-Flat. Depth comes from stock changes between sections and from the fixed nav tab, which is a black slab, not a shadowed card.
+Flat. Depth comes from the change of ground between sections and from glaze blocks laid over tiles.
 
 ## Shapes
 
-Square corners everywhere. Borders are 2px ink for buttons and the Morphix frame, 1px for row rules. The glyph-cell guide lines (22%, 62%, 84%) appear only behind large figures.
+Square corners everywhere; the only curves are inside the tiles. Borders are 2px ink. Motifs (`lib/tiles.ts`, `TileArt`): quarter disc, half disc, triangle, lens, dot, quarter ring, split, bar. A panel's pattern is seeded, so server and client lay the same wall.
 
 ## Components
 
-- **KineticText**: CSS keyframe entrance from hairline to resting axes, staggered per glyph, then JS takes over and widens glyphs near a fine pointer (smoothstep falloff, lerp 0.16). `onView` holds the entrance until the text is on screen. Reduced motion renders the resting axes, no entrance, no tracking.
-- **Waterfall**: four sizes (96/56/32/20). Only the two large rows open from `wdth` 62 to 100 as they scroll in; small text never condenses.
-- **Career weights**: company name weight scrubs from 100 to its target as the row reaches 65% of the viewport; the newest role is heaviest.
-- **SemanticsSpecimen**: a real toggle button with `aria-pressed` that reveals the semantics tree.
-- **MorphixCompare**: native range input under a vermilion handle. Both versions share the same centered layout so only the diff (button height, missing label) changes across the split.
-- **EaseCurve**: draws `cubic-bezier(0.23, 1, 0.32, 1)` with `pathLength`; the dot uses `getPointAtLength` so it stays on the stroke tip.
-- **SpecimenNav**: slides in once the cover leaves the viewport.
+- **TilePanel**: lays tiles in with a seeded stagger (scale and quarter turn, 0.7s ease-out). Hover with a fine pointer turns the tile a quarter, once per visit. `recompose` gives every tile a new turn with a spread delay. Rotation lives on the DOM (`data-turn`, `--rot`), so hovering never re-renders React. `onView` holds the entrance until the panel is on screen.
+- **System**: 16 quarter-disc tiles, sticky from `lg`. Scroll turns them from loose pieces to circles to bows, always clockwise. Reduced motion shows the circles.
+- **TileDiff** (Morphix): the same 4 × 3 wall on `main` and on the PR; one piece turned out of the pattern, one fired in a color outside the tokens. The toggle draws dashed numbered outlines on both.
+- **TileCascade** (Motion): six tiles turn with the real tokens, 450ms, ease-out, 60ms stagger. It plays once in view and on demand.
+- **SemanticsSpecimen**: a toggle button with `aria-pressed` that shows the semantics tree of a component.
+- **Career**: each role carries a strip of tiles, one more piece per stage, laid in as it scrolls into view.
 
 ## Do's and Don'ts
 
-- Do let the type move; don't add moving decoration.
-- Do use `cubic-bezier(0.23, 1, 0.32, 1)` for entrances and `cubic-bezier(0.77, 0, 0.175, 1)` for on-screen movement; animate transform, opacity, clip-path and font axes only.
-- Do gate hover-only effects behind `(hover: hover) and (pointer: fine)` and give every animation a reduced-motion state.
+- Do build ornament from `TileArt` motifs only; don't add icons, illustrations or photos as decoration.
+- Do keep ochre rare; a wall with more than one ochre tile in five stops reading as cobalt.
+- Do mark every tile `aria-hidden`; text never lives inside a panel's grid.
+- Do give every animation a reduced-motion state and gate hover behind fine pointers.
+- Don't use real artists' panels or name them as the source; the motifs here are original.
 - Don't invent testimonials or metrics; `data/recommendations.json` holds verified LinkedIn quotes only.
 - Don't round corners, add shadows, gradients or glassmorphism.

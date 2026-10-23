@@ -11,14 +11,16 @@ Audience and job: fintech recruiters and engineering leads decide in a minute wh
 
 ## Direction contract
 
-THESIS: The portfolio is a living type specimen of a system: Pablo's work set as a foundry specimen whose variable axes move. Refuses the dark dev hero with gradient name, typewriter role and card grid.
+Revision 2026-10-23: the type specimen (candidate 7) was built and rejected by Pablo. He picked plan B.
 
-OWN-WORLD: Specimen pages printed on saturated stock: a drenched vermilion cover, ink-black text, page fields switching to bottle green and a cool pale grey for reading spreads. One variable display face with width and weight axes (Anybody) does all display work; a plain sans for text. Rules, baseline marks, axis readouts and glyph cells are the only ornament.
+THESIS: The portfolio is a tile wall whose few pieces recombine into every section, the design system made visible. Refuses the dark dev hero with gradient name, typewriter role and card grid.
 
-STORY: The visitor sees a name that stretches with their pointer, understands "systems other teams build apps with", sees the cases as specimen spreads, reads the career as weight rising from Thin to Black, reads peers' quotes, writes to him.
+OWN-WORLD: Brazilian modernist azulejaria. Cobalt and porcelain glaze with ink and a rare ochre; eight original geometric motifs; Bricolage Grotesque for display, Hanken Grotesk for text. Tiles are the only ornament.
 
-FIRST VIEWPORT: Full-bleed vermilion. "Pablo Stefan" at viewport width in Anybody, width axis following the pointer, weight easing in on load. Top: specimen index nav and PT/EN. Bottom band: one-line positioning, role, XP Inc., and the email action.
+STORY: The visitor sees a wall with the name set on blank glaze, turns tiles with the pointer and recomposes the wall, watches one tile become three compositions, reads SOMA, Morphix as a tile diff and Motion as a token cascade, then the career, peers' quotes, and writes to him.
 
-FORM: Foundry type specimen book (candidate 7 of 7). seed:6842c6a6fa1e1f8d
+FIRST VIEWPORT: Header with index and PT/EN; a full-width tile wall; "Pablo Stefan" on a glaze block spanning cells; positioning, role and the email action on a second block; an ink cell with "Recompor painel".
+
+FORM: Modular tile panel (option 2 of the direction card).
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

@@ -7,7 +7,8 @@
     "index": "Projetos",
     "contact": "Contato",
     "switch_locale": "English",
-    "skip": "Pular para o conteúdo"
+    "skip": "Pular para o conteúdo",
+    "system": "O sistema"
   },
   "cover": {
     "role": "Software Architect, Mobile/Flutter",
@@ -15,14 +16,7 @@
     "place": "São Paulo, Brasil",
     "line": "Eu construo os sistemas com que outros times constroem apps.",
     "cta": "Escrever para mim",
-    "hint": "Mova o cursor sobre o nome"
-  },
-  "statement": {
-    "title": "Em cascata",
-    "l1": "Eu construo os sistemas com que outros times constroem apps.",
-    "l2": "Arquiteto do SOMA, o design system em Flutter dos apps XP, Rico e Clear.",
-    "l3": "Governança de componentes da criação à depreciação, decisões registradas em RFCs e ADRs, e suporte às squads que usam o sistema no dia a dia.",
-    "l4": "Antes da XP, fui Feature Lead no app da Caju pela nav9, construí apps offline-first e white-label na Fiibo e liderei um time de três devs na Krykto, onde comecei como júnior em 2022."
+    "recompose": "Recompor painel"
   },
   "cases": {
     "title": "Casos",
@@ -42,26 +36,28 @@
       "headline": "Ver a mudança antes do merge",
       "body": "Idealizei e construí o Morphix: em cada PR ele gera previews, compara as versões do componente e mostra os nós de semântica do Flutter. Engenharia, design e produto revisam juntos e pegam problemas visuais e de acessibilidade antes de chegarem ao app.",
       "figure": "economia anual estimada em licenciamento",
-      "compare_label": "Arraste para comparar a versão atual com a do PR",
       "before": "main",
       "after": "PR",
-      "diff_1": "altura 48 → 36 px, abaixo do alvo de toque",
-      "diff_2": "label de acessibilidade removido",
-      "illustration": "Ilustração de um diff, não um PR real.",
+      "diff_1": "Uma peça girada fora do padrão",
+      "diff_2": "Uma cor fora dos tokens do sistema",
+      "illustration": "Ilustração. No Morphix a comparação é de componentes Flutter: tamanho, cor e nós de semântica.",
       "link": "Código no GitHub",
-      "value": "US$ 6.240"
+      "value": "US$ 6.240",
+      "show": "Mostrar diferenças",
+      "hide": "Ocultar diferenças"
     },
     "motion": {
       "name": "Motion",
       "headline": "Uma arquitetura de animação, 650 lugares",
       "body": "Planejei a arquitetura de animações usada em mais de 650 pontos do aplicativo e construí a biblioteca de gráficos animados do SOMA com CustomPainter e AnimatedBuilder. Curvas, durações e coreografia viram tokens, não decisões soltas em cada tela.",
       "figure": "pontos do app com a mesma arquitetura de animação",
-      "curve": "Curva de saída usada em entradas"
+      "replay": "Reproduzir",
+      "tokens": "duration.medium 450ms · ease.out cubic-bezier(0.23, 1, 0.32, 1) · stagger 60ms"
     }
   },
   "career": {
-    "title": "Trajetória em pesos",
-    "intro": "Cada fase, um peso a mais. Do traço fino de 2022 ao preto de hoje.",
+    "title": "Trajetória",
+    "intro": "Cada fase acrescentou peças ao painel. Da primeira, em 2022, ao sistema de hoje.",
     "current": "atual"
   },
   "voices": {
@@ -84,7 +80,18 @@
     "title": "Vamos conversar",
     "line": "Procurando alguém para escalar um design system ou a arquitetura mobile do seu time?",
     "email": "pablo.stefan.dev@gmail.com",
-    "set_in": "Composto em Anybody e Hanken Grotesk. Feito com Next.js e Motion.",
+    "set_in": "Composto em Bricolage Grotesque e Hanken Grotesk. Azulejos desenhados em SVG, inspirados na azulejaria modernista brasileira.",
     "copyright": "Pablo Stefan"
+  },
+  "system": {
+    "kicker": "O sistema",
+    "title": "Uma peça, muitas composições.",
+    "body": "Arquiteto do SOMA, o design system em Flutter dos apps XP, Rico e Clear.",
+    "detail": "Governança de componentes da criação à depreciação, decisões registradas em RFCs e ADRs, e suporte às squads que usam o sistema no dia a dia.",
+    "stages": "Composições",
+    "stage_1": "Peças soltas",
+    "stage_2": "Círculos",
+    "stage_3": "Laços",
+    "caption": "Dezesseis cópias do mesmo azulejo. Role a página: só a rotação muda, como um componente que monta telas diferentes."
   }
 }

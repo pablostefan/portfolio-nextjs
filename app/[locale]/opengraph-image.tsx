@@ -10,7 +10,7 @@ export default function OgImage() {
       style={{
         width: "100%",
         height: "100%",
-        background: "#FF4A1C",
+        background: "#1C3F94",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -20,7 +20,7 @@ export default function OgImage() {
         style={{
           fontSize: 320,
           fontWeight: 800,
-          color: "#000000",
+          color: "#EEF1F5",
           letterSpacing: -10,
         }}
       >

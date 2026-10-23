@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Anybody, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
+import {
+  Bricolage_Grotesque,
+  Hanken_Grotesk,
+  JetBrains_Mono,
+} from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { SpecimenNav } from "@/components/specimen/SpecimenNav";
+import { SiteNav } from "@/components/azulejo/SiteNav";
 import "../globals.css";
 
-const anybody = Anybody({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  variable: "--font-anybody",
-  axes: ["wdth"],
+  variable: "--font-bricolage",
+  axes: ["opsz", "wdth"],
   display: "swap",
 });
 
@@ -82,11 +86,11 @@ async function LocaleLayout({ children, params }: LocaleLayoutProps) {
   return (
     <html
       lang={locale === "pt" ? "pt-BR" : "en"}
-      className={`${anybody.variable} ${hanken.variable} ${jetbrainsMono.variable}`}
+      className={`${bricolage.variable} ${hanken.variable} ${jetbrainsMono.variable}`}
     >
       <body className="min-h-screen font-sans antialiased">
         <NextIntlClientProvider messages={messages}>
-          <SpecimenNav />
+          <SiteNav />
           <main id="top">{children}</main>
         </NextIntlClientProvider>
       </body>

@@ -27,10 +27,10 @@ export function SemanticsSpecimen({
   const reduce = useReducedMotion();
 
   return (
-    <figure className="border border-paper/30 p-5 sm:p-7">
+    <figure className="border border-glaze/30 p-5 sm:p-7">
       <div className="flex flex-wrap items-start gap-8">
         <div className="relative">
-          <span className="flex h-12 min-w-44 items-center justify-center bg-paper px-6 text-[16px] font-semibold text-bottle">
+          <span className="flex h-12 min-w-44 items-center justify-center bg-glaze px-6 text-[16px] font-semibold text-cobalt">
             Investir
           </span>
           <AnimatePresence>
@@ -47,7 +47,7 @@ export function SemanticsSpecimen({
                   reduce ? { opacity: 0 } : { clipPath: "inset(0 0 0 100%)" }
                 }
                 transition={{ duration: 0.45, ease: [0.77, 0, 0.175, 1] }}
-                className="pointer-events-none absolute -inset-2 border-2 border-dashed border-vermilion"
+                className="pointer-events-none absolute -inset-2 border-2 border-dashed border-ochre"
               />
             )}
           </AnimatePresence>
@@ -67,11 +67,11 @@ export function SemanticsSpecimen({
               }
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
-              className="grid grid-cols-[auto_1fr] gap-x-5 gap-y-1 font-mono text-[13px] text-paper"
+              className="grid grid-cols-[auto_1fr] gap-x-5 gap-y-1 font-mono text-[13px] text-glaze"
             >
               {NODES.map(([k, v]) => (
                 <div key={k} className="contents">
-                  <dt className="text-paper-soft">{k}</dt>
+                  <dt className="text-glaze-soft">{k}</dt>
                   <dd>{v}</dd>
                 </div>
               ))}
@@ -79,13 +79,13 @@ export function SemanticsSpecimen({
           )}
         </AnimatePresence>
       </div>
-      <figcaption className="mt-6 flex flex-wrap items-center justify-between gap-4 text-[14px] text-paper-soft">
+      <figcaption className="mt-6 flex flex-wrap items-center justify-between gap-4 text-[14px] text-glaze-soft">
         <span>{caption}</span>
         <button
           type="button"
           aria-pressed={open}
           onClick={() => setOpen((v) => !v)}
-          className="min-h-11 border border-paper/50 px-4 text-paper transition-colors duration-150 hover:border-vermilion hover:text-vermilion"
+          className="min-h-11 border border-glaze/50 px-4 text-glaze transition-colors duration-150 hover:border-ochre hover:text-ochre"
         >
           {open ? hideLabel : showLabel}
         </button>

@@ -24,19 +24,14 @@ function Column({
 }) {
   return (
     <div className="flex flex-col">
-      <h3
-        className="display mb-6 text-[clamp(1.8rem,3vw,2.6rem)]"
-        style={{ fontVariationSettings: '"wdth" 100, "wght" 750' }}
-      >
-        {title}
-      </h3>
+      <h3 className="display mb-6 text-[clamp(1.8rem,3vw,2.6rem)]">{title}</h3>
       <ul className="border-t-2 border-ink">{children}</ul>
     </div>
   );
 }
 
 const rowLink =
-  "group grid grid-cols-[1fr_auto] items-baseline gap-4 border-b border-ink/25 py-4 no-underline transition-colors duration-150 hover:bg-ink hover:text-fog sm:px-2";
+  "group grid grid-cols-[1fr_auto] items-baseline gap-4 border-b border-ink/20 py-4 no-underline transition-colors duration-150 hover:bg-cobalt hover:text-glaze sm:px-2";
 
 export function IndexSection({ projects, certs }: IndexSectionProps) {
   const t = useTranslations("index");
@@ -47,12 +42,11 @@ export function IndexSection({ projects, certs }: IndexSectionProps) {
     <section
       id="index"
       aria-labelledby="index-title"
-      className="bg-fog px-4 py-24 text-ink sm:px-8 sm:py-32"
+      className="bg-glaze px-4 py-24 text-ink sm:px-8 sm:py-32"
     >
       <h2
         id="index-title"
         className="display mb-16 text-[clamp(2.8rem,6vw,5.5rem)]"
-        style={{ fontVariationSettings: '"wdth" 75, "wght" 850' }}
       >
         {t("title")}
       </h2>
@@ -129,7 +123,7 @@ export function IndexSection({ projects, certs }: IndexSectionProps) {
             ))}
           </Column>
           <Column title={t("education")}>
-            <li className="border-b border-ink/25 py-4 text-[17px] font-semibold sm:px-2">
+            <li className="border-b border-ink/20 py-4 text-[17px] font-semibold sm:px-2">
               {t("education_name")}
             </li>
           </Column>

@@ -7,7 +7,8 @@
     "index": "Projects",
     "contact": "Contact",
     "switch_locale": "Português",
-    "skip": "Skip to content"
+    "skip": "Skip to content",
+    "system": "The system"
   },
   "cover": {
     "role": "Software Architect, Mobile/Flutter",
@@ -15,14 +16,7 @@
     "place": "São Paulo, Brazil",
     "line": "I build the systems other teams build apps with.",
     "cta": "Write to me",
-    "hint": "Move your cursor over the name"
-  },
-  "statement": {
-    "title": "Waterfall",
-    "l1": "I build the systems other teams build apps with.",
-    "l2": "Architect of SOMA, the Flutter design system behind the XP, Rico and Clear apps.",
-    "l3": "Component governance from creation to deprecation, decisions recorded in RFCs and ADRs, and day-to-day support for the squads that use the system.",
-    "l4": "Before XP, I was Feature Lead on the Caju app at nav9, built offline-first and white-label apps at Fiibo, and led a team of three developers at Krykto, where I started as a junior in 2022."
+    "recompose": "Recompose the wall"
   },
   "cases": {
     "title": "Work",
@@ -42,26 +36,28 @@
       "headline": "See the change before the merge",
       "body": "I conceived and built Morphix: on every PR it renders previews, compares component versions and exposes Flutter semantics nodes. Engineering, design and product review together and catch visual and accessibility issues before they reach the app.",
       "figure": "estimated yearly licensing savings",
-      "compare_label": "Drag to compare the current version with the PR",
       "before": "main",
       "after": "PR",
-      "diff_1": "height 48 → 36 px, below the touch target",
-      "diff_2": "accessibility label removed",
-      "illustration": "Illustration of a diff, not a real PR.",
+      "diff_1": "One piece turned out of the pattern",
+      "diff_2": "One color outside the system's tokens",
+      "illustration": "Illustration. In Morphix the comparison is between Flutter components: size, color and semantics nodes.",
       "link": "Code on GitHub",
-      "value": "US$ 6,240"
+      "value": "US$ 6,240",
+      "show": "Show differences",
+      "hide": "Hide differences"
     },
     "motion": {
       "name": "Motion",
       "headline": "One animation architecture, 650 places",
       "body": "I planned the animation architecture used in more than 650 points of the app and built SOMA's animated chart library with CustomPainter and AnimatedBuilder. Curves, durations and choreography become tokens, not one-off decisions on every screen.",
       "figure": "places in the app on the same animation architecture",
-      "curve": "Ease-out curve used for entrances"
+      "replay": "Play again",
+      "tokens": "duration.medium 450ms · ease.out cubic-bezier(0.23, 1, 0.32, 1) · stagger 60ms"
     }
   },
   "career": {
-    "title": "Career in weights",
-    "intro": "Every stage one weight heavier. From the hairline of 2022 to today's black.",
+    "title": "Career",
+    "intro": "Each stage added pieces to the wall. From the first one, in 2022, to the system today.",
     "current": "current"
   },
   "voices": {
@@ -84,7 +80,18 @@
     "title": "Let's talk",
     "line": "Looking for someone to scale a design system or your team's mobile architecture?",
     "email": "pablo.stefan.dev@gmail.com",
-    "set_in": "Set in Anybody and Hanken Grotesk. Built with Next.js and Motion.",
+    "set_in": "Set in Bricolage Grotesque and Hanken Grotesk. Tiles drawn in SVG, after Brazilian modernist tilework.",
     "copyright": "Pablo Stefan"
+  },
+  "system": {
+    "kicker": "The system",
+    "title": "One piece, many compositions.",
+    "body": "Architect of SOMA, the Flutter design system behind the XP, Rico and Clear apps.",
+    "detail": "Component governance from creation to deprecation, decisions recorded in RFCs and ADRs, and day-to-day support for the squads that use the system.",
+    "stages": "Compositions",
+    "stage_1": "Loose pieces",
+    "stage_2": "Circles",
+    "stage_3": "Bows",
+    "caption": "Sixteen copies of the same tile. Scroll: only the rotation changes, like a component that builds different screens."
   }
 }

@@ -8,7 +8,7 @@
 ## 1. Visão Geral
 
 Portfólio pessoal auto-atualizado de **Pablo Stefan** (Software Architect - Mobile/Flutter @ XP Inc).  
-Construído com **Next.js 16 (App Router)**, design **espécime tipográfico cinético** (ver `DESIGN.md`), bilíngue **PT/EN**.
+Construído com **Next.js 16 (App Router)**, design **painel de azulejos** (ver `DESIGN.md`), bilíngue **PT/EN**.
 
 | Item | Valor |
 |------|-------|
@@ -32,7 +32,7 @@ Construído com **Next.js 16 (App Router)**, design **espécime tipográfico cin
 | Animações | Framer Motion | 12.x |
 | i18n | next-intl | 4.x |
 | Ícones | lucide-react | latest |
-| Fontes | next/font (Anybody variável + Hanken Grotesk + JetBrains Mono) | — |
+| Fontes | next/font (Bricolage Grotesque + Hanken Grotesk + JetBrains Mono) | — |
 | Package manager | **npm** (nunca yarn/pnpm) | 10.x |
 | Deploy | Vercel | — |
 | Node | 22.x | — |
@@ -53,13 +53,14 @@ portfolio-nextjs/
 │       └── linkedin/
 │           └── route.ts           # GET /api/linkedin — headline + foto
 ├── components/
-│   └── specimen/                  # Seções e peças do espécime tipográfico
-│       ├── KineticText.tsx        # Texto em fonte variável que reage ao cursor
-│       ├── SpecimenNav.tsx        # Aba de navegação fixa
-│       ├── Cover.tsx              # Capa (h1)
-│       ├── Waterfall.tsx          # Escala de tamanhos com scroll
+│   └── azulejo/                   # Seções e peças do painel de azulejos
+│       ├── TileArt.tsx            # Uma face de azulejo em SVG (8 motivos)
+│       ├── TilePanel.tsx          # Parede de azulejos: entrada, hover e recompor
+│       ├── SiteNav.tsx            # Aba de navegação fixa
+│       ├── Cover.tsx              # Capa (h1) sobre o painel
+│       ├── System.tsx             # Uma peça, muitas composições (scroll)
 │       ├── Cases.tsx              # SOMA, Morphix, Motion
-│       ├── Career.tsx             # Trajetória em pesos
+│       ├── Career.tsx             # Trajetória
 │       ├── Voices.tsx             # Recomendações verificadas
 │       ├── IndexSection.tsx       # Projetos, certificações, formação
 │       └── Colophon.tsx           # Contato
@@ -94,9 +95,9 @@ portfolio-nextjs/
 A fonte da verdade é **`DESIGN.md`** (tokens no frontmatter, regras no corpo) e `PRODUCT.md` (público, posicionamento, provas). Os tokens vivem em `app/globals.css` via `@theme`.
 
 Resumo:
-- Papéis (stocks): vermilion `#FF4A1C`, bottle `#0E3B2C`, fog `#E6E8EB`, ink `#000000`; secundários paper `#E9EDE6`, paper-soft `#9FC2A8`, ink-soft `#4A4D52`, rust `#C2310A`.
-- Display: **Anybody** variável (`wdth` 50–150, `wght` 100–900) via `fontVariationSettings`. Corpo: **Hanken Grotesk**. Rótulos: **JetBrains Mono**.
-- Movimento só muda eixos da fonte, comprimento de traço ou recorte. Nada de blobs, gradientes, glassmorphism, sombras ou cantos arredondados.
+- Esmaltes: cobalt `#1C3F94`, glaze `#EEF1F5`, ink `#111318`, ochre `#F0B323`; secundários ink-soft `#4A4D55`, glaze-soft `#C9D3EC`, ash `#9AA0AB`.
+- Display: **Bricolage Grotesque**. Corpo: **Hanken Grotesk**. Rótulos: **JetBrains Mono**.
+- Ornamento é só azulejo (`lib/tiles.ts` + `TileArt`). Movimento só gira, assenta ou recorta azulejos. Nada de gradientes, glassmorphism, sombras ou cantos arredondados.
 - Easing: `cubic-bezier(0.23, 1, 0.32, 1)` para entradas, `cubic-bezier(0.77, 0, 0.175, 1)` para movimento na tela.
 
 ---
@@ -264,14 +265,14 @@ NEXT_PUBLIC_APP_URL=https://pablostefan.com.br
 
 ## 9. Seções
 
-Capa → Escala → Cases (SOMA, Morphix, Motion) → Trajetória → Recomendações → Índice → Contato. Detalhes de cada componente em `DESIGN.md` › Components.
+Capa → O sistema → Cases (SOMA, Morphix, Motion) → Trajetória → Recomendações → Índice → Contato. Detalhes de cada componente em `DESIGN.md` › Components.
 
 ---
 
 ## 10. Acessibilidade (WCAG 2.1 AA)
 
 - Contraste mínimo: **4.5:1** texto normal, **3:1** texto grande
-- Glifos animados do `KineticText`: `aria-hidden="true"`, com o texto inteiro em `aria-label` no contêiner
+- Azulejos são decoração: `aria-hidden="true"`; todo texto fica fora dos painéis
 - Suporte a `prefers-reduced-motion`: usar `useReducedMotion()` do Framer Motion antes de qualquer animação
 - Navegação por teclado: `focus-visible` com contorno definido em `app/globals.css`
 - `<html lang="pt">` ou `<html lang="en">` conforme locale
@@ -285,9 +286,9 @@ Capa → Escala → Cases (SOMA, Morphix, Motion) → Trajetória → Recomenda�
 
 - **ISR**: `export const revalidate = 3600` nos Server Components que buscam GitHub
 - **next/image**: para foto do LinkedIn (otimização automática)
-- **next/font**: Anybody + Hanken Grotesk + JetBrains Mono (zero CLS)
+- **next/font**: Bricolage Grotesque + Hanken Grotesk + JetBrains Mono (zero CLS)
 - **Server Components por padrão**: apenas `"use client"` onde estritamente necessário
-- **KineticText**: o loop de rAF só roda com ponteiro fino e enquanto o texto está visível
+- **TilePanel**: a rotação vive no DOM (`data-turn`, `--rot`), então hover não re-renderiza o React
 
 ---
 
@@ -394,7 +395,7 @@ jobs:
 - Criar/editar arquivos dentro da estrutura da seção 3
 - Seguir os tokens e regras de `DESIGN.md`
 - Adicionar traduções em `messages/pt.json` **E** `messages/en.json` simultaneamente
-- Criar novos componentes em `components/specimen/` seguindo `DESIGN.md`
+- Criar novos componentes em `components/azulejo/` seguindo `DESIGN.md`
 
 ### ❌ NÃO PODE fazer
 - Usar `yarn` ou `pnpm` — apenas **npm**
