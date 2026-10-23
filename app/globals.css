@@ -1,39 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  /* Backgrounds */
-  --color-bg-base: #030712;
-  --color-bg-surface: #0f172a;
+  /* Glazes: the four colors every tile is fired in */
+  --color-cobalt: #1c3f94;
+  --color-glaze: #eef1f5;
+  --color-ink: #111318;
+  --color-ochre: #f0b323;
 
-  /* Brand accents */
-  --color-accent: #7c3aed;
-  --color-accent-light: #a78bfa;
-  --color-accent-cyan: #06b6d4;
-  --color-accent-indigo: #4f46e5;
+  /* Secondary inks, each tuned for its own ground */
+  --color-ink-soft: #4a4d55;
+  --color-glaze-soft: #c9d3ec;
+  --color-ash: #9aa0ab;
 
-  /* Text */
-  --color-content: #f9fafb;
-  --color-content-secondary: #94a3b8;
-  --color-content-muted: #475569;
-
-  /* Glass tokens */
-  --color-glass-bg: rgba(255, 255, 255, 0.04);
-  --color-glass-bg-hover: rgba(255, 255, 255, 0.07);
-  --color-glass-border: rgba(255, 255, 255, 0.08);
-  --color-glass-border-hover: rgba(124, 58, 237, 0.25);
-  --color-glass-divider: rgba(255, 255, 255, 0.03);
-
-  /* Glow shadows */
-  --shadow-glow-violet: 0 8px 40px rgba(124, 58, 237, 0.22);
-  --shadow-glow-cyan: 0 8px 40px rgba(6, 182, 212, 0.22);
-  --shadow-glow-indigo: 0 0 0 1px rgba(99, 102, 241, 0.10), 0 9px 30px rgba(79, 70, 229, 0.17), 0 0 16px rgba(129, 140, 248, 0.08);
-  --shadow-glow-sm-violet: 0 0 24px rgba(124, 58, 237, 0.2);
-  --shadow-glow-sm-cyan: 0 0 28px rgba(6, 182, 212, 0.25);
-
-  /* Typography */
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-space-grotesk);
+  --font-sans: var(--font-hanken);
+  --font-display: var(--font-bricolage);
   --font-mono: var(--font-jetbrains-mono);
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 *,
@@ -44,93 +28,126 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
   overflow-x: clip;
+  background: var(--color-glaze);
 }
 
 body {
-  background-color: #030712;
-  color: #f9fafb;
+  background: var(--color-glaze);
+  color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: clip;
 }
 
-/* Grain / noise texture overlay */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
+::selection {
+  background: var(--color-ochre);
+  color: var(--color-ink);
 }
 
-@supports not (overflow: clip) {
-  html,
-  body {
-    overflow-x: hidden;
+:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 4px;
+}
+
+a {
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 0.06em;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* In the components layer so leading-* and tracking-* utilities can override it. */
+@layer components {
+  .display {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 700;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
   }
 }
 
-/* ── Gradient text utilities ───────────────────────────────────────────────── */
-.gradient-text {
-  background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/*
+ * Tile panels. A panel is a grid of square cells sized from its own width
+ * (container units), so text blocks laid over it can snap to the same cells.
+ */
+.panel {
+  container-type: inline-size;
 }
 
-.gradient-text-animated {
-  background: linear-gradient(135deg, #7c3aed, #06b6d4, #a78bfa, #06b6d4);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-shift 5s ease infinite;
+.panel-grid {
+  --cell: calc(100cqw / var(--cols));
+  display: grid;
+  grid-template-columns: repeat(var(--cols), var(--cell));
+  grid-auto-rows: var(--cell);
 }
 
-/* ── Keyframes ─────────────────────────────────────────────────────────────── */
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
+/* A block of plain glaze laid over the panel, aligned to whole cells */
+.panel-block {
+  --cell: calc(100cqw / var(--cols));
+  position: absolute;
+  left: calc(var(--cell) * var(--x));
+  top: calc(var(--cell) * var(--y));
+  width: calc(var(--cell) * var(--w));
+  height: calc(var(--cell) * var(--h));
 }
 
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50%       { background-position: 100% 50%; }
+.tile {
+  display: block;
+  overflow: hidden;
 }
 
-@keyframes avatar-glow {
-  0%, 100% { transform: scale(1); opacity: 0.62; }
-  50% { transform: scale(1.05); opacity: 0.38; }
+.tile-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: rotate(var(--rot, 0deg));
+  transition: transform 0.6s var(--ease-out);
+  transition-delay: var(--delay, 0ms);
 }
 
-@keyframes bounce-down {
-  0%, 100% { transform: translateY(-2px); }
-  50% { transform: translateY(4px); }
+/* Tiles are laid one by one when the panel first appears */
+.tile-in {
+  animation: tile-in 0.7s var(--ease-out) both;
+  animation-delay: var(--in, 0ms);
 }
 
-.about-avatar-glow {
-  animation: avatar-glow 8s ease-in-out infinite;
-  will-change: transform, opacity;
+.panel[data-wait] .tile-in {
+  animation-play-state: paused;
 }
 
+@keyframes tile-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4) rotate(-90deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
 
-
-/* ── Reduced motion overrides ──────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .gradient-text-animated {
+  .tile-in {
     animation: none;
-    background-size: 100%;
   }
-  .about-avatar-glow {
-    animation: none;
+  .tile-art {
+    transition: none;
   }
 }

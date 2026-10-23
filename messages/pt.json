@@ -1,69 +1,97 @@
 {
   "nav": {
-    "about": "Sobre",
-    "experience": "Experiência",
+    "label": "Índice",
+    "cases": "Casos",
+    "career": "Trajetória",
+    "voices": "Depoimentos",
+    "index": "Projetos",
+    "contact": "Contato",
+    "switch_locale": "English",
+    "skip": "Pular para o conteúdo",
+    "system": "O sistema"
+  },
+  "cover": {
+    "role": "Software Architect, Mobile/Flutter",
+    "org": "na XP Inc.",
+    "place": "São Paulo, Brasil",
+    "line": "Eu construo os sistemas com que outros times constroem apps.",
+    "cta": "Escrever para mim",
+    "recompose": "Recompor painel"
+  },
+  "cases": {
+    "title": "Casos",
+    "soma": {
+      "name": "SOMA",
+      "kicker": "Design system da XP Inc.",
+      "headline": "Acessibilidade como padrão de fábrica",
+      "body": "Implementei acessibilidade seguindo a WCAG em mais de 250 componentes e criei o padrão de testes de widget do sistema. Os chamados de suporte por sprint caíram 40%.",
+      "figure_a": "componentes acessíveis",
+      "figure_b": "chamados de suporte por sprint",
+      "specimen": "Ilustração: um componente e a árvore de semântica que ele anuncia ao leitor de tela.",
+      "show": "Mostrar semântica",
+      "hide": "Ocultar semântica"
+    },
+    "morphix": {
+      "name": "Morphix",
+      "headline": "Ver a mudança antes do merge",
+      "body": "Idealizei e construí o Morphix: em cada PR ele gera previews, compara as versões do componente e mostra os nós de semântica do Flutter. Engenharia, design e produto revisam juntos e pegam problemas visuais e de acessibilidade antes de chegarem ao app.",
+      "figure": "economia anual estimada em licenciamento",
+      "before": "main",
+      "after": "PR",
+      "diff_1": "Uma peça girada fora do padrão",
+      "diff_2": "Uma cor fora dos tokens do sistema",
+      "illustration": "Ilustração. No Morphix a comparação é de componentes Flutter: tamanho, cor e nós de semântica.",
+      "link": "Código no GitHub",
+      "value": "US$ 6.240",
+      "show": "Mostrar diferenças",
+      "hide": "Ocultar diferenças"
+    },
+    "motion": {
+      "name": "Motion",
+      "headline": "Uma arquitetura de animação, 650 lugares",
+      "body": "Planejei a arquitetura de animações usada em mais de 650 pontos do aplicativo e construí a biblioteca de gráficos animados do SOMA com CustomPainter e AnimatedBuilder. Curvas, durações e coreografia viram tokens, não decisões soltas em cada tela.",
+      "figure": "pontos do app com a mesma arquitetura de animação",
+      "replay": "Reproduzir",
+      "tokens": "duration.medium 450ms · ease.out cubic-bezier(0.23, 1, 0.32, 1) · stagger 60ms"
+    }
+  },
+  "career": {
+    "title": "Trajetória",
+    "intro": "Cada fase acrescentou peças ao painel. Da primeira, em 2022, ao sistema de hoje.",
+    "current": "atual"
+  },
+  "voices": {
+    "title": "Quem trabalhou comigo",
+    "source": "Recomendação no LinkedIn",
+    "translated": "Traduzido do português"
+  },
+  "index": {
+    "title": "Índice",
     "projects": "Projetos",
     "certifications": "Certificações",
-    "contact": "Contato"
-  },
-  "hero": {
-    "greeting": "Olá, eu sou",
-    "role": "Software Architect",
-    "typewriter": ["Software Architect", "Mobile Architect", "Flutter Engineer"],
-    "subtitle": "Arquitetando experiências móveis de alto impacto na XP Inc.",
-    "cta_projects": "Ver Projetos",
-    "cta_contact": "Entrar em Contato"
-  },
-  "about": {
-    "title": "Sobre Mim",
-    "skills_title": "Tecnologias",
-    "years_label": "anos de experiência",
-    "companies_label": "empresas",
-    "apps_label": "apps entregues",
-    "location_city": "São Paulo",
-    "location_state": "SP",
-    "location_country": "Brasil",
-    "availability": "Aberto a novas oportunidades",
-    "highlight_1": "Arquitetura mobile",
-    "highlight_2": "Governança de componentes",
-    "highlight_3": "Design acessível",
-    "expand_text": "Ler mais",
-    "collapse_text": "Ler menos"
-  },
-  "experience": {
-    "title": "Experiência",
-    "current": "Atual",
-    "show_details": "Ver atividades",
-    "hide_details": "Ocultar atividades"
-  },
-  "projects": {
-    "title": "Projetos",
-    "view_github": "Ver no GitHub",
-    "view_demo": "Demo",
-    "view_all": "Ver todos no GitHub",
-    "updated": "Atualizado"
-  },
-  "certifications": {
-    "title": "Certificações",
-    "subtitle": "Aprendizado contínuo",
-    "issued": "Emitido em",
+    "education": "Formação",
+    "education_name": "Universidade Federal do Rio Grande do Norte",
+    "github": "Todos os repositórios no GitHub",
     "verify": "Verificar",
-    "empty": "Nenhuma certificação adicionada ainda.",
-    "view_credly": "Ver no Credly",
-    "credential_id": "ID"
+    "updated": "atualizado em",
+    "empty": "Os projetos do GitHub não carregaram agora. Veja todos em github.com/pablostefan."
   },
-  "contact": {
-    "title": "Contato",
-    "subtitle": "Vamos conversar",
-    "availability_note": "Canal preferencial",
-    "email_label": "Email",
-    "whatsapp_label": "WhatsApp",
-    "github_label": "GitHub",
-    "linkedin_label": "LinkedIn",
-    "medium_label": "Medium"
+  "colophon": {
+    "title": "Vamos conversar",
+    "line": "Procurando alguém para escalar um design system ou a arquitetura mobile do seu time?",
+    "email": "pablo.stefan.dev@gmail.com",
+    "set_in": "Composto em Bricolage Grotesque e Hanken Grotesk. Azulejos desenhados em SVG, inspirados na azulejaria modernista brasileira.",
+    "copyright": "Pablo Stefan"
   },
-  "footer": {
-    "made_with": "Feito com",
-    "using": "usando"
+  "system": {
+    "kicker": "O sistema",
+    "title": "Uma peça, muitas composições.",
+    "body": "Arquiteto do SOMA, o design system em Flutter dos apps XP, Rico e Clear.",
+    "detail": "Governança de componentes da criação à depreciação, decisões registradas em RFCs e ADRs, e suporte às squads que usam o sistema no dia a dia.",
+    "stages": "Composições",
+    "stage_1": "Peças soltas",
+    "stage_2": "Círculos",
+    "stage_3": "Laços",
+    "caption": "Dezesseis cópias do mesmo azulejo. Role a página: só a rotação muda, como um componente que monta telas diferentes."
   }
 }

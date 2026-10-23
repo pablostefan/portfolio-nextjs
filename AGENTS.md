@@ -8,7 +8,7 @@
 ## 1. Visão Geral
 
 Portfólio pessoal auto-atualizado de **Pablo Stefan** (Software Architect - Mobile/Flutter @ XP Inc).  
-Construído com **Next.js 15 (App Router)**, design **Glassmorphism premium**, bilíngue **PT/EN**.
+Construído com **Next.js 16 (App Router)**, design **painel de azulejos** (ver `DESIGN.md`), bilíngue **PT/EN**.
 
 | Item | Valor |
 |------|-------|
@@ -32,7 +32,7 @@ Construído com **Next.js 15 (App Router)**, design **Glassmorphism premium**, b
 | Animações | Framer Motion | 12.x |
 | i18n | next-intl | 4.x |
 | Ícones | lucide-react | latest |
-| Fontes | next/font (Space Grotesk + Inter + JetBrains Mono) | — |
+| Fontes | next/font (Bricolage Grotesque + Hanken Grotesk + JetBrains Mono) | — |
 | Package manager | **npm** (nunca yarn/pnpm) | 10.x |
 | Deploy | Vercel | — |
 | Node | 22.x | — |
@@ -53,22 +53,17 @@ portfolio-nextjs/
 │       └── linkedin/
 │           └── route.ts           # GET /api/linkedin — headline + foto
 ├── components/
-│   ├── layout/
-│   │   ├── Navbar.tsx             # Navegação com seletor de idioma
-│   │   └── Footer.tsx
-│   ├── sections/
-│   │   ├── Hero.tsx               # Título animado + CTA
-│   │   ├── About.tsx              # Bio + skills
-│   │   ├── Experience.tsx         # Histórico profissional
-│   │   ├── Projects.tsx           # Projetos do GitHub
-│   │   └── Contact.tsx            # Formulário e links sociais
-│   └── ui/
-│       ├── GlassCard.tsx          # Card glassmorphism reutilizável
-│       ├── GradientText.tsx       # Texto com gradiente violet→cyan
-│       ├── AnimatedBlob.tsx       # Blobs SVG animados no background
-│       ├── TypewriterText.tsx     # Efeito digitação no Hero
-│       ├── SkillBadge.tsx         # Badge de tecnologia
-│       └── SectionWrapper.tsx     # Wrapper com scroll reveal
+│   └── azulejo/                   # Seções e peças do painel de azulejos
+│       ├── TileArt.tsx            # Uma face de azulejo em SVG (8 motivos)
+│       ├── TilePanel.tsx          # Parede de azulejos: entrada, hover e recompor
+│       ├── SiteNav.tsx            # Aba de navegação fixa
+│       ├── Cover.tsx              # Capa (h1) sobre o painel
+│       ├── System.tsx             # Uma peça, muitas composições (scroll)
+│       ├── Cases.tsx              # SOMA, Morphix, Motion
+│       ├── Career.tsx             # Trajetória
+│       ├── Voices.tsx             # Recomendações verificadas
+│       ├── IndexSection.tsx       # Projetos, certificações, formação
+│       └── Colophon.tsx           # Contato
 ├── messages/
 │   ├── pt.json                    # Strings em português
 │   └── en.json                    # Strings em inglês
@@ -97,72 +92,13 @@ portfolio-nextjs/
 
 ## 4. Design System
 
-### 4.1 Paleta de Cores
+A fonte da verdade é **`DESIGN.md`** (tokens no frontmatter, regras no corpo) e `PRODUCT.md` (público, posicionamento, provas). Os tokens vivem em `app/globals.css` via `@theme`.
 
-```css
-/* Fundos */
---bg-base:        #030712;   /* Preto profundo */
---bg-surface:     #0F172A;   /* Superfície cards */
-
-/* Accent */
---violet:         #7C3AED;   /* Principal */
---violet-light:   #A78BFA;
---cyan:           #06B6D4;   /* Secundário */
---indigo:         #4F46E5;
-
-/* Neutros */
---text-primary:   #F9FAFB;
---text-secondary: #94A3B8;
---text-muted:     #475569;
-
-/* Glass */
---glass-bg:       rgba(255,255,255,0.04);
---glass-border:   rgba(255,255,255,0.08);
---glass-blur:     16px;
-```
-
-### 4.2 Tipografia
-
-| Uso | Fonte | Peso |
-|-----|-------|------|
-| Títulos H1–H2 | Space Grotesk | 700 |
-| Corpo de texto | Inter | 400 / 500 |
-| Labels, código | JetBrains Mono | 400 |
-
-### 4.3 Glass Card (padrão para todos os cards)
-
-```css
-.glass-card {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-}
-```
-
-Em Tailwind: `bg-white/[0.04] backdrop-blur-[16px] border border-white/[0.08] rounded-2xl`
-
-### 4.4 Gradientes
-
-```css
-/* Texto gradiente */
-.gradient-text {
-  background: linear-gradient(135deg, #7C3AED, #06B6D4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Blob background */
-.blob-gradient {
-  background: radial-gradient(circle, rgba(124,58,237,0.15), transparent 70%);
-}
-```
-
-### 4.5 AnimatedBlobs
-
-Três blobs no background em posições fixas, animados com Framer Motion (`animate={{ x, y, scale }}`  
-`transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}`). Usar `will-change: transform` e `aria-hidden="true"`.
+Resumo:
+- Esmaltes: cobalt `#1C3F94`, glaze `#EEF1F5`, ink `#111318`, ochre `#F0B323`; secundários ink-soft `#4A4D55`, glaze-soft `#C9D3EC`, ash `#9AA0AB`.
+- Display: **Bricolage Grotesque**. Corpo: **Hanken Grotesk**. Rótulos: **JetBrains Mono**.
+- Ornamento é só azulejo (`lib/tiles.ts` + `TileArt`). Movimento só gira, assenta ou recorta azulejos. Nada de gradientes, glassmorphism, sombras ou cantos arredondados.
+- Easing: `cubic-bezier(0.23, 1, 0.32, 1)` para entradas, `cubic-bezier(0.77, 0, 0.175, 1)` para movimento na tela.
 
 ---
 
@@ -327,77 +263,18 @@ NEXT_PUBLIC_APP_URL=https://pablostefan.com.br
 
 ---
 
-## 9. Wireframes das Seções
+## 9. Seções
 
-### Hero
-```
-┌─────────────────────────────────────────────────┐
-│  [Blob animado violet]          [Blob cyan]      │
-│                                                  │
-│              Olá, eu sou                        │
-│   ██████████████████████████████               │
-│           Pablo Stefan                          │
-│   ──────────────────────────────               │
-│   [TypewriterText: Flutter Developer /          │
-│    Mobile Engineer / Open Source Dev]           │
-│                                                  │
-│   [Ver Projetos ↓]   [Entrar em Contato →]      │
-└─────────────────────────────────────────────────┘
-```
-
-### About
-```
-┌───────────────────────────────────────┐
-│  Sobre Mim                            │
-│  [Foto LinkedIn]  Texto do about.pt   │
-│                   (profile.json)      │
-│  Tecnologias:                         │
-│  [Flutter] [Dart] [Next.js] [...]     │
-└───────────────────────────────────────┘
-```
-
-### Experience (timeline vertical)
-```
-┌───────────────────────────────────────┐
-│  Experiência                          │
-│  ●─── XP Inc             2023–Atual   │
-│  │    Flutter Developer Pleno        │
-│  │    Descrição...                   │
-│  ●─── Empresa anterior   2021–2023   │
-└───────────────────────────────────────┘
-```
-
-### Projects (grid de GlassCards)
-```
-┌─────────────────────────────────────────┐
-│  ┌──────────────┐  ┌──────────────┐    │
-│  │ repo name    │  │ repo name    │    │
-│  │ description  │  │ description  │    │
-│  │ ⭐ N  [Dart] │  │ ⭐ N  [TS]   │    │
-│  │ [GitHub] [→] │  │ [GitHub] [→] │    │
-│  └──────────────┘  └──────────────┘    │
-└─────────────────────────────────────────┘
-```
-
-### Contact
-```
-┌───────────────────────────────────────┐
-│  Vamos conversar                      │
-│  ✉  pablo.stefan.dev@gmail.com       │
-│  ⌥  github.com/pablostefan           │
-│  in linkedin.com/in/pablosgpereira   │
-│  ✍  medium.com/@pablo.stefan         │
-└───────────────────────────────────────┘
-```
+Capa → O sistema → Cases (SOMA, Morphix, Motion) → Trajetória → Recomendações → Índice → Contato. Detalhes de cada componente em `DESIGN.md` › Components.
 
 ---
 
 ## 10. Acessibilidade (WCAG 2.1 AA)
 
 - Contraste mínimo: **4.5:1** texto normal, **3:1** texto grande
-- `AnimatedBlob`: `aria-hidden="true"` e `pointer-events: none`
+- Azulejos são decoração: `aria-hidden="true"`; todo texto fica fora dos painéis
 - Suporte a `prefers-reduced-motion`: usar `useReducedMotion()` do Framer Motion antes de qualquer animação
-- Navegação por teclado: `focus-visible` com anel violet `ring-2 ring-violet-500`
+- Navegação por teclado: `focus-visible` com contorno definido em `app/globals.css`
 - `<html lang="pt">` ou `<html lang="en">` conforme locale
 - Hierarquia correta de headings: único `<h1>` por página
 - Links externos: `target="_blank" rel="noopener noreferrer"`
@@ -409,9 +286,9 @@ NEXT_PUBLIC_APP_URL=https://pablostefan.com.br
 
 - **ISR**: `export const revalidate = 3600` nos Server Components que buscam GitHub
 - **next/image**: para foto do LinkedIn (otimização automática)
-- **next/font**: Space Grotesk + Inter + JetBrains Mono (zero CLS)
+- **next/font**: Bricolage Grotesque + Hanken Grotesk + JetBrains Mono (zero CLS)
 - **Server Components por padrão**: apenas `"use client"` onde estritamente necessário
-- **AnimatedBlobs**: `will-change: transform`, não aplicar `backdrop-filter` em elementos com muitos filhos
+- **TilePanel**: a rotação vive no DOM (`data-turn`, `--rot`), então hover não re-renderiza o React
 
 ---
 
@@ -516,9 +393,9 @@ jobs:
 
 ### ✅ PODE fazer
 - Criar/editar arquivos dentro da estrutura da seção 3
-- Usar os componentes UI definidos na seção 4
+- Seguir os tokens e regras de `DESIGN.md`
 - Adicionar traduções em `messages/pt.json` **E** `messages/en.json` simultaneamente
-- Criar novos componentes em `components/ui/` seguindo o padrão glass
+- Criar novos componentes em `components/azulejo/` seguindo `DESIGN.md`
 
 ### ❌ NÃO PODE fazer
 - Usar `yarn` ou `pnpm` — apenas **npm**
@@ -526,7 +403,7 @@ jobs:
 - Expor tokens com prefixo `NEXT_PUBLIC_` (exc. `NEXT_PUBLIC_APP_URL`)
 - Fazer requests ao LinkedIn no client-side
 - Usar bibliotecas de UI externas (shadcn, MUI, Chakra) — apenas Tailwind + componentes próprios
-- Alterar paleta de cores da seção 4 sem aprovação explícita
+- Alterar a paleta ou a direção de `DESIGN.md` sem aprovação explícita
 - Usar ícones `Github` ou `Linkedin` do lucide-react — eles **não existem** na v1.7.0; usar `Code2` e `Globe` respectivamente
 - Em `Variants` do Framer Motion, usar `{}` como valor de fallback para `shouldReduceMotion` — usar `undefined`
 
@@ -570,5 +447,5 @@ vercel --prod         # Deploy (requer Vercel CLI)
 
 ---
 
-*Última atualização: Abril 2026*  
+*Última atualização: Outubro 2026*  
 *Mantido por: Pablo Stefan — pablo.stefan.dev@gmail.com*

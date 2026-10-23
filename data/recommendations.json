@@ -1,0 +1,22 @@
+{
+  "recommendations": [
+    {
+      "name": "Lucas Reis",
+      "role": "Staff Product Designer",
+      "date": "2026-05-29",
+      "quote": {
+        "pt": "Pablo é um dos profissionais mais completos do time. Ele se destaca pela velocidade e qualidade das entregas, sempre demonstrando muita dedicação, responsabilidade e vontade de fazer acontecer.",
+        "en": "Pablo is one of the most well-rounded professionals on the team. He stands out for the speed and quality of his work, always showing great dedication, responsibility and drive to make things happen."
+      }
+    },
+    {
+      "name": "Guilherme Muller Costa",
+      "role": "Software Architect, XP Inc.",
+      "date": "2026-04-04",
+      "quote": {
+        "pt": "Pablo é um excelente companheiro de equipe, sempre comunicativo e colaborativo. Possui um domínio técnico impressionante em Flutter, sendo uma referência.",
+        "en": "Pablo is an excellent teammate, always communicative and collaborative. He has an impressive technical command of Flutter and is a reference."
+      }
+    }
+  ]
+}
