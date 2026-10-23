@@ -63,7 +63,12 @@ export function IndexSection({ projects, certs }: IndexSectionProps) {
           )}
           {visible.map((p) => (
             <li key={p.id}>
-              <a href={p.homepage || p.html_url} className={rowLink}>
+              <a
+                href={p.homepage || p.html_url}
+                className={rowLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span className="min-w-0">
                   <span className="block text-[19px] font-semibold">
                     {p.name.replace(/[-_]/g, " ")}
@@ -81,7 +86,12 @@ export function IndexSection({ projects, certs }: IndexSectionProps) {
             </li>
           ))}
           <li>
-            <a href="https://github.com/pablostefan" className={rowLink}>
+            <a
+              href="https://github.com/pablostefan"
+              className={rowLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <span className="text-[17px] font-medium">{t("github")}</span>
               <span
                 aria-hidden="true"
@@ -97,7 +107,12 @@ export function IndexSection({ projects, certs }: IndexSectionProps) {
           <Column title={t("certifications")}>
             {certs.map((c) => (
               <li key={c.id}>
-                <a href={c.credentialUrl ?? "#"} className={rowLink}>
+                <a
+                  href={c.credentialUrl ?? "#"}
+                  className={rowLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <span className="min-w-0">
                     <span className="block text-[17px] font-semibold leading-snug">
                       {c.name}

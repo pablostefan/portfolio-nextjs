@@ -45,6 +45,8 @@ export function Colophon() {
           <li key={l.label}>
             <a
               href={l.href}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center border-2 border-ink px-5 text-[17px] font-medium no-underline transition-colors duration-150 hover:bg-ink hover:text-vermilion"
             >
               {l.label}

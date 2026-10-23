@@ -125,6 +125,8 @@ export function Cases() {
             </div>
             <a
               href="https://github.com/pablostefan/morphix"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-fit text-[17px] font-medium underline decoration-2 hover:text-rust"
             >
               {t("morphix.link")}
